@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+body{
+    background-image: url(/assets/images/metalBackground.png);
+    background-size: cover;
+    height: 100vh;
+    padding:0;
+    margin:0;
+}
+#index_logo{
+    height:200px;
+    width:220px;
+}
+
+.center { 
+    display: flex;
+    flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .center h1 {
+    margin: 0;
+    display:inline;
+    font-family: 'Press Start 2P', cursive;
+    font-size: x-large;
+    color:white;
+  }
+  .index_button{
+    margin-top: 30px;
+    width: 100%;
+
+    
+  }
+  .button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #ca2d2d;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    font-family: 'Silkscreen', cursive;
+  }
+  
+  .button:hover {background-color: #9b3d3d}
+  
+  .button:active {
+    background-color: #9b3d3d;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }

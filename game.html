@@ -15,10 +15,12 @@
             <img id = "game_logo" src="assets/images/bomb.png">
             <h1 id ="game_title">Bomb Catcher</h1>
         </header>
-        <nav></nav>
+        <nav class="center">
+          <button id="modalGameSettingsOpen"><i class="fa-solid fa-gamepad"></i></button>
+          <button id="redoGame"><i class="fa-solid fa-arrows-rotate"></i></button>
+          <button id="pauseGame"><i class="fa-solid fa-pause"></i></button>
+        </nav>
         <section class="center">
-            
-
             <div class="grid-container" id="gameArea">
                 <div name="1"><i class="fa-solid fa-bomb"></i></div>
                 <div name="2"><i class="fa-solid fa-bomb"></i></div>
@@ -36,18 +38,29 @@
         <section class="center topPad_small customWidth">
             <input type="range" min="250" max="1000" value="500" class="slider" id="myRange">
         </section>
-        <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
+        <div id="modalStartCountdown">
+            <!-- Modal startUp content -->
+            <div class="modalStartCountdown-content">
                 <p id="startTimer"></p>
             </div>
         </div>
-        <div id="gameOverModal" class="gameOvermodal">
-            <!-- Modal content -->
-            <div class="gameOvermodal-content">
-                <span id="gameOverScreen"></span>
-            </div>
-        </div>
+        <div id="mymodalGameSettings" class="modalGameSettings">
+
+            <!-- Modal gamesettings content -->
+            <div class="modalGameSettings-content">
+              <div class="modalGameSettings-header">
+                <span class="close">&times;</span>
+                <h2>Modal Header</h2>
+              </div>
+              <div class="modalGameSettings-body">
+                <p>Some text in the Modal Body</p>
+                <p>Some other text...</p>
+              </div>
+              <div class="modalGameSettings-footer">
+                <button id="startGameBtn">Start Game</button>
+              </div>
+            </div> 
+          </div>
         <script src="https://kit.fontawesome.com/372da758e4.js" crossorigin="anonymous"></script>
         <script src="assets/js/script.js"></script>
     </body>

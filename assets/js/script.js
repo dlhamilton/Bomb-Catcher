@@ -1,20 +1,28 @@
-// const element = document.getElementById("startTimer");
-// let count = 5;
-// startInterval = setInterval(startCountdown, 1000);
+const element = document.getElementById("startTimer");
+const gameElement = document.getElementById("gameArea");
+const modalElement = document.getElementById("myModal");
 
-// function startCountdown(){
-//     element.innerHTML = count;
-//     count-=1;
-//     if (count === -1){  
-//     element.innerHTML = "Go!";
-//     }
-//     if(count === -2){
-//         element.innerHTML = "";
-//         element.style.display = "none";
-//         element.remove();
-//         clearInterval(startInterval);
-//     }
-// }
+let count = 5;
+startInterval = setInterval(startCountdown, 1000);
+
+function startCountdown(){
+    element.innerHTML = count;
+    count-=1;
+    if (count === -1){  
+    element.innerHTML = `<i class="fa-solid fa-bomb"></i>`;
+    }
+    if(count === -2){
+        element.innerHTML = "";
+        element.style.display = "none";
+        element.style.zIndex = "-1";
+        element.remove();
+        modalElement.remove();
+        clearInterval(startInterval);
+        gameElement.focus();
+        gameRun()
+
+    }
+}
 
 
 
@@ -96,33 +104,39 @@ for (let bomb of bombs) {
 
 let active = [];
 
-document.getElementsByTagName("body")[0].onload = function () {
-  gameRun()
-};
+// document.getElementsByTagName("body")[0].onload = function () {
+//   gameRun()
+// };
 let mainGame;
 function gameRun() {
-
+  let gametick = bombSpeed;
  mainGame = setInterval(function () {
   document.getElementById("gameScore").innerHTML = score;
     let j;
+   
+    if(score>=2){
+     gametick = 0;
+    }
     if (active.length < 3) {
       do {
         j = Math.floor(Math.random() * 9);
       } while (active.indexOf(j) != -1);
       active.push(j);
+     
       bombs[j].myVar = setInterval(myTimer, bombSpeed, j);
       console.log("run");
     }
-  }, 0);
+  }, gametick);
 };
 
 function myTimer(i) {
   bombs[i].colorChange();
 }
 const elementend = document.getElementById("gameOverScreen");
+const elementendmodal = document.getElementById("gameOverModal");
 function gameOver(){
 elementend.innerHTML = "Game Over";
-elementend.style.display = "flex";
+elementendmodal.style.display = "block";
 for (let bomb of bombs) {
 bomb.endGame();
  };

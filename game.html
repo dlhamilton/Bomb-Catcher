@@ -12,14 +12,14 @@
     </head>
     <body>
         <header class="center">
-            <img id = "index_logo" src="/assets/images/bomb.png">
-            <h1 id ="index_title">Bomb Catcher</h1>
+            <img id = "game_logo" src="assets/images/bomb.png">
+            <h1 id ="game_title">Bomb Catcher</h1>
         </header>
         <nav></nav>
         <section class="center">
-            <!-- <p id="startTimer"></p> -->
-<div id="gameOverScreen"></div>
-            <div class="grid-container">
+            
+
+            <div class="grid-container" id="gameArea">
                 <div name="1"><i class="fa-solid fa-bomb"></i></div>
                 <div name="2"><i class="fa-solid fa-bomb"></i></div>
                 <div name="3"><i class="fa-solid fa-bomb"></i></div>  
@@ -36,6 +36,18 @@
         <section class="center topPad_small customWidth">
             <input type="range" min="250" max="1000" value="500" class="slider" id="myRange">
         </section>
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <p id="startTimer"></p>
+            </div>
+        </div>
+        <div id="gameOverModal" class="gameOvermodal">
+            <!-- Modal content -->
+            <div class="gameOvermodal-content">
+                <span id="gameOverScreen"></span>
+            </div>
+        </div>
         <script src="https://kit.fontawesome.com/372da758e4.js" crossorigin="anonymous"></script>
         <script src="assets/js/script.js"></script>
     </body>

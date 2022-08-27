@@ -7,6 +7,8 @@ var startInterval;
 
 function gameReset(){
   score = 0;
+  document.getElementById("gameScore").innerHTML = score;
+  pauseGameBtn.style.color = "whitesmoke";
   active = [];
   mainGame = null;
   gametick = bombSpeed;
@@ -14,7 +16,7 @@ function gameReset(){
   for (let bomb of bombs) {
     bomb.style.backgroundColor = "black";
     bomb.fuse = 3;
-    bomb.addEventListener("click", bomb.stopBomb);
+    bomb.addEventListener("click", () => {bomb.stopBomb(false)});
     bomb.innerHTML=`<i class="fa-solid fa-bomb"></i>`;
   }
   startInterval = setInterval(startCountdown, 1000);
@@ -50,7 +52,7 @@ for (let bomb of bombs) {
     this.style.animation = "startBombColor 3s ease 0s 1";
     if (this.fuse === -1) {
       //alert("Game over");
-      bomb.removeEventListener("click", bomb.stopBomb);
+      bomb.removeEventListener("click", () => {bomb.stopBomb(false)});
       this.style.animation = "initial";
       this.style.backgroundColor = "pink";
       this.innerHTML=`<i class="fa-solid fa-burst"></i>`;
@@ -60,7 +62,7 @@ for (let bomb of bombs) {
     };
     this.fuse -= 1;
   };
-  bomb.stopBomb = function () {
+  bomb.stopBomb = function (x) {
     clearInterval(this.myVar);
     this.fuse = 3;
     // console.log(active);
@@ -72,17 +74,20 @@ for (let bomb of bombs) {
     let removeSpace = active.indexOf(parseInt(bomb.getAttribute("name")) - 1);
     if (removeSpace != -1) {
       active.splice(removeSpace, 1);
+      console.log(x);
+      if (x==true){
       score +=1 ;
+      }
     }
 
     
   }
   bomb.ignite = false;
-  bomb.addEventListener("click", bomb.stopBomb);
+  bomb.addEventListener("click", () => {bomb.stopBomb(true)});
 
   bomb.endGame = function(){
     // for (let bomb of bombs) {
-    bomb.stopBomb();
+    bomb.stopBomb(false);
     console.log("Game over" + bomb);
     // }
   }
@@ -198,8 +203,11 @@ pauseGameBtn.onclick = function() {
     mainGame = setInterval(mainGameFunc, gametick);
   }else{
     pauseGameBtn.style.color = "red";
-    for(bomb of bombs){
-      bomb.stopBomb();
+    for(let bomb of bombs){
+      if(bomb.myVar===undefined || bomb.myVar ===null){
+        
+      }
+      bomb.stopBomb(false);
     }
  clearInterval(mainGame);
   }

@@ -67,7 +67,9 @@ for (let bomb of bombs) {
     this.fuse = 3;
     // console.log(active);
     // console.log("we made it : " + this.innerHTML);
+    if (this.style.backgroundColor != "pink"){
     this.style.backgroundColor = "black";
+  }
     this.style.animation = "initial";
     // console.log(bomb.getAttribute("name"));
     // console.log("hello " + active.indexOf(parseInt(bomb.getAttribute("name")) - 1));
@@ -139,6 +141,7 @@ function gameOver(){
 // elementendmodal.style.display = "block";
 elementgrid.classList.add("gameOverFlash");
 for (let bomb of bombs) {
+ bomb.removeEventListener("click", () => {bomb.stopBomb(false)});
 bomb.endGame();
  };
 console.log("sass");

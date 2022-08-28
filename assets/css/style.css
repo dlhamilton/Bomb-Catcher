@@ -114,31 +114,6 @@ body{
   to {opacity: 1}
 }
 
-  .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto;
-    gap: 20px;
-   border: 5px dashed black;
-    padding: 20px;
-    width:auto;
-    height: auto;
-    /* justify-content: space-around; */
-    justify-content: center;
-  }
-  
-  .grid-container > div {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding: 25% 0;
-    font-size: 30px;
-    width:20vw;
-    height:20vw;
-    max-width: 105px;
-    max-height: 105px;
-    border-radius: 50%;
-    border: 5px solid black;
-  }
 
   @keyframes startBombColor {
     0%   {background-color: white;}
@@ -277,4 +252,39 @@ nav i{
   font-size: 2em;
   color: whitesmoke;
 
+}
+
+.grid-container {
+  max-width: 500px;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: auto auto auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-item {
+      /* background-color: red; */
+   position: relative;
+   width: 100%;
+   padding-top: 100%; /* 1:1 Aspect Ratio */
+   border-radius: 50%;
+    /* border: 5px solid black; */
+}
+
+.bomb_icon{
+   position:  absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   text-align: center;
+   font-size: 0.5em;
+   color: white;
+}
+
+.center_items_inside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

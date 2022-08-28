@@ -3,7 +3,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   let gameSettings_Modal = document.getElementById("mymodalGameSettings");
-  showElement(gameSettings_Modal);
+ // showElement(gameSettings_Modal);
   let gameSettings = getModalInformation(gameSettings_Modal);
 alert(gameSettings.x);
 alert(gameSettings.y);
@@ -33,6 +33,10 @@ function hideElement(element){
   element.style.display = "block";
 }
 
+function drawGameGrid(){
+
+
+}
 
 
 

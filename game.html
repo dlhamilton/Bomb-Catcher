@@ -1,67 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="How many bombs can you defuse?">
-        <meta name="keywords" content="bomb, defuse, catch, fuse, explode">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
-        <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
-        <link rel="stylesheet" href="assets/css/style.css">
-        <title>Bomb Catcher</title>
-    </head>
-    <body>
-        <header class="center">
-            <img id = "game_logo" src="assets/images/bomb.png">
-            <h1 id ="game_title">Bomb Catcher</h1>
-        </header>
-        <nav class="center">
-          <button id="modalGameSettingsOpen"><i class="fa-solid fa-gamepad"></i></button>
-          <button id="redoGame"><i class="fa-solid fa-arrows-rotate"></i></button>
-          <button id="pauseGame"><i class="fa-solid fa-pause"></i></button>
-        </nav>
-        <section class="center">
-            <div class="grid-container" id="gameArea">
-                <div name="1"><i class="fa-solid fa-bomb"></i></div>
-                <div name="2"><i class="fa-solid fa-bomb"></i></div>
-                <div name="3"><i class="fa-solid fa-bomb"></i></div>  
-                <div name="4"><i class="fa-solid fa-bomb"></i></div>
-                <div name="5"><i class="fa-solid fa-bomb"></i></div>
-                <div name="6"><i class="fa-solid fa-bomb"></i></div>  
-                <div name="7"><i class="fa-solid fa-bomb"></i></div>
-                <div name="8"><i class="fa-solid fa-bomb"></i></div>
-                <div name="9"><i class="fa-solid fa-bomb"></i></div>
-              </div>
-        </section>
-        <section class="center scoreCount"><p>Score: </p><span id = gameScore></span></section>
-        <section class="center topPad_large"><p>Custom range slider:</p></section>
-        <section class="center topPad_small customWidth">
-            <input type="range" min="250" max="1000" value="500" class="slider" id="myRange">
-        </section>
-        <div id="modalStartCountdown">
-            <!-- Modal startUp content -->
-            <div class="modalStartCountdown-content">
-                <p id="startTimer"></p>
-            </div>
-        </div>
-        <div id="mymodalGameSettings" class="modalGameSettings">
 
-            <!-- Modal gamesettings content -->
-            <div class="modalGameSettings-content">
-              <div class="modalGameSettings-header">
-                <span class="close">&times;</span>
-                <h2>Modal Header</h2>
-              </div>
-              <div class="modalGameSettings-body">
-                <p>Some text in the Modal Body</p>
-                <p>Some other text...</p>
-              </div>
-              <div class="modalGameSettings-footer">
-                <button id="startGameBtn">Start Game</button>
-              </div>
-            </div> 
-          </div>
-        <script src="https://kit.fontawesome.com/372da758e4.js" crossorigin="anonymous"></script>
-        <script src="assets/js/script.js"></script>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How many bombs can you defuse?">
+  <meta name="keywords" content="bomb, defuse, catch, fuse, explode">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Bomb Catcher</title>
+</head>
+
+<body>
+  <header class="center">
+    <img id="game_logo" src="assets/images/bomb.png">
+    <h1 id="game_title">Bomb Catcher</h1>
+  </header>
+  <nav class="center">
+    <button id="modalGameSettingsOpen"><i class="fa-solid fa-gamepad"></i></button>
+    <button id="redoGame"><i class="fa-solid fa-arrows-rotate"></i></button>
+    <button id="pauseGame"><i class="fa-solid fa-pause"></i></button>
+  </nav>
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <i class="fa-solid fa-bomb bomb_icon"></i>
+    </div>
+    <div class="grid-item">
+      <i class="fa-solid fa-bomb bomb_icon"></i>
+    </div>
+    <div class="grid-item">
+      <i class="fa-solid fa-bomb bomb_icon"></i>
+    </div>
+    <div class="grid-item">
+      <i class="fa-solid fa-bomb bomb_icon"></i>
+    </div>
+    <div class="grid-item">
+      <i class="fa-solid fa-bomb bomb_icon"></i>
+    </div>
+    <div class="grid-item">
+      <i class="fa-solid fa-bomb bomb_icon"></i>
+    </div>
+    <div class="grid-item">
+      <i class="fa-solid fa-bomb bomb_icon"></i>
+    </div>
+    <div class="grid-item">
+      <i class="fa-solid fa-bomb bomb_icon"></i>
+    </div>
+    <div class="grid-item">
+      <i class="fa-solid fa-bomb bomb_icon"></i>
+    </div>
+  </div>
+
+  <section class="center scoreCount">
+    <p>Score: </p><span id=gameScore></span>
+  </section>
+  <section class="center topPad_large">
+    <p>Custom range slider:</p>
+  </section>
+  <section class="center topPad_small customWidth">
+    <input type="range" min="250" max="1000" value="500" class="slider" id="myRange">
+  </section>
+  <div id="modalStartCountdown">
+    <!-- Modal startUp content -->
+    <div class="modalStartCountdown-content">
+      <p id="startTimer"></p>
+    </div>
+  </div>
+  <div id="mymodalGameSettings" class="modalGameSettings">
+
+    <!-- Modal gamesettings content -->
+    <div class="modalGameSettings-content">
+      <div class="modalGameSettings-header">
+        <span class="close">&times;</span>
+        <h2>Modal Header</h2>
+      </div>
+      <div class="modalGameSettings-body">
+        <p>Some text in the Modal Body</p>
+        <p>Some other text...</p>
+      </div>
+      <div class="modalGameSettings-footer">
+        <button id="startGameBtn">Start Game</button>
+      </div>
+    </div>
+  </div>
+  <script src="//code.jquery.com/jquery-latest.min.js"></script>
+  <script src="assets/js/flowtype.js"></script>
+  <script src="https://kit.fontawesome.com/372da758e4.js" crossorigin="anonymous"></script>
+  <script src="assets/js/script.js"></script>
+  <script>
+    $('.bomb_icon').flowtype({
+      fontRatio: 1
+    });
+  </script>
+</body>
+
 </html>

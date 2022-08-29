@@ -117,11 +117,11 @@ body{
 
 
   @keyframes startBombColor {
-    0%   {background-color: white;}
-    20%  {background-color: yellow;}
-    30%  {background-color: orange;}
-    50% {background-color: red;}
-    100% {background-color: darkred;}
+    0%   {color: white;}
+    20%  {color: yellow;}
+    30%  {color: orange;}
+    50% {color: red;}
+    100% {color: darkred;}
   }
   .gameOverFlash {
     border: 5px solid red !important;

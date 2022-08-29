@@ -5,18 +5,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   showElement(gameSettings_Modal);
-  
- let gameSettings; 
 
-document.getElementById('startGameBtn').addEventListener('click',function(){
-  gameSettings = getModalInformation(gameSettings_Modal); 
-  drawGameGrid(gameSettings.x,gameSettings.y);
-  startGame(gameSettings);
-  hideElement(gameSettings_Modal);});
+  let gameSettings;
 
-document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click',function(){hideElement(gameSettings_Modal);});
+  document.getElementById('startGameBtn').addEventListener('click', function () {
+    gameSettings = getModalInformation(gameSettings_Modal);
+    drawGameGrid(gameSettings.x, gameSettings.y);
+    startGame(gameSettings);
+    hideElement(gameSettings_Modal);
+  });
 
-window.onclick = function(event) {
+  document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click', function () {
+    hideElement(gameSettings_Modal);
+  });
+
+  window.onclick = function (event) {
     if (event.target === modalGameSettings) {
       gameSettings_Modal.style.display = "none";
     }
@@ -25,16 +28,16 @@ window.onclick = function(event) {
 
   let buttons = document.getElementsByTagName("button");
   for (let button of buttons) {
-      button.addEventListener("click", function () {
-          if (this.getAttribute("id") === "modalGameSettingsOpen") {
-            showElement(gameSettings_Modal);
-          }else if(this.getAttribute("id") === "redoGame"){
+    button.addEventListener("click", function () {
+      if (this.getAttribute("id") === "modalGameSettingsOpen") {
+        showElement(gameSettings_Modal);
+      } else if (this.getAttribute("id") === "redoGame") {
 
-           } else if(this.getAttribute("id") === "pauseGame"){
+      } else if (this.getAttribute("id") === "pauseGame") {
 
-            };
-        });
-      }
+      };
+    });
+  }
 
 
 })
@@ -42,27 +45,33 @@ window.onclick = function(event) {
  * show a modal element on the DOM by changing display properties.
  * Then get the form data that is inputted.
  */
-function getModalInformation(element){
+function getModalInformation(element) {
   //get form, detaisl from form
- let getDetails= element.getElementsByTagName('input');
+  let getDetails = element.getElementsByTagName('input');
   let x_size = getDetails[0].value;
   let y_size = getDetails[1].value;
   let level = getDetails[2].value;
   let bombs = getDetails[3].value;
   let countdown = getDetails[4].value;
-  return {x:x_size,y:y_size,l:level,noBombs:bombs,countdownStartNumber:countdown};
+  return {
+    x: x_size,
+    y: y_size,
+    l: level,
+    noBombs: bombs,
+    countdownStartNumber: countdown
+  };
 }
 /**
  * Hide an element on the DOM by changing display properties
  */
-function hideElement(element){
+function hideElement(element) {
 
   element.style.display = "none";
 }
 /**
  * Show an element on the DOM by changing display properties
  */
- function showElement(element){
+function showElement(element) {
   element.style.display = "block";
 }
 
@@ -71,84 +80,98 @@ function hideElement(element){
  * @param {the number of columns} cols 
  * @param {the number of rows} rows 
  */
-function drawGameGrid(cols, rows){
-let gridContainer = document.getElementsByClassName("grid-container")[0];
-gridContainer.style['grid-template-columns'] = "auto ".repeat(cols);
-gridContainer.innerHTML = `  
+function drawGameGrid(cols, rows) {
+  let gridContainer = document.getElementsByClassName("grid-container")[0];
+  gridContainer.style['grid-template-columns'] = "auto ".repeat(cols);
+  gridContainer.innerHTML = `  
 <div class="grid-item">
 <i class="fa-solid fa-bomb bomb_icon"></i>
-</div>`.repeat(rows*cols);
+</div>`.repeat(rows * cols);
 }
 
-function startGame(gameSettings){
+function startGame(gameSettings) {
   $('.bomb_icon').flowtype({
     fontRatio: 1
   });
   gameStartCountdown(gameSettings);
 
- 
-  
+
+
 }
 /**
  * Will count down from time to 0 and will start the game
  * @param {The number you want the countdown to start at } time 
  */
-function gameStartCountdown(gameSettings){
+function gameStartCountdown(gameSettings) {
   let count = gameSettings['countdownStartNumber'];
 
-  let startInterval = setInterval(timeCountDown,1000);
+  let startInterval = setInterval(timeCountDown, 1000);
 
-  function timeCountDown(){
-  modalStartCountdownElement = document.getElementById("modalStartCountdown");
-  modalStartCountdownContent = document.getElementById("startTimer");
-  modalStartCountdownElement.style.display ="block";
-  modalStartCountdownContent.innerHTML = count;
-  count-=1;
-      if (count === -1){  
-        modalStartCountdownContent.innerHTML = `<i class="fa-solid fa-bomb"></i>`;
-      }
-      if(count === -2){
-        modalStartCountdownElement.style.display = "none";
-          clearInterval(startInterval);
-          mainGame(gameSettings); 
-      }
+  function timeCountDown() {
+    modalStartCountdownElement = document.getElementById("modalStartCountdown");
+    modalStartCountdownContent = document.getElementById("startTimer");
+    modalStartCountdownElement.style.display = "block";
+    modalStartCountdownContent.innerHTML = count;
+    count -= 1;
+    if (count === -1) {
+      modalStartCountdownContent.innerHTML = `<i class="fa-solid fa-bomb"></i>`;
     }
+    if (count === -2) {
+      modalStartCountdownElement.style.display = "none";
+      clearInterval(startInterval);
+      mainGame(gameSettings);
+    }
+  }
 }
 
-function mainGame(gameSettings){
-alert("game satrt");
-let noBombs = gameSettings['x'] * gameSettings['y'];
+function mainGame(gameSettings) {
+  alert("game satrt");
+  let noBombs = gameSettings['x'] * gameSettings['y'];
   let bombSpeed = gameSettings['l'];
   let noActiveBombs = gameSettings['noBombs'];
-  let active =[];
+  let active = [];
   console.log(active);
   // let gametick = bombSpeed;
   mainGameTimer = setInterval(mainGameFunc, 0);
-  
+
   // };
   // let startingTwoBombsTimer = 0;
   function mainGameFunc() {
-    
-    let randomBombNumber;
-  //   document.getElementById("gameScore").innerHTML = score;
-  //     let j;
-     
-  //     if(startingTwoBombsTimer>=2){
-  //      gametick = 0;
-  //     }else{
-  //       startingTwoBombsTimer += 1;
-  //     }
-       if (active.length < noActiveBombs) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
-         do {
-          randomBombNumber = Math.floor(Math.random() * noBombs);
-         } while (active.indexOf(randomBombNumber) != -1);
-         active.push(randomBombNumber);
-         console.log(randomBombNumber);
-        //  bombs[j].myVar = setInterval(myTimer, bombSpeed, j);
-        //  console.log("run " + j);
-       }
 
+    let randomBombNumber;
+    //   document.getElementById("gameScore").innerHTML = score;
+    //     let j;
+
+    //     if(startingTwoBombsTimer>=2){
+    //      gametick = 0;
+    //     }else{
+    //       startingTwoBombsTimer += 1;
+    //     }
+    if (active.length < noActiveBombs) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
+      do {
+        randomBombNumber = Math.floor(Math.random() * noBombs);
+      } while (active.indexOf(randomBombNumber) != -1);
+      active.push(randomBombNumber);
+      //  bombs[j].myVar = setInterval(myTimer, bombSpeed, j);
+      //  console.log("run " + j);
+      startBombFuse(bombSpeed,randomBombNumber);
+    }
+
+  }
+
+  function startBombFuse(fuseLength, bombIdNumber){
+let bombs = document.getElementsByClassName('bomb_icon');
+bombTimer = setInterval(bombActive,fuseLength*100);
+function bombActive() {
+bombs[bombIdNumber].style.animation = `startBombColor ${fuseLength}s ease 0s 1`;
 }
+
+// for(bomb of bombs){
+//   console.log(bomb);
+// }
+
+  }
+
 }
 
 
@@ -175,7 +198,7 @@ let noBombs = gameSettings['x'] * gameSettings['y'];
 //     bomb.innerHTML=`<i class="fa-solid fa-bomb"></i>`;
 //   }
 //   startInterval = setInterval(startCountdown, 1000);
- 
+
 // }
 
 // function startCountdown(){
@@ -237,7 +260,7 @@ let noBombs = gameSettings['x'] * gameSettings['y'];
 //       }
 //     }
 
-    
+
 //   }
 //   bomb.ignite = false;
 //   bomb.addEventListener("click", () => {bomb.stopBomb(true)});
@@ -267,7 +290,7 @@ let noBombs = gameSettings['x'] * gameSettings['y'];
 // function mainGameFunc() {
 //   document.getElementById("gameScore").innerHTML = score;
 //     let j;
-   
+
 //     if(startingTwoBombsTimer>=2){
 //      gametick = 0;
 //     }else{
@@ -278,11 +301,11 @@ let noBombs = gameSettings['x'] * gameSettings['y'];
 //         j = Math.floor(Math.random() * 9);
 //       } while (active.indexOf(j) != -1);
 //       active.push(j);
-     
+
 //       bombs[j].myVar = setInterval(myTimer, bombSpeed, j);
 //       console.log("run " + j);
 //     }
-   
+
 //   }
 
 // function myTimer(i) {
@@ -363,13 +386,10 @@ let noBombs = gameSettings['x'] * gameSettings['y'];
 //     pauseGameBtn.style.color = "red";
 //     for(let bomb of bombs){
 //       if(bomb.myVar===undefined || bomb.myVar ===null){
-        
+
 //       }
 //       bomb.stopBomb(false);
 //     }
 //  clearInterval(mainGame);
 //   }
 // }
-
-
-

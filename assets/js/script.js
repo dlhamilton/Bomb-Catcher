@@ -2,14 +2,13 @@
 // Open the settings modal to get the user preference for the game
 
 document.addEventListener("DOMContentLoaded", function () {
+
   let gameSettings_Modal = document.getElementById("modalGameSettings");
- showElement(gameSettings_Modal);
+  showElement(gameSettings_Modal);
   
  let gameSettings = getModalInformation(gameSettings_Modal); 
  drawGameGrid(gameSettings.x,gameSettings.y);
 document.getElementById('startGameBtn').addEventListener('click',function(){startGame(gameSettings);hideElement(gameSettings_Modal);});
-
-
 
 document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click',function(){hideElement(gameSettings_Modal);});
 
@@ -18,6 +17,21 @@ window.onclick = function(event) {
       gameSettings_Modal.style.display = "none";
     }
   }
+
+
+  let buttons = document.getElementsByTagName("button");
+  for (let button of buttons) {
+      button.addEventListener("click", function () {
+          if (this.getAttribute("id") === "modalGameSettingsOpen") {
+            showElement(gameSettings_Modal);
+          }else if(this.getAttribute("id") === "redoGame"){
+
+           } else if(this.getAttribute("id") === "pauseGame"){
+
+            };
+        });
+      }
+
 
 })
 /**

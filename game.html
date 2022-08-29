@@ -31,12 +31,6 @@
   <section class="center scoreCount">
     <p>Score: </p><span id=gameScore></span>
   </section>
-  <section class="center topPad_large">
-    <p>Custom range slider:</p>
-  </section>
-  <section class="center topPad_small customWidth">
-    <input type="range" min="250" max="1000" value="500" class="slider" id="myRange">
-  </section>
 
   <div id="modalStartCountdown">
     <!-- Modal startUp content -->
@@ -54,14 +48,25 @@
       </div>
       <div class="modalGameSettings-body">
         <p>Edit the orginal game here</p>
+
+        <label for="col_size">Colums (between 1 and 8):</label>
+        <input type="number" id="col_size" name="col_size" min="1" max="8" value = "4">
+
+        <label for="row_size">Rows (between 1 and 8):</label>
+        <input type="number" id="row_size" name="row_size" min="1" max="8" value = "4">
+
         <div class="slidecontainer">
           <p>Fuse speed:</p>
-          <input type="range" min="1" max="20" value="10">
+          <input data-type="fuseSpeed" type="range" min="1" max="20" value="10">
       </div>
       <div class="slidecontainer">
         <p>Number of bombs:</p>
-        <input type="range" min="1" max="6" value="3">
+        <input data-type="bombAmount" type="range" min="1" max="6" value="3">
     </div>
+    <div class="slidecontainer">
+      <p>Game Countdown:</p>
+      <input data-type="gameCountdownTime" type="range" min="1" max="10" value="3">
+  </div>
       <div class="modalGameSettings-footer">
         <button id="startGameBtn">Start Game</button>
       </div>
@@ -73,13 +78,13 @@
   <script src="https://kit.fontawesome.com/372da758e4.js" crossorigin="anonymous"></script>
   
   <script>
-    $(window).on('load', function() {
- // code here
+//     $(window).on('load', function() {
+//  // code here
 
-    $('.bomb_icon').flowtype({
-      fontRatio: 1
-    });
-  });
+//     $('.bomb_icon').flowtype({
+//       fontRatio: 1
+//     });
+//   });
   </script>
 </body>
 

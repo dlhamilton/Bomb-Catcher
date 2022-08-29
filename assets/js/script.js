@@ -6,9 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   showElement(gameSettings_Modal);
   
- let gameSettings = getModalInformation(gameSettings_Modal); 
- drawGameGrid(gameSettings.x,gameSettings.y);
-document.getElementById('startGameBtn').addEventListener('click',function(){startGame(gameSettings);hideElement(gameSettings_Modal);});
+ let gameSettings; 
+
+document.getElementById('startGameBtn').addEventListener('click',function(){
+  gameSettings = getModalInformation(gameSettings_Modal); 
+  drawGameGrid(gameSettings.x,gameSettings.y);
+  startGame(gameSettings);
+  hideElement(gameSettings_Modal);});
 
 document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click',function(){hideElement(gameSettings_Modal);});
 
@@ -40,10 +44,13 @@ window.onclick = function(event) {
  */
 function getModalInformation(element){
   //get form, detaisl from form
-  let x_size = 4;
-  let y_size = 4;
-  let level = 1000;
-  return {x:x_size,y:y_size,l:level};
+ let getDetails= element.getElementsByTagName('input');
+  let x_size = getDetails[0].value;
+  let y_size = getDetails[1].value;
+  let level = getDetails[2].value;
+  let bombs = getDetails[3].value;
+  let countdown = getDetails[4].value;
+  return {x:x_size,y:y_size,l:level,noBombs:bombs,countdownStartNumber:countdown};
 }
 /**
  * Hide an element on the DOM by changing display properties
@@ -73,10 +80,36 @@ gridContainer.innerHTML = `
 </div>`.repeat(rows*cols);
 }
 
-function startGame(){
-  alert("Game begin");
+function startGame(gameSettings){
+  $('.bomb_icon').flowtype({
+    fontRatio: 1
+  });
+let countdown = gameSettings['countdownStartNumber'];
+gameStartCountdown(countdown);
+ 
+  
 }
 
+function gameStartCountdown(time){
+  let count =time;
+  let startInterval = setInterval(timeCountDown,1000);
+
+  function timeCountDown(){
+  modalStartCountdownElement = document.getElementById("modalStartCountdown");
+  modalStartCountdownContent = document.getElementById("startTimer");
+  modalStartCountdownElement.style.display ="block";
+  modalStartCountdownContent.innerHTML = count;
+  count-=1;
+      if (count === -1){  
+        modalStartCountdownContent.innerHTML = `<i class="fa-solid fa-bomb"></i>`;
+      }
+      if(count === -2){
+        modalStartCountdownElement.style.display = "none";
+          clearInterval(startInterval);
+          alert("Game begin");
+      }
+    }
+}
 
 
 

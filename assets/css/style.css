@@ -69,7 +69,7 @@ body{
 
   #startTimer{
     font-size: 30vh;
-    color:white;
+    color:darkred;
     font-family: 'Silkscreen', cursive;
   }
 
@@ -223,7 +223,7 @@ nav i{
   display: grid;
   gap: 5px;
   grid-template-columns: auto ;
-  background-color: #2196F3;
+  /* background-color: #2196F3; */
   padding: 10px;
 }
 
@@ -244,6 +244,8 @@ nav i{
    right: 0;
    text-align: center; 
    /* font-size: 0.5em */
+   /* 1 pixel black shadow to left, top, right and bottom */
+   text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
    color: black;
 }
 

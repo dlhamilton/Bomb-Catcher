@@ -84,14 +84,18 @@ function startGame(gameSettings){
   $('.bomb_icon').flowtype({
     fontRatio: 1
   });
-let countdown = gameSettings['countdownStartNumber'];
-gameStartCountdown(countdown);
+  gameStartCountdown(gameSettings);
+
  
   
 }
+/**
+ * Will count down from time to 0 and will start the game
+ * @param {The number you want the countdown to start at } time 
+ */
+function gameStartCountdown(gameSettings){
+  let count = gameSettings['countdownStartNumber'];
 
-function gameStartCountdown(time){
-  let count =time;
   let startInterval = setInterval(timeCountDown,1000);
 
   function timeCountDown(){
@@ -106,12 +110,46 @@ function gameStartCountdown(time){
       if(count === -2){
         modalStartCountdownElement.style.display = "none";
           clearInterval(startInterval);
-          alert("Game begin");
+          mainGame(gameSettings); 
       }
     }
 }
 
+function mainGame(gameSettings){
+alert("game satrt");
+let noBombs = gameSettings['x'] * gameSettings['y'];
+  let bombSpeed = gameSettings['l'];
+  let noActiveBombs = gameSettings['noBombs'];
+  let active =[];
+  console.log(active);
+  // let gametick = bombSpeed;
+  mainGameTimer = setInterval(mainGameFunc, 0);
+  
+  // };
+  // let startingTwoBombsTimer = 0;
+  function mainGameFunc() {
+    
+    let randomBombNumber;
+  //   document.getElementById("gameScore").innerHTML = score;
+  //     let j;
+     
+  //     if(startingTwoBombsTimer>=2){
+  //      gametick = 0;
+  //     }else{
+  //       startingTwoBombsTimer += 1;
+  //     }
+       if (active.length < noActiveBombs) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
+         do {
+          randomBombNumber = Math.floor(Math.random() * noBombs);
+         } while (active.indexOf(randomBombNumber) != -1);
+         active.push(randomBombNumber);
+         console.log(randomBombNumber);
+        //  bombs[j].myVar = setInterval(myTimer, bombSpeed, j);
+        //  console.log("run " + j);
+       }
 
+}
+}
 
 
 

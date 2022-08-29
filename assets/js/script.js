@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 alert(gameSettings.x);
 alert(gameSettings.y);
 alert(gameSettings.l);
+drawGameGrid(gameSettings.x,gameSettings.y);
 })
 /**
  * show a modal element on the DOM by changing display properties.
@@ -33,9 +34,14 @@ function hideElement(element){
   element.style.display = "block";
 }
 
-function drawGameGrid(){
+function drawGameGrid(cols, rows){
+let gridContainer = document.getElementsByClassName("grid-container")[0];
+gridContainer.style['grid-template-columns'] = "auto ".repeat(cols);
 
-
+gridContainer.innerHTML = `  
+<div class="grid-item">
+<i class="fa-solid fa-bomb bomb_icon"></i>
+</div>`.repeat(rows*cols);
 }
 
 

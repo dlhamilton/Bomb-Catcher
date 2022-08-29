@@ -19,8 +19,8 @@ body{
     width:220px;
 }
 #game_logo{
-  height:100px;
-  width:110px;
+ /* height:100px; */
+  width:10%;
 }
 
 .center { 
@@ -28,7 +28,7 @@ body{
     flex-flow: wrap;
   justify-content: center;
   align-items: center;
-  break-after: always;
+  /* break-after: always; */
   }
   
   .center h1 {
@@ -75,6 +75,7 @@ body{
 
 /* The modalStartCountdown (background) */
 #modalStartCountdown {
+  display: none;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 100px; /* Location of the box */
@@ -255,10 +256,11 @@ nav i{
 }
 
 .grid-container {
+  width:100%;
   max-width: 500px;
   display: grid;
   gap: 5px;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto ;
   background-color: #2196F3;
   padding: 10px;
 }
@@ -273,13 +275,13 @@ nav i{
 }
 
 .bomb_icon{
-   position:  absolute;
+    position:  absolute;
    top: 0;
    left: 0;
    bottom: 0;
    right: 0;
-   text-align: center;
-   font-size: 0.5em;
+   text-align: center; 
+   /* font-size: 0.5em */
    color: white;
 }
 

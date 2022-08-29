@@ -23,35 +23,10 @@
     <button id="pauseGame"><i class="fa-solid fa-pause"></i></button>
   </nav>
 
+  <section class="center">
   <div class="grid-container">
-    <div class="grid-item">
-      <i class="fa-solid fa-bomb bomb_icon"></i>
-    </div>
-    <div class="grid-item">
-      <i class="fa-solid fa-bomb bomb_icon"></i>
-    </div>
-    <div class="grid-item">
-      <i class="fa-solid fa-bomb bomb_icon"></i>
-    </div>
-    <div class="grid-item">
-      <i class="fa-solid fa-bomb bomb_icon"></i>
-    </div>
-    <div class="grid-item">
-      <i class="fa-solid fa-bomb bomb_icon"></i>
-    </div>
-    <div class="grid-item">
-      <i class="fa-solid fa-bomb bomb_icon"></i>
-    </div>
-    <div class="grid-item">
-      <i class="fa-solid fa-bomb bomb_icon"></i>
-    </div>
-    <div class="grid-item">
-      <i class="fa-solid fa-bomb bomb_icon"></i>
-    </div>
-    <div class="grid-item">
-      <i class="fa-solid fa-bomb bomb_icon"></i>
-    </div>
   </div>
+</section>
 
   <section class="center scoreCount">
     <p>Score: </p><span id=gameScore></span>
@@ -85,14 +60,19 @@
       </div>
     </div>
   </div>
+  <script src="assets/js/script.js"></script>
   <script src="//code.jquery.com/jquery-latest.min.js"></script>
   <script src="assets/js/flowtype.js"></script>
   <script src="https://kit.fontawesome.com/372da758e4.js" crossorigin="anonymous"></script>
-  <script src="assets/js/script.js"></script>
+  
   <script>
+    $(window).on('load', function() {
+ // code here
+
     $('.bomb_icon').flowtype({
       fontRatio: 1
     });
+  });
   </script>
 </body>
 

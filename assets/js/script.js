@@ -2,13 +2,23 @@
 // Open the settings modal to get the user preference for the game
 
 document.addEventListener("DOMContentLoaded", function () {
-  let gameSettings_Modal = document.getElementById("mymodalGameSettings");
- // showElement(gameSettings_Modal);
-  let gameSettings = getModalInformation(gameSettings_Modal);
-alert(gameSettings.x);
-alert(gameSettings.y);
-alert(gameSettings.l);
-drawGameGrid(gameSettings.x,gameSettings.y);
+  let gameSettings_Modal = document.getElementById("modalGameSettings");
+ showElement(gameSettings_Modal);
+  
+ let gameSettings = getModalInformation(gameSettings_Modal); 
+ drawGameGrid(gameSettings.x,gameSettings.y);
+document.getElementById('startGameBtn').addEventListener('click',function(){startGame(gameSettings);hideElement(gameSettings_Modal);});
+
+
+
+document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click',function(){hideElement(gameSettings_Modal);});
+
+window.onclick = function(event) {
+    if (event.target === modalGameSettings) {
+      gameSettings_Modal.style.display = "none";
+    }
+  }
+
 })
 /**
  * show a modal element on the DOM by changing display properties.
@@ -25,6 +35,7 @@ function getModalInformation(element){
  * Hide an element on the DOM by changing display properties
  */
 function hideElement(element){
+
   element.style.display = "none";
 }
 /**
@@ -34,14 +45,22 @@ function hideElement(element){
   element.style.display = "block";
 }
 
+/**
+ * Creates the correct number of bombs based from the grid size passed in.
+ * @param {the number of columns} cols 
+ * @param {the number of rows} rows 
+ */
 function drawGameGrid(cols, rows){
 let gridContainer = document.getElementsByClassName("grid-container")[0];
 gridContainer.style['grid-template-columns'] = "auto ".repeat(cols);
-
 gridContainer.innerHTML = `  
 <div class="grid-item">
 <i class="fa-solid fa-bomb bomb_icon"></i>
 </div>`.repeat(rows*cols);
+}
+
+function startGame(){
+  alert("Game begin");
 }
 
 

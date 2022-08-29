@@ -173,7 +173,7 @@ body{
     }
 
     /* The Modal (background) */
-.modalGameSettings {
+#modalGameSettings {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -214,15 +214,15 @@ body{
 }
 
 /* The Close Button */
-.close {
+.close_SettingsModal {
   color: white;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close_SettingsModal:hover,
+.close_SettingsModal:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;

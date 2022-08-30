@@ -130,7 +130,6 @@ function mainGame(gameSettings) {
   let bombSpeed = gameSettings['l'];
   let noActiveBombs = gameSettings['noBombs'];
   let active = [];
-  console.log(active);
   // let gametick = bombSpeed;
   mainGameTimer = setInterval(mainGameFunc, 0);
 
@@ -160,10 +159,24 @@ function mainGame(gameSettings) {
   }
 
   function startBombFuse(fuseLength, bombIdNumber){
-let bombs = document.getElementsByClassName('bomb_icon');
-bombTimer = setInterval(bombActive,fuseLength*100);
+    let fuse = fuseLength < 10 ? 1: fuseLength/10;
+    let timer = 0;
+let bomb = document.getElementsByClassName('bomb_icon')[bombIdNumber];
+if (fuseLength>= 10){
+  bombTimer = setInterval(bombActive,1000);
+}else{
+  bombTimer = setInterval(bombActive,fuseLength*100);
+}
+
+console.log(fuseLength);
+bomb.style.animation = `startBombColor ${fuseLength/10}s ease 0s 1`;
+bomb.addEventListener('click',function(){console.log(bombIdNumber + "clicked");});
 function bombActive() {
-bombs[bombIdNumber].style.animation = `startBombColor ${fuseLength}s ease 0s 1`;
+  console.log(bombIdNumber);
+  if(timer === fuse){
+    console.log("boom");
+  }
+  timer++;
 }
 
 // for(bomb of bombs){

@@ -125,17 +125,70 @@ function gameStartCountdown(gameSettings) {
 }
 
 function mainGame(gameSettings) {
-  alert("game satrt");
   let noBombs = gameSettings['x'] * gameSettings['y'];
   let bombSpeed = gameSettings['l'];
   let noActiveBombs = gameSettings['noBombs'];
   let active = [];
-  // let gametick = bombSpeed;
+  let bombs = document.getElementsByClassName('bomb_icon');
+  let fuse = bombSpeed < 10 ? 1 : bombSpeed / 10;
+  let bombCount = 0;
+  for (bomb of bombs) {
+ bomb.bombNo = bombCount;
+ bombCount = bombCount + 1;
+
+    
+     bomb.startBombFuse = function () {
+     
+      console.log("here");
+      let timer = 0;
+      // let bomb = document.getElementsByClassName('bomb_icon')[bombIdNumber];
+      if (bombSpeed >= 10) {
+        this.bombTimer = setInterval(bombActive, 1000);
+      } else {
+        this.bombTimer = setInterval(bombActive, fuse * 100);
+        
+      }
+      this.style.animation = `startBombColor ${bombSpeed/10}s ease 0s 1`;
+      //this.style.color = "red";
+      // bomb.addEventListener('click',function(){defuseBomb(bomb,bombIdNumber)});
+      function bombActive() {
+     
+        if (timer === fuse) {
+          console.log("boom");
+        }
+        timer++;
+      }
+    }
+
+    bomb.defuseBomb = function () {
+      console.log("bomb clicked");
+        //     clearInterval(this.myVar);
+        //     this.fuse = 3;
+        //     // console.log(active);
+        //     // console.log("we made it : " + this.innerHTML);
+        //     if (this.style.backgroundColor != "pink"){
+        //     this.style.backgroundColor = "black";
+        this.style.animation = "";
+        // this.style.color = "pink";
+        
+        let removePosition = active.indexOf(this.bombNo);
+        active.splice(removePosition,1);
+        console.log(active);
+        this.removeEventListener('click',this.defuseBomb);
+        clearInterval(this.bombTimer);
+        //console.log(removePosition);
+      }
+  }
+
+
+
   mainGameTimer = setInterval(mainGameFunc, 0);
 
   // };
   // let startingTwoBombsTimer = 0;
   function mainGameFunc() {
+
+
 
     let randomBombNumber;
     //   document.getElementById("gameScore").innerHTML = score;
@@ -152,38 +205,28 @@ function mainGame(gameSettings) {
       } while (active.indexOf(randomBombNumber) != -1);
       active.push(randomBombNumber);
       //  bombs[j].myVar = setInterval(myTimer, bombSpeed, j);
-      //  console.log("run " + j);
-      startBombFuse(bombSpeed,randomBombNumber);
+      bombs[randomBombNumber].startBombFuse();
+      bombs[randomBombNumber].addEventListener('click',bombs[randomBombNumber].defuseBomb);
     }
 
   }
 
-  function startBombFuse(fuseLength, bombIdNumber){
-    let fuse = fuseLength < 10 ? 1: fuseLength/10;
-    let timer = 0;
-let bomb = document.getElementsByClassName('bomb_icon')[bombIdNumber];
-if (fuseLength>= 10){
-  bombTimer = setInterval(bombActive,1000);
-}else{
-  bombTimer = setInterval(bombActive,fuseLength*100);
-}
-
-console.log(fuseLength);
-bomb.style.animation = `startBombColor ${fuseLength/10}s ease 0s 1`;
-bomb.addEventListener('click',function(){console.log(bombIdNumber + "clicked");});
-function bombActive() {
-  console.log(bombIdNumber);
-  if(timer === fuse){
-    console.log("boom");
-  }
-  timer++;
-}
-
-// for(bomb of bombs){
-//   console.log(bomb);
-// }
-
-  }
+  // function defuseBomb(bomb,bombIdNumber) {
+  //   //     clearInterval(this.myVar);
+  //   //     this.fuse = 3;
+  //   //     // console.log(active);
+  //   //     // console.log("we made it : " + this.innerHTML);
+  //   //     if (this.style.backgroundColor != "pink"){
+  //   //     this.style.backgroundColor = "black";
+  //   // bomb.style.animation = "";
+  //   bomb.style.color = "pink";
+  //   let removePosition = active.indexOf(bombIdNumber);
+  //   active.splice(removePosition,1);
+  //   console.log(active);
+  //   bomb.removeEventListener('click',function(){});
+  //   clearInterval(bomb.bombTimer);
+  //   //console.log(removePosition);
+  // }
 
 }
 

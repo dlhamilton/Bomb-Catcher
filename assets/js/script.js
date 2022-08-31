@@ -215,7 +215,10 @@ function gameStartCountdown(gameSettings) {
 // }
 
 let bombs = document.getElementsByClassName('bomb_icon');
-
+/**
+ * the game fucntion with all; the key information for the game to run
+ * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings
+ */
 function game(gameSettings) {
   let numberOfBombs = gameSettings['x'] * gameSettings['y']; // 4 * 4 = 16
   let fuseLength = gameSettings['l']; // 30
@@ -225,7 +228,11 @@ function game(gameSettings) {
   let fuseInS = fuseLength / 10;
   let randomBombNumber;
 
+    /**
+     * The loop that manages the game, will continue to loop until the user has lost the game or stopped the game.
+     */
   setInterval(function () {
+   
     if (active.length < numberOfLiveBombs) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
       do {
         randomBombNumber = Math.floor(Math.random() * numberOfBombs);
@@ -244,7 +251,11 @@ function game(gameSettings) {
   }, 1000);
 
 }
-
+/**
+ * This checks to see what bombs have been defused and removes them from the active bombs array. 
+ * @param {number array - which links to the index number of the bombs that are currently ignited} active 
+ * @returns a new array with all the bombs that hve been defused removed
+ */
 function updateActiveBombs(active) {
   let newActive = [];
   for (x of active) {
@@ -255,13 +266,20 @@ function updateActiveBombs(active) {
   return newActive
 }
 
-
+/**
+ * Start the bombs colour change animation and set its dfuse property to false
+ * @param {the current bomb being set} bomb 
+ * @param {the length of the fuse time in seconds} fuseInS 
+ */
 function setBombFuse(bomb, fuseInS) {
   //bomb.style.color = "red";
   bomb.desfuse = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
 }
 
+/**
+ * defuses the bomb that has been clickeed by the user by clearing the timeout and removing the event listener
+ */
 function defuseBombFuse() {
   this.removeEventListener('click', defuseBombFuse);
   this.desfuse = true;
@@ -270,11 +288,17 @@ function defuseBombFuse() {
   console.log(this.getAttribute("data-bombnum") + " defused");
 }
 
+/**
+ * Registers the bom,b has exploded and changes it style to show the user the bomb has exploded
+ * @param {the bomb that has exploded} bomb 
+ */
 function bombExplode(bomb) {
-  gameOverFlag = true;
   console.log(bomb.getAttribute("data-bombnum") + " boom");
 }
 
+/**
+ * show the gameover screen to the user
+ */
 function gameOver() {
-  return false;
+
 }

@@ -227,11 +227,12 @@ function game(gameSettings) {
   let fuseInMs = fuseLength * 100;
   let fuseInS = fuseLength / 10;
   let randomBombNumber;
+  let gameOverFlag = false;
 
     /**
      * The loop that manages the game, will continue to loop until the user has lost the game or stopped the game.
      */
-  setInterval(function () {
+ let gameTick = setInterval(function () {
    
     if (active.length < numberOfLiveBombs) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
       do {
@@ -248,7 +249,12 @@ function game(gameSettings) {
 
     active = updateActiveBombs(active);
 
-  }, 1000);
+   if (checkForExploded(active)){
+    gameOver(active);
+    clearInterval(gameTick);
+   }
+  }, 300);
+
 
 }
 /**
@@ -266,6 +272,12 @@ function updateActiveBombs(active) {
   return newActive
 }
 
+function checkForExploded(active){
+  for(x of active){
+    if (bombs[x].blown === true){return true;}
+  }
+}
+
 /**
  * Start the bombs colour change animation and set its dfuse property to false
  * @param {the current bomb being set} bomb 
@@ -274,6 +286,7 @@ function updateActiveBombs(active) {
 function setBombFuse(bomb, fuseInS) {
   //bomb.style.color = "red";
   bomb.desfuse = false;
+  bomb.blown = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
 }
 
@@ -293,12 +306,22 @@ function defuseBombFuse() {
  * @param {the bomb that has exploded} bomb 
  */
 function bombExplode(bomb) {
+  bomb.blown = true;
+  bomb.classList.remove("fa-bomb");
+  bomb.classList.add("fa-burst");
+  // bomb.parentNode.innerHTML=`<i class="fa-solid fa-burst"></i>`;
+  bomb.style.color="red";
   console.log(bomb.getAttribute("data-bombnum") + " boom");
 }
 
 /**
  * show the gameover screen to the user
  */
-function gameOver() {
-
+function gameOver(active) {
+  for (x of active){
+    bombs[x].removeEventListener('click', defuseBombFuse);
+    bombs[x].style.animation = "";
+    clearTimeout(bombs[x].bombTimer);
+  }
+ console.log("game over!!!")
 }

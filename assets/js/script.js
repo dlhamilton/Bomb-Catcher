@@ -324,4 +324,6 @@ function gameOver(active) {
     clearTimeout(bombs[x].bombTimer);
   }
  console.log("game over!!!")
+ showElement(document.getElementById("modalGameOver"));
+ 
 }

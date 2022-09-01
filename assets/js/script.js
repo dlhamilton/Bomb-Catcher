@@ -31,11 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", function () {
       if (this.getAttribute("id") === "modalGameSettingsOpen") {
         showElement(gameSettings_Modal);
-      } else if (this.getAttribute("id") === "redoGame") {
-        gameSettings = getModalInformation(gameSettings_Modal);
-        drawGameGrid(gameSettings.x, gameSettings.y);
-        startGame(gameSettings);
-        hideElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "pauseGame") {
         alert("pause game");
       }else if (this.getAttribute("id") === "resetGameOver") {
@@ -44,6 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
 alert("show high score");
       }else if(this.getAttribute("id")=== "endGame"){
         endGame();
+      }else if(this.getAttribute("id")=== "viewSettings"){
+        alert("settings of game");
+      }else if(this.getAttribute("id")=== "informationBtn"){
+        alert("information on the game");
+      }else if(this.getAttribute("id")=== "HomeBtn"){
+        window.location.href = "index.html";
       };
     });
   }
@@ -269,6 +270,8 @@ function game(gameSettings) {
    if (gameOverFlag){
     clearInterval(gameTick);
     gameOver(active);
+    console.log("Eneded NOW");
+    return;
    }
    scoreArea.innerHTML = score;
    scoreAreaGameOver.innerHTML = score;

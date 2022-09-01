@@ -18,10 +18,12 @@
     <h1 id="game_title">Bomb Catcher</h1>
   </header>
   <nav class="center">
-    <button id="modalGameSettingsOpen"><i class="fa-solid fa-gamepad"></i></button>
-    <button id="redoGame"><i class="fa-solid fa-arrows-rotate"></i></button>
+    <button id="modalGameSettingsOpen"><i class="fa-solid fa-square-sliders"></i></button>
     <button id="pauseGame"><i class="fa-solid fa-pause"></i></button>
     <button id ="endGame"><i class="fa-solid fa-stop"></i></button>
+    <button id ="viewSettings"><i class="fa-sharp fa-solid fa-gear"></i></button>
+    <button id ="informationBtn"><i class="fa-sharp fa-solid fa-circle-info"></i></button>
+    <button id ="HomeBtn"><i class="fa-solid fa-house-chimney"></i></button>
   </nav>
 
   <section class="center">
@@ -30,7 +32,7 @@
 </section>
 
   <section class="center scoreCount">
-    <p>Score: </p><span id=gameScore></span>
+    <p>Score: </p><span id=gameScore>0</span>
   </section>
 
   <div id="modalStartCountdown">
@@ -45,7 +47,7 @@
     <div class="modalGameOver-content">
       <h2>Game Over!</h2>
       <h3>Your score</h3>
-      <p><span id = "thePlayerScore"></span></p>
+      <p><span id = "thePlayerScore">0</span></p>
       <button id="resetGameOver">Go again</button>
       <button id="viewHighScoresBtn">View high scores</button>
     </div>

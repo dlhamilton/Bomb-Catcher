@@ -32,9 +32,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if (this.getAttribute("id") === "modalGameSettingsOpen") {
         showElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "redoGame") {
-
+        gameSettings = getModalInformation(gameSettings_Modal);
+        drawGameGrid(gameSettings.x, gameSettings.y);
+        startGame(gameSettings);
+        hideElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "pauseGame") {
-
+        alert("pause game");
+      }else if (this.getAttribute("id") === "resetGameOver") {
+        showElement(gameSettings_Modal);
+      }else if (this.getAttribute("id") === "viewHighScoresBtn") {
+alert("show high score");
       };
     });
   }
@@ -53,12 +60,14 @@ function getModalInformation(element) {
   let level = getDetails[2].value;
   let bombs = getDetails[3].value;
   let countdown = getDetails[4].value;
+  let gameSpeed = getDetails[5].value;
   return {
     x: x_size,
     y: y_size,
     l: level,
     noBombs: bombs,
-    countdownStartNumber: countdown
+    countdownStartNumber: countdown,
+    speed: gameSpeed
   };
 }
 /**
@@ -217,14 +226,17 @@ function gameStartCountdown(gameSettings) {
 
 let bombs = document.getElementsByClassName('bomb_icon');
 let score = 0;
+
 /**
  * the game fucntion with all; the key information for the game to run
  * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings
  */
 function game(gameSettings) {
+  score = 0;
   let numberOfBombs = gameSettings['x'] * gameSettings['y']; // 4 * 4 = 16
   let fuseLength = gameSettings['l']; // 30
   let numberOfLiveBombs = gameSettings['noBombs']; // 3
+  let gameSpeed = gameSettings['speed'] * 100;//5
   let active = [];
   let fuseInMs = fuseLength * 100;
   let fuseInS = fuseLength / 10;
@@ -237,8 +249,7 @@ function game(gameSettings) {
      * The loop that manages the game, will continue to loop until the user has lost the game or stopped the game.
      */
  let gameTick = setInterval(function () {
-   
-    if (active.length < numberOfLiveBombs) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
+    if (active.length < numberOfLiveBombs && gameOverFlag === false) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
       do {
         randomBombNumber = Math.floor(Math.random() * numberOfBombs);
       } while (active.indexOf(randomBombNumber) != -1);
@@ -252,14 +263,14 @@ function game(gameSettings) {
     }
 
     active = updateActiveBombs(active);
-
-   if (checkForExploded(active)){
-    gameOver(active);
+    gameOverFlag = checkForExploded(active)
+   if (gameOverFlag){
     clearInterval(gameTick);
+    gameOver(active);
    }
    scoreArea.innerHTML = score;
    scoreAreaGameOver.innerHTML = score;
-  }, 300);
+  }, gameSpeed);
 
 
 }
@@ -282,6 +293,7 @@ function checkForExploded(active){
   for(x of active){
     if (bombs[x].blown === true){return true;}
   }
+  return false;
 }
 
 /**
@@ -300,12 +312,14 @@ function setBombFuse(bomb, fuseInS) {
  * defuses the bomb that has been clickeed by the user by clearing the timeout and removing the event listener
  */
 function defuseBombFuse() {
+  if (this.blown===false){
   this.removeEventListener('click', defuseBombFuse);
   this.desfuse = true;
   clearTimeout(this.bombTimer);
   this.style.animation = "";
   console.log(this.getAttribute("data-bombnum") + " defused");
   ++score;
+  }
 }
 
 /**
@@ -313,6 +327,8 @@ function defuseBombFuse() {
  * @param {the bomb that has exploded} bomb 
  */
 function bombExplode(bomb) {
+  // bombs[x].removeEventListener('click', defuseBombFuse);
+  gameOverFlag = true;
   bomb.blown = true;
   bomb.classList.remove("fa-bomb");
   bomb.classList.add("fa-burst");

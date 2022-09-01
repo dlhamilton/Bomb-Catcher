@@ -215,6 +215,7 @@ function gameStartCountdown(gameSettings) {
 // }
 
 let bombs = document.getElementsByClassName('bomb_icon');
+let score = 0;
 /**
  * the game fucntion with all; the key information for the game to run
  * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings
@@ -228,6 +229,8 @@ function game(gameSettings) {
   let fuseInS = fuseLength / 10;
   let randomBombNumber;
   let gameOverFlag = false;
+  let scoreArea = document.getElementById("thePlayerScore");
+  let scoreAreaGameOver = document.getElementById("gameScore");
 
     /**
      * The loop that manages the game, will continue to loop until the user has lost the game or stopped the game.
@@ -253,6 +256,8 @@ function game(gameSettings) {
     gameOver(active);
     clearInterval(gameTick);
    }
+   scoreArea.innerHTML = score;
+   scoreAreaGameOver.innerHTML = score;
   }, 300);
 
 
@@ -299,6 +304,7 @@ function defuseBombFuse() {
   clearTimeout(this.bombTimer);
   this.style.animation = "";
   console.log(this.getAttribute("data-bombnum") + " defused");
+  ++score;
 }
 
 /**

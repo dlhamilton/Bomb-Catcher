@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
         showElement(gameSettings_Modal);
       }else if (this.getAttribute("id") === "viewHighScoresBtn") {
 alert("show high score");
+      }else if(this.getAttribute("id")=== "endGame"){
+        endGame();
       };
     });
   }
@@ -335,6 +337,13 @@ function bombExplode(bomb) {
   // bomb.parentNode.innerHTML=`<i class="fa-solid fa-burst"></i>`;
   bomb.style.color="red";
   console.log(bomb.getAttribute("data-bombnum") + " boom");
+}
+
+function endGame(){
+  gameOverFlag = true;
+for (let bomb of bombs){
+  bomb.blown = true;
+}
 }
 
 /**

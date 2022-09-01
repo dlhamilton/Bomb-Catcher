@@ -96,6 +96,7 @@ function startGame(gameSettings) {
   $('.bomb_icon').flowtype({
     fontRatio: 1
   });
+  hideElement(document.getElementById("modalGameOver"));
   gameStartCountdown(gameSettings);
 
 
@@ -331,5 +332,4 @@ function gameOver(active) {
   }
  console.log("game over!!!")
  showElement(document.getElementById("modalGameOver"));
- 
 }

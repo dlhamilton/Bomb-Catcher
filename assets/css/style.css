@@ -394,3 +394,19 @@ nav i {
   border-radius: 10px;
   border: 3px solid black;
 }
+
+#modalGameSettings-warning{
+  color:rgb(0, 0, 0);
+  text-decoration: underline;
+  font-style: italic;
+  background-color: rgba(255, 0, 0, 0.5);
+  border: 1px solid red;
+}
+
+#customGameSettings{
+  display: none;
+}
+#modalGameSettings-customBtn, #startGameBtn{
+  border: 2px solid black;
+  padding: 3px;
+}

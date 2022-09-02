@@ -25,7 +25,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  applyButtonSetup(gameSettings_Modal);
+  applyOnChange();
 
+})
+
+function applyOnChange(){
+  let sliders = document.getElementsByTagName("input");
+  for (let slider of sliders){
+    slider.addEventListener("change",function(){
+      if(this.getAttribute("data-type")==="fuseSpeed"){
+document.getElementById("fuseSpeedValue").innerHTML = this.value;
+      } else if(this.getAttribute("data-type")==="bombAmount"){
+        document.getElementById("bombAmountValue").innerHTML = this.value;
+      }else if(this.getAttribute("data-type")==="gameCountdownTime"){
+        document.getElementById("gameCountdownTimeValue").innerHTML = this.value;
+      }else if(this.getAttribute("data-type")==="gameLevel"){
+        document.getElementById("gameLevelValue").innerHTML = this.value;
+      }
+    })
+  }
+
+}
+
+function applyButtonSetup(gameSettings_Modal){
   let buttons = document.getElementsByTagName("button");
   for (let button of buttons) {
     button.addEventListener("click", function () {
@@ -45,12 +68,22 @@ alert("show high score");
         alert("information on the game");
       }else if(this.getAttribute("id")=== "HomeBtn"){
         window.location.href = "index.html";
+      }else if(this.getAttribute("id")=== "modalGameSettings-customBtn"){
+        showCustomSettings();
       };
     });
   }
+}
 
+function showCustomSettings(){
 
-})
+  if (document.getElementById("customGameSettings").style.display ==="none"){
+  showElement(document.getElementById("customGameSettings"));}else{
+    hideElement(document.getElementById("customGameSettings"));
+  }
+
+}
+
 /**
  * show a modal element on the DOM by changing display properties.
  * Then get the form data that is inputted.
@@ -156,7 +189,7 @@ let score = 0;
 function game(gameSettings) {
   score = 0;
   let numberOfBombs = gameSettings['x'] * gameSettings['y']; // 4 * 4 = 16
-  let fuseLength = gameSettings['l']; // 30
+  let fuseLength = gameSettings['l'] *10 ; // 30
   let numberOfLiveBombs = gameSettings['noBombs']; // 3
   let gameSpeed = gameSettings['speed'] * 100;//5
   let active = [];

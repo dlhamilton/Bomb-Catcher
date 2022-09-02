@@ -163,15 +163,18 @@ body {
   }
 
   30% {
+    color: rgba(255, 196, 0, 0.847);
+  }
+  40% {
     color: orange;
   }
 
   50% {
-    color: red;
+    color: darkorange;
   }
 
   100% {
-    color: darkred;
+    color: red;
   }
 }
 
@@ -180,10 +183,33 @@ body {
   background-color: rgba(255, 0, 0, 0.5) !important;
 }
 
+nav button i:hover {
+  color: #666;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#informationBtn i:hover{
+  color:rgb(63, 133, 255);
+}
+
+#HomeBtn i:hover{
+  color:brown;
+}
+
+#endGame i:hover{
+  color:darkred;
+}
+
+#pauseGame i:hover{
+  color:darkgoldenrod;
+}
+
 .scoreCount {
   font-family: 'Silkscreen', cursive;
   margin-top: 20px;
   font-size: xx-large;
+  color:white;
 }
 
 /* The Modal (background) */

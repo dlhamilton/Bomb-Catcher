@@ -145,87 +145,6 @@ function gameStartCountdown(gameSettings) {
 //----------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------
 
-// function mainGame(gameSettings) {
-//   let noBombs = gameSettings['x'] * gameSettings['y'];
-//   let bombSpeed = gameSettings['l'];
-//   let noActiveBombs = gameSettings['noBombs'];
-//   let active = [];
-//   let fuse = bombSpeed < 10 ? 1 : bombSpeed / 10;
-//   let bombs = document.getElementsByClassName('bomb_icon');
-
-//   let bombCount = 0;
-//   for (bomb of bombs) {
-//     bomb.bombNo = bombCount;
-//     bombCount = bombCount + 1;
-//     bomb.fuseComplete = false;
-
-
-//     bomb.startBombFuse = function () {
-//       let timer = 0;
-//       console.log(timer);
-//       if (bombSpeed >= 10) {
-//         this.bombTimer = setTimeout(this.bombActive, bombSpeed * 100, this);
-//       } else {
-//         this.bombTimer = setTimeout(this.bombActive, fuse * 100, this);
-//       }
-//       this.style.animation = `startBombColor ${bombSpeed/10}s ease 0s 1`;
-//       console.log("ll");
-//       console.log(timer);
-//     }
-
-//     bomb.bombActive = function (a) {
-//       // if (timer === fuse) {
-//       clearTimeout(a.bombTimer);
-//       clearInterval(mainGameTimer);
-//       alert("Game Over!");
-//       // bomb.explode(this);
-//       // }
-//       // timer++;
-//     }
-
-
-//     bomb.defuseBomb = function () {
-//       console.log("bomb clicked");
-//       this.style.animation = "";
-//       let removePosition = active.indexOf(this.bombNo);
-//       active.splice(removePosition, 1);
-//       this.removeEventListener('click', this.defuseBomb);
-//       clearTimeout(this.bombTimer);
-
-//     }
-//   }
-
-
-
-//   mainGameTimer = setInterval(mainGameFunc, 0);
-
-//   // };
-//   // let startingTwoBombsTimer = 0;
-//   function mainGameFunc() {
-
-//     let gameover = false;
-
-//     let randomBombNumber;
-//     //   document.getElementById("gameScore").innerHTML = score;
-//     //     let j;
-
-//     //     if(startingTwoBombsTimer>=2){
-//     //      gametick = 0;
-//     //     }else{
-//     //       startingTwoBombsTimer += 1;
-//     //     }
-//     if (active.length < noActiveBombs) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
-//       do {
-//         randomBombNumber = Math.floor(Math.random() * noBombs);
-//       } while (active.indexOf(randomBombNumber) != -1);
-//       active.push(randomBombNumber);
-//       //  bombs[j].myVar = setInterval(myTimer, bombSpeed, j);
-//       bombs[randomBombNumber].startBombFuse();
-//       bombs[randomBombNumber].addEventListener('click', bombs[randomBombNumber].defuseBomb);
-//     }
-
-//   }
-// }
 
 let bombs = document.getElementsByClassName('bomb_icon');
 let score = 0;
@@ -259,7 +178,7 @@ function game(gameSettings) {
       active.push(randomBombNumber);
 
       bombs[randomBombNumber].addEventListener('click', defuseBombFuse);
-      console.log(bombs[randomBombNumber].getAttribute("data-bombnum") + " started");
+      //console.log(bombs[randomBombNumber].getAttribute("data-bombnum") + " started");
       setBombFuse(bombs[randomBombNumber], fuseInS);
 
       bombs[randomBombNumber].bombTimer = setTimeout(bombExplode, fuseInMs, bombs[randomBombNumber]);
@@ -270,7 +189,7 @@ function game(gameSettings) {
    if (gameOverFlag){
     clearInterval(gameTick);
     gameOver(active);
-    console.log("Eneded NOW");
+    //console.log("Eneded NOW");
     return;
    }
    scoreArea.innerHTML = score;
@@ -322,7 +241,7 @@ function defuseBombFuse() {
   this.desfuse = true;
   clearTimeout(this.bombTimer);
   this.style.animation = "";
-  console.log(this.getAttribute("data-bombnum") + " defused");
+  //console.log(this.getAttribute("data-bombnum") + " defused");
   ++score;
   }
 }
@@ -339,7 +258,7 @@ function bombExplode(bomb) {
   bomb.classList.add("fa-burst");
   // bomb.parentNode.innerHTML=`<i class="fa-solid fa-burst"></i>`;
   bomb.style.color="red";
-  console.log(bomb.getAttribute("data-bombnum") + " boom");
+  //console.log(bomb.getAttribute("data-bombnum") + " boom");
 }
 
 function endGame(){
@@ -358,6 +277,6 @@ function gameOver(active) {
     bombs[x].style.animation = "";
     clearTimeout(bombs[x].bombTimer);
   }
- console.log("game over!!!")
+ //console.log("game over!!!")
  showElement(document.getElementById("modalGameOver"));
 }

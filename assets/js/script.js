@@ -53,6 +53,7 @@ function applyButtonSetup(gameSettings_Modal){
   for (let button of buttons) {
     button.addEventListener("click", function () {
       if (this.getAttribute("id") === "modalGameSettingsOpen") {
+        endGame();
         showElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "pauseGame") {
         alert("pause game");

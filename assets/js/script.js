@@ -91,6 +91,13 @@ document.getElementsByClassName("modalGameSettings-header")[0].style.backgroundC
     document.getElementById("modalGameSettings-customBtn").innerHTML = "Custom Game";
     document.getElementsByClassName("modalGameSettings-header")[0].style.backgroundColor = "#5cb85c";
     document.getElementsByClassName("modalGameSettings-footer ")[0].style.backgroundColor = "#5cb85c";
+
+    document.getElementById("col_size").value = "4";
+    document.getElementById("row_size").value = "4";
+    document.getElementById("fuseSpeed").value = "3";
+    document.getElementById("bombAmount").value = "3";
+    document.getElementById("gameCountdownTime").value = "3";
+    document.getElementById("gameLevel").value = "5";
   }
 
 }

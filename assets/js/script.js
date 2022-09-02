@@ -77,9 +77,20 @@ alert("show high score");
 
 function showCustomSettings(){
 
-  if (document.getElementById("customGameSettings").style.display ==="none"){
-  showElement(document.getElementById("customGameSettings"));}else{
+  if (document.getElementById("customGameSettings").style.display != "block"){
+  showElement(document.getElementById("customGameSettings"));
+document.getElementById("modalGameSettings-title").innerHTML = "Custom Bomb Catcher";
+document.getElementById("modalGameSettings-instructions").innerHTML = "To play the original game, click the button below";
+document.getElementById("modalGameSettings-customBtn").innerHTML = "Original Game";
+document.getElementsByClassName("modalGameSettings-header")[0].style.backgroundColor = "#5c9cb8";
+    document.getElementsByClassName("modalGameSettings-footer ")[0].style.backgroundColor = "#5c9cb8";
+}else{
     hideElement(document.getElementById("customGameSettings"));
+    document.getElementById("modalGameSettings-title").innerHTML = "Original Bomb Catcher";
+    document.getElementById("modalGameSettings-instructions").innerHTML = "To edit the original game and add custom settings, click the button below";
+    document.getElementById("modalGameSettings-customBtn").innerHTML = "Custom Game";
+    document.getElementsByClassName("modalGameSettings-header")[0].style.backgroundColor = "#5cb85c";
+    document.getElementsByClassName("modalGameSettings-footer ")[0].style.backgroundColor = "#5cb85c";
   }
 
 }

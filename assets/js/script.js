@@ -9,18 +9,16 @@ document.addEventListener("DOMContentLoaded", function () {
   let gameSettings;
 
   document.getElementById('startGameBtn').addEventListener('click', function () {
+score = 0;
+document.getElementById("thePlayerScore").innerHTML=0;
+document.getElementById("gameScore").innerHTML = 0;
 
-    if (isPaused === 1){
-      isPaused =2;
-      document.getElementById("pauseGame").children[0]. style.color = "white";
-     }
-     
-
-
+    console.log("ok" + isPaused);
     gameSettings = getModalInformation(gameSettings_Modal);
     drawGameGrid(gameSettings.x, gameSettings.y);
     startGame(gameSettings);
     hideElement(gameSettings_Modal);
+
   });
 
   document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click', function () {
@@ -61,25 +59,32 @@ function applyButtonSetup(gameSettings_Modal) {
   for (let button of buttons) {
     button.addEventListener("click", function () {
       if (this.getAttribute("id") === "modalGameSettingsOpen") {
-
-        isPaused = 1;
-        document.getElementById("pauseGame").children[0].style.color = "darkgoldenrod";
+        if (isPaused === 0) {
+          isPaused = 1;
+          document.getElementById("pauseGame").children[0].style.color = "darkgoldenrod";
+        }
+        checkGameState();
         showElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "pauseGame") {
-        if(isPaused===1){
+        if (isPaused === 1) {
           isPaused = 0;
-          this.children[0]. style.color = "white";
-        }else{
+          this.children[0].style.color = "white";
+        } else if (isPaused === 0) {
           isPaused = 1;
           this.children[0].style.color = "darkgoldenrod";
-        }
+        } else {}
       } else if (this.getAttribute("id") === "resetGameOver") {
+        checkGameState();
         showElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "viewHighScoresBtn") {
         alert("show high score");
       } else if (this.getAttribute("id") === "endGame") {
-        document.getElementById("pauseGame").children[0]. style.color = "white";
+        document.getElementById("pauseGame").children[0].style.color = "white";
         endGame();
+      }else if(this.getAttribute("id") === "EndCurrentGameBtn"){
+        document.getElementById("pauseGame").children[0].style.color = "white";
+        endGame();
+        checkGameState();
       } else if (this.getAttribute("id") === "viewSettings") {
         alert("settings of game");
       } else if (this.getAttribute("id") === "informationBtn") {
@@ -90,6 +95,19 @@ function applyButtonSetup(gameSettings_Modal) {
         showCustomSettings();
       };
     });
+  }
+}
+
+function checkGameState(){
+  if (isPaused === 1) {
+    // isPaused=2;
+    hideElement(document.getElementById('startGameBtn'));
+    showElement(document.getElementById('EndCurrentGameBtn'));
+    console.log("here" + isPaused);
+  } else {
+    document.getElementById("pauseGame").children[0]. style.color = "white";
+    hideElement(document.getElementById('EndCurrentGameBtn'));
+    showElement(document.getElementById('startGameBtn'));
   }
 }
 
@@ -113,9 +131,13 @@ function showCustomSettings() {
     document.getElementById("col_size").value = "4";
     document.getElementById("row_size").value = "4";
     document.getElementById("fuseSpeed").value = "3";
+    document.getElementById("fuseSpeedValue").innerHTML = "3";
     document.getElementById("bombAmount").value = "3";
+    document.getElementById("bombAmountValue").innerHTML = "3";
     document.getElementById("gameCountdownTime").value = "3";
+    document.getElementById("gameCountdownTimeValue").innerHTML = "3";
     document.getElementById("gameLevel").value = "5";
+    document.getElementById("gameLevelValue").innerHTML = "5";
   }
 
 }
@@ -178,6 +200,7 @@ function startGame(gameSettings) {
     fontRatio: 1
   });
   hideElement(document.getElementById("modalGameOver"));
+  isPaused = 0;
   gameStartCountdown(gameSettings);
 
 
@@ -197,7 +220,10 @@ function gameStartCountdown(gameSettings) {
     modalStartCountdownContent = document.getElementById("startTimer");
     modalStartCountdownElement.style.display = "block";
     modalStartCountdownContent.innerHTML = count;
+    if (isPaused===0){
     count -= 1;
+    }
+    if(isPaused>1){count=-2;}
     if (count === -1) {
       modalStartCountdownContent.innerHTML = `<i class="fa-solid fa-bomb"></i>`;
     }
@@ -240,7 +266,7 @@ function game(gameSettings) {
    * The loop that manages the game, will continue to loop until the user has lost the game or stopped the game.
    */
   let gameTick = setInterval(function () {
-    if (isPaused===0) {
+    if (isPaused === 0) {
       if (active.length < numberOfLiveBombs && gameOverFlag === false) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
         do {
           randomBombNumber = Math.floor(Math.random() * numberOfBombs);
@@ -264,8 +290,8 @@ function game(gameSettings) {
       }
       scoreArea.innerHTML = score;
       scoreAreaGameOver.innerHTML = score;
-    }else if (isPaused === 1){
-      for (let bomb of bombs){
+    } else if (isPaused === 1) {
+      for (let bomb of bombs) {
         if (bomb.blown === false) {
           bomb.removeEventListener('click', defuseBombFuse);
           bomb.desfuse = true;
@@ -273,15 +299,17 @@ function game(gameSettings) {
           bomb.style.animation = "";
         }
       }
-    }else{
+    } else {
       clearInterval(gameTick);
-        gameOver(active);
-        if (isPaused === 2){
+      gameOver(active);
+      if (isPaused === 2) {
         hideElement(document.getElementById("modalGameOver"));
-        }
-        isPaused = 0;
-        //console.log("Eneded NOW");
-        return;
+      }
+
+      active = [];
+      bombs = document.getElementsByClassName('bomb_icon');
+      //console.log("Eneded NOW");
+      return;
     }
   }, gameSpeed);
 

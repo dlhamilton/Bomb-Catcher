@@ -410,3 +410,6 @@ nav i {
   border: 2px solid black;
   padding: 3px;
 }
+#EndCurrentGameBtn{
+  display: none;
+}

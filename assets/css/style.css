@@ -304,8 +304,37 @@ nav button i:hover {
   background-color: #0091ff !important;
 }
 
+#modalGameSettings-customBtn{ 
+  color:white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  background-color: #0091ff;
+  background: linear-gradient(180deg,#0091ff,50%,#00d4ff);
+  background-size: 200% 200%;
+
+  -webkit-animation: u-d_Animation 2s linear infinite alternate;
+  -moz-animation: u-d_Animation 2s linear infinite alternate;
+  animation: u-d_Animation 2s linear infinite alternate;
+}
+/* .modalGameSettings-customBtn-org{
+  background-color: #26A67D!important;
+  background: linear-gradient(180deg,#26A67D,50%,#37d2a1)!important;
+    background-size: 200% 200%;
+
+  -webkit-animation: u-d_Animation 2s linear infinite alternate;
+  -moz-animation: u-d_Animation 2s linear infinite alternate;
+  animation: u-d_Animation 2s linear infinite alternate;
+} */
+
+#modalGameSettings-customBtn:hover{ 
+color: #666;
+}
+
 .modalGameSettings-body {
   padding: 2px 16px;
+}
+
+.modalGameSettings-body > *{
+  margin: 5px 0;
 }
 
 .modalGameSettings-footer {
@@ -391,6 +420,7 @@ nav i {
 /* Modal Content */
 .modalGameOver-content {
   color:white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   margin: auto;
   padding: 20px;
   width: 80%;
@@ -402,15 +432,21 @@ nav i {
 }
 
 #modalGameSettings-warning{
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   text-decoration: underline;
   font-style: italic;
   background-color: rgba(255, 0, 0, 0.5);
-  border: 1px solid red;
+  border: 3px solid black;
+  padding: 3px;
+  /* margin: 10px 0; */
 }
 
 #customGameSettings{
   display: none;
+}
+
+#customGameSettings > *{
+  margin: 5px 0;
 }
 
 .modalBtn{
@@ -418,6 +454,7 @@ nav i {
   padding: 3px;
   border-radius: 6px;
   background-color:#eee;
+  font-size: 16px;
 }
 
 #EndCurrentGameBtn{

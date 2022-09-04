@@ -39,7 +39,7 @@ document.getElementById("gameScore").innerHTML = 0;
 function applyOnChange() {
   let sliders = document.getElementsByTagName("input");
   for (let slider of sliders) {
-    slider.addEventListener("change", function () {
+    slider.addEventListener("input", function () {
       if (this.getAttribute("data-type") === "fuseSpeed") {
         document.getElementById("fuseSpeedValue").innerHTML = this.value;
       } else if (this.getAttribute("data-type") === "bombAmount") {
@@ -118,6 +118,9 @@ function showCustomSettings() {
     document.getElementById("modalGameSettings-title").innerHTML = "Custom Bomb Catcher";
     document.getElementById("modalGameSettings-instructions").innerHTML = "To play the original game, click the button below";
     document.getElementById("modalGameSettings-customBtn").innerHTML = "Original Game";
+    document.getElementById("modalGameSettings-customBtn").style.backgroundColor = `#26A67D`;
+    document.getElementById("modalGameSettings-customBtn").style.background = `linear-gradient(180deg,#26A67D,50%,#37d2a1)`;
+    document.getElementById("modalGameSettings-customBtn").style.backgroundSize = `200% 200%`;
     document.getElementsByClassName("modalGameSettings-header")[0].classList.add("modalGameSettings-custom");
     document.getElementsByClassName("modalGameSettings-footer ")[0].classList.add("modalGameSettings-custom");
   } else {
@@ -125,6 +128,9 @@ function showCustomSettings() {
     document.getElementById("modalGameSettings-title").innerHTML = "Original Bomb Catcher";
     document.getElementById("modalGameSettings-instructions").innerHTML = "To edit the original game and add custom settings, click the button below";
     document.getElementById("modalGameSettings-customBtn").innerHTML = "Custom Game";
+    document.getElementById("modalGameSettings-customBtn").style.backgroundColor = `#0091ff`;
+    document.getElementById("modalGameSettings-customBtn").style.background = `linear-gradient(180deg,#0091ff,50%,#00d4ff)`;
+    document.getElementById("modalGameSettings-customBtn").style.backgroundSize = `200% 200%`;
     document.getElementsByClassName("modalGameSettings-header")[0].classList.remove("modalGameSettings-custom");
     document.getElementsByClassName("modalGameSettings-footer ")[0].classList.remove("modalGameSettings-custom");
 
@@ -243,7 +249,7 @@ function gameStartCountdown(gameSettings) {
 
 let bombs = document.getElementsByClassName('bomb_icon');
 let score = 0;
-let isPaused = 0;
+let isPaused = 3;
 /**
  * the game fucntion with all; the key information for the game to run
  * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings

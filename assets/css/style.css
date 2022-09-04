@@ -422,7 +422,7 @@ nav i {
 
 #EndCurrentGameBtn{
   color:white;
-  text-shadow: black 0px 0px 2px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   display: none;
 border-color: black;
 background-color: red;
@@ -463,7 +463,7 @@ background-size: 200% 200%;
 
 #startGameBtn{
   color:white;
-  text-shadow: black 0px 0px 2px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   background-color: #FF9900;
   background: linear-gradient(180deg,#FF9900,50%,#FFC670);
   background-size: 200% 200%;

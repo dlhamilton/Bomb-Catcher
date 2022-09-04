@@ -286,11 +286,12 @@ nav button i:hover {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .close_SettingsModal:hover,
 .close_SettingsModal:focus {
-  color: #000;
+  color: #666;
   text-decoration: none;
   cursor: pointer;
 }
@@ -306,7 +307,7 @@ nav button i:hover {
 
 #modalGameSettings-customBtn{ 
   color:white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   background-color: #0091ff;
   background: linear-gradient(180deg,#0091ff,50%,#00d4ff);
   background-size: 200% 200%;
@@ -438,11 +439,14 @@ nav i {
   background-color: rgba(255, 0, 0, 0.5);
   border: 3px solid black;
   padding: 3px;
-  /* margin: 10px 0; */
+  margin: 0!important;
 }
 
 #customGameSettings{
   display: none;
+  border: 3px solid black;
+  border-radius: 16px;
+  padding:5px;
 }
 
 #customGameSettings > *{
@@ -451,7 +455,7 @@ nav i {
 
 .modalBtn{
   border: 2px solid black;
-  padding: 3px;
+  padding: 10px;
   border-radius: 6px;
   background-color:#eee;
   font-size: 16px;
@@ -500,7 +504,7 @@ background-size: 200% 200%;
 
 #startGameBtn{
   color:white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   background-color: #FF9900;
   background: linear-gradient(180deg,#FF9900,50%,#FFC670);
   background-size: 200% 200%;

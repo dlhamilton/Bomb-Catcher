@@ -61,16 +61,40 @@
         <h2>Game Settings</h2>
       </div>
       <div class="modalGameSettings-body">
-        <h3 id="modalGameSettings-title">Original Bomb Catcher</h3>
-        <p id="modalGameSettings-instructions">To edit the original game and add custom settings, click the button below</p>
-        <button id="modalGameSettings-customBtn" class="modalBtn">Custom Game</button>
-        <div id="customGameSettings">
-          <p id="modalGameSettings-warning">Remeber: This does not add to the High scores</p>
+        <h3 id="modalGameSettings-title">Bomb Catcher - Original</h3>
+        <div id="modalGameSettings-instructions-custom">
+        <p>
+          Welcome to bomb catcher. Defuse the bombs before they explode. </p>
+        <p>How many bombs can you defuse before you go boom? </p><br>
+        <p><strong>Will you set the new highscore?</strong> Click the start button to begin!</p>
+      </div>
+        <form id="customGameSettings">
+          <p id="modalGameSettings-warning">Custom does not allow high scores</p>
           <label for="col_size">Colums (between 1 and 8): </label>
-          <input type="number" id="col_size" name="col_size" min="1" max="8" value="4">
+          <!-- <input type="number" id="col_size" name="col_size" min="1" max="8" value="4"> -->
+          <select id="col_size" name="col_size">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected="selected">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
           <br>
           <label for="row_size">Rows (between 1 and 8): </label>
-          <input type="number" id="row_size" name="row_size" min="1" max="8" value="4">
+          <!-- <input type="number" id="row_size" name="row_size" min="1" max="8" value="4"> -->
+          <select id="row_size" name="row_size">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected="selected">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
           <br>
           <div class="slidecontainer">
             <p>Fuse speed: <span id="fuseSpeedValue">3</span></p>
@@ -82,20 +106,22 @@
           </div>
           <div class="slidecontainer">
             <p>Game Countdown: <span id="gameCountdownTimeValue">3</span></p>
-            <input id="gameCountdownTime"  data-type="gameCountdownTime" type="range" min="1" max="10" value="3">
+            <input id="gameCountdownTime" data-type="gameCountdownTime" type="range" min="1" max="10" value="3">
           </div>
           <div class="slidecontainer">
             <p>Game level: <span id="gameLevelValue">5</span></p>
             <input id="gameLevel" data-type="gameLevel" type="range" min="1" max="10" value="5">
           </div>
-        </div>
+        </form>
+        <p id="modalGameSettings-instructions">For more fun, click the button below to change the orginal game and add your own custom settings</p>
+        <button id="modalGameSettings-customBtn" class="modalBtn">Custom Game</button>
       </div>
-          <div class="modalGameSettings-footer">
-            <button id="startGameBtn" class="modalBtn">Start Game</button>
-            <button id="EndCurrentGameBtn" class="modalBtn">End Current Game</button>
-          </div>
-        
-      
+      <div class="modalGameSettings-footer">
+        <button id="startGameBtn" class="modalBtn">Start Game</button>
+        <button id="EndCurrentGameBtn" class="modalBtn">End Current Game</button>
+      </div>
+
+
     </div>
     <script src="assets/js/script.js"></script>
     <script src="//code.jquery.com/jquery-latest.min.js"></script>

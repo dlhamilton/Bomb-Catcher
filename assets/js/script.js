@@ -115,8 +115,9 @@ function showCustomSettings() {
 
   if (document.getElementById("customGameSettings").style.display != "block") {
     showElement(document.getElementById("customGameSettings"));
-    document.getElementById("modalGameSettings-title").innerHTML = "Custom Bomb Catcher";
-    document.getElementById("modalGameSettings-instructions").innerHTML = "To play the original game, click the button below";
+    document.getElementById("modalGameSettings-title").innerHTML = "Bomb Catcher - Custom";
+    document.getElementById("modalGameSettings-instructions").innerHTML = "Click the button below to play the orginal game, or <strong>press start to begin playing</strong>";
+    document.getElementById("modalGameSettings-instructions-custom").innerHTML ="Use the options below to create a custom game:";
     document.getElementById("modalGameSettings-customBtn").innerHTML = "Original Game";
     document.getElementById("modalGameSettings-customBtn").style.backgroundColor = `#26A67D`;
     document.getElementById("modalGameSettings-customBtn").style.background = `linear-gradient(180deg,#26A67D,50%,#37d2a1)`;
@@ -125,8 +126,12 @@ function showCustomSettings() {
     document.getElementsByClassName("modalGameSettings-footer ")[0].classList.add("modalGameSettings-custom");
   } else {
     hideElement(document.getElementById("customGameSettings"));
-    document.getElementById("modalGameSettings-title").innerHTML = "Original Bomb Catcher";
-    document.getElementById("modalGameSettings-instructions").innerHTML = "To edit the original game and add custom settings, click the button below";
+    document.getElementById("modalGameSettings-title").innerHTML = "Bomb Catcher - Original";
+    document.getElementById("modalGameSettings-instructions").innerHTML = "For more fun, click the button below to change the orginal game and add your own custom settings";
+    document.getElementById("modalGameSettings-instructions-custom").innerHTML =` <p>
+    Welcome to bomb catcher. Defuse the bombs before they explode. </p>
+  <p>How many bombs can you defuse before you go boom? </p><br>
+  <p><strong>Will you set the new highscore?</strong> Click the start button to begin!</p>`;
     document.getElementById("modalGameSettings-customBtn").innerHTML = "Custom Game";
     document.getElementById("modalGameSettings-customBtn").style.backgroundColor = `#0091ff`;
     document.getElementById("modalGameSettings-customBtn").style.background = `linear-gradient(180deg,#0091ff,50%,#00d4ff)`;
@@ -154,13 +159,13 @@ function showCustomSettings() {
  */
 function getModalInformation(element) {
   //get form, detaisl from form
-  let getDetails = element.getElementsByTagName('input');
-  let x_size = getDetails[0].value;
-  let y_size = getDetails[1].value;
-  let level = getDetails[2].value;
-  let bombs = getDetails[3].value;
-  let countdown = getDetails[4].value;
-  let gameSpeed = getDetails[5].value;
+  let getDetails = document.getElementById('customGameSettings');
+  let x_size = getDetails['col_size'].value;
+  let y_size = getDetails['row_size'].value;
+  let level = getDetails['fuseSpeed'].value;
+  let bombs = getDetails['bombAmount'].value;
+  let countdown = getDetails['gameCountdownTime'].value;
+  let gameSpeed = getDetails['gameLevel'].value;
   return {
     x: x_size,
     y: y_size,

@@ -459,15 +459,16 @@ nav i {
   border-radius: 6px;
   background-color:#eee;
   font-size: 16px;
+  letter-spacing: 2px;
 }
 
 #EndCurrentGameBtn{
   color:white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   display: none;
 border-color: black;
 background-color: red;
-background: linear-gradient(90deg,#eee,70%,red);
+background: linear-gradient(90deg,#FF7070,70%,red);
 background-size: 200% 200%;
 
 -webkit-animation: l-r_redAnimation 2s linear infinite alternate;
@@ -547,4 +548,49 @@ background-size: 200% 200%;
     width:60%;
     max-width: 700px;
   }
+}
+
+.combo{
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 80%;
+  height:5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: #AAA;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+    border-radius:50%;
+  height: 15px;
+  width: 15px;
+  background: #0091ff;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+.sliderNums{
+  font-weight:bolder;
+  font-size: 17px;
+  color:#666;
 }

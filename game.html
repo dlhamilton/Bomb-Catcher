@@ -72,7 +72,7 @@
           <p id="modalGameSettings-warning">Custom does not allow high scores</p>
           <label for="col_size">Colums (between 1 and 8): </label>
           <!-- <input type="number" id="col_size" name="col_size" min="1" max="8" value="4"> -->
-          <select id="col_size" name="col_size">
+          <select id="col_size" name="col_size" class="combo">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -85,7 +85,7 @@
           <br>
           <label for="row_size">Rows (between 1 and 8): </label>
           <!-- <input type="number" id="row_size" name="row_size" min="1" max="8" value="4"> -->
-          <select id="row_size" name="row_size">
+          <select id="row_size" name="row_size" class="combo">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -97,28 +97,28 @@
           </select>
           <br>
           <div class="slidecontainer">
-            <p>Fuse speed: <span id="fuseSpeedValue">3</span></p>
-            <input id="fuseSpeed" data-type="fuseSpeed" type="range" min="0" max="5" step="0.1" value="3">
+            <p>Fuse speed: <span id="fuseSpeedValue" class="sliderNums">3</span></p>
+            <input id="fuseSpeed" class="slider" data-type="fuseSpeed" type="range" min="0" max="5" step="0.1" value="3">
           </div>
           <div class="slidecontainer">
-            <p>Number of bombs: <span id="bombAmountValue">3</span></p>
-            <input id="bombAmount" data-type="bombAmount" type="range" min="1" max="6" value="3">
+            <p>Number of bombs: <span id="bombAmountValue" class="sliderNums">3</span></p>
+            <input id="bombAmount" class="slider" data-type="bombAmount" type="range" min="1" max="6" value="3">
           </div>
           <div class="slidecontainer">
-            <p>Game Countdown: <span id="gameCountdownTimeValue">3</span></p>
-            <input id="gameCountdownTime" data-type="gameCountdownTime" type="range" min="1" max="10" value="3">
+            <p>Game Countdown: <span id="gameCountdownTimeValue" class="sliderNums">3</span></p>
+            <input id="gameCountdownTime" class="slider" data-type="gameCountdownTime" type="range" min="1" max="10" value="3">
           </div>
           <div class="slidecontainer">
-            <p>Game level: <span id="gameLevelValue">5</span></p>
-            <input id="gameLevel" data-type="gameLevel" type="range" min="1" max="10" value="5">
+            <p>Game level: <span id="gameLevelValue" class="sliderNums">5</span></p>
+            <input id="gameLevel" class="slider" data-type="gameLevel" type="range" min="0" max="10" value="5">
           </div>
         </form>
-        <p id="modalGameSettings-instructions">For more fun, click the button below to change the orginal game and add your own custom settings</p>
-        <button id="modalGameSettings-customBtn" class="modalBtn">Custom Game</button>
-      </div>
-      <div class="modalGameSettings-footer">
         <button id="startGameBtn" class="modalBtn">Start Game</button>
         <button id="EndCurrentGameBtn" class="modalBtn">End Current Game</button>
+        <p id="modalGameSettings-instructions">For more fun, click the button below to change the orginal game and add your own custom settings</p>
+      </div>
+      <div class="modalGameSettings-footer">
+        <button id="modalGameSettings-customBtn" class="modalBtn">Custom Game</button>
       </div>
 
 

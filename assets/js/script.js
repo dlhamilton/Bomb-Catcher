@@ -116,7 +116,7 @@ function showCustomSettings() {
   if (document.getElementById("customGameSettings").style.display != "block") {
     showElement(document.getElementById("customGameSettings"));
     document.getElementById("modalGameSettings-title").innerHTML = "Bomb Catcher - Custom";
-    document.getElementById("modalGameSettings-instructions").innerHTML = "Click the button below to play the orginal game, or <strong>press start to begin playing</strong>";
+    document.getElementById("modalGameSettings-instructions").innerHTML = "Click the button below to play the orginal game";
     document.getElementById("modalGameSettings-instructions-custom").innerHTML ="Use the options below to create a custom game:";
     document.getElementById("modalGameSettings-customBtn").innerHTML = "Original Game";
     document.getElementById("modalGameSettings-customBtn").style.backgroundColor = `#26A67D`;

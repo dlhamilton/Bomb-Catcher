@@ -255,11 +255,13 @@ function gameStartCountdown(gameSettings) {
 let bombs = document.getElementsByClassName('bomb_icon');
 let score = 0;
 let isPaused = 3;
+let startTime;
 /**
  * the game fucntion with all; the key information for the game to run
  * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings
  */
 function game(gameSettings) {
+  startTime = new Date();
   score = 0;
   let numberOfBombs = gameSettings['x'] * gameSettings['y']; // 4 * 4 = 16
   let fuseLength = gameSettings['l'] * 10; // 30
@@ -320,6 +322,10 @@ function game(gameSettings) {
       active = [];
       bombs = document.getElementsByClassName('bomb_icon');
       //console.log("Eneded NOW");
+      startTime = new Date - startTime;
+      console.log((startTime/1000));
+      console.log(score);
+      console.log(score/(startTime/1000));
       return;
     }
   }, gameSpeed);

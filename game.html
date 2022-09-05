@@ -46,10 +46,10 @@
     <!-- Modal Game over content -->
     <div class="modalGameOver-content">
       <h2>Game Over!</h2>
-      <h3>Your score</h3>
+      <h3>Your score:</h3>
       <p><span id="thePlayerScore">0</span></p>
-      <button id="resetGameOver" class="modalBtn">Go again</button>
-      <button id="viewHighScoresBtn" class="modalBtn">View high scores</button>
+      <button id="resetGameOver" class="modalBtn startGameBtn">Go again</button>
+      <button id="viewHighScoresBtn" class="modalBtn startGameBtn highScoreBtn">View high scores</button>
     </div>
   </div>
 
@@ -113,7 +113,7 @@
             <input id="gameLevel" class="slider" data-type="gameLevel" type="range" min="0" max="10" value="5">
           </div>
         </form>
-        <button id="startGameBtn" class="modalBtn">Start Game</button>
+        <button id="startGameBtn" class="modalBtn startGameBtn">Start Game</button>
         <button id="EndCurrentGameBtn" class="modalBtn">End Current Game</button>
         <p id="modalGameSettings-instructions">For more fun, click the button below to change the orginal game and add your own custom settings</p>
       </div>

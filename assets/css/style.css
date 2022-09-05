@@ -503,7 +503,7 @@ background-size: 200% 200%;
 }
 
 
-#startGameBtn{
+.startGameBtn{
   color:white;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   background-color: #FF9900;
@@ -515,7 +515,11 @@ background-size: 200% 200%;
   animation: u-d_Animation 2s linear infinite alternate;
 }
 
-#startGameBtn:hover{
+.highScoreBtn{
+  background-color: #2aa42e;
+  background: linear-gradient(180deg,#2aa42e,50%,#abe3aa);
+}
+.startGameBtn:hover{
   color:#666;
   /* border-color: #666; */
 }
@@ -594,3 +598,8 @@ background-size: 200% 200%;
   font-size: 17px;
   color:#666;
 }
+#thePlayerScore {
+  color: mintcream;
+  font-size: 60px;
+}
+

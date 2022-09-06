@@ -202,7 +202,7 @@ nav button i:hover {
 }
 
 #pauseGame i:hover{
-  color:darkgoldenrod;
+  color:darkgoldenrod !important;
 }
 
 .scoreCount {

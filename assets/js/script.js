@@ -130,8 +130,8 @@ function showCustomSettings() {
     document.getElementById("modalGameSettings-customBtn").style.backgroundColor = `#26A67D`;
     document.getElementById("modalGameSettings-customBtn").style.background = `linear-gradient(180deg,#26A67D,50%,#37d2a1)`;
     document.getElementById("modalGameSettings-customBtn").style.backgroundSize = `200% 200%`;
-    document.getElementsByClassName("modalGameSettings-header")[0].classList.add("modalGameSettings-custom");
-    document.getElementsByClassName("modalGameSettings-footer ")[0].classList.add("modalGameSettings-custom");
+    document.getElementsByClassName("modalGameSettings-color")[0].classList.add("modalGameSettings-custom");
+    document.getElementsByClassName("modalGameSettings-color")[1].classList.add("modalGameSettings-custom");
   } else {
     hideElement(document.getElementById("customGameSettings"));
     document.getElementById("modalGameSettings-title").innerHTML = "Bomb Catcher - Original";
@@ -144,8 +144,8 @@ function showCustomSettings() {
     document.getElementById("modalGameSettings-customBtn").style.backgroundColor = `#0091ff`;
     document.getElementById("modalGameSettings-customBtn").style.background = `linear-gradient(180deg,#0091ff,50%,#00d4ff)`;
     document.getElementById("modalGameSettings-customBtn").style.backgroundSize = `200% 200%`;
-    document.getElementsByClassName("modalGameSettings-header")[0].classList.remove("modalGameSettings-custom");
-    document.getElementsByClassName("modalGameSettings-footer ")[0].classList.remove("modalGameSettings-custom");
+    document.getElementsByClassName("modalGameSettings-color")[0].classList.remove("modalGameSettings-custom");
+    document.getElementsByClassName("modalGameSettings-color ")[1].classList.remove("modalGameSettings-custom");
 
     document.getElementById("col_size").value = "4";
     document.getElementById("row_size").value = "4";

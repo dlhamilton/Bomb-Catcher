@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   let gameHowTo_Modal = document.getElementById("modalGameHowTo");
+  let gameAccess_Modal = document.getElementById("modalGameAccess");
   showElement(gameSettings_Modal);
 
   let gameSettings;
@@ -30,6 +31,11 @@ document.getElementById("gameScore").innerHTML = 0;
     hideElement(gameHowTo_Modal);
   });
 
+  document.getElementsByClassName("close_AccessModal")[0].addEventListener('click', function () {
+    hideElement(gameAccess_Modal);
+  });
+  
+
   window.onclick = function (event) {
     if (event.target === modalGameSettings) {
       gameSettings_Modal.style.display = "none";
@@ -37,9 +43,12 @@ document.getElementById("gameScore").innerHTML = 0;
     if (event.target === modalGameHowTo) {
       gameHowTo_Modal.style.display = "none";
     }
+    if (event.target === modalGameAccess) {
+      gameAccess_Modal.style.display = "none";
+    }
   }
 
-  applyButtonSetup(gameSettings_Modal,gameHowTo_Modal);
+  applyButtonSetup(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal);
   applyOnChange();
 
 })
@@ -62,7 +71,7 @@ function applyOnChange() {
 
 }
 
-function applyButtonSetup(gameSettings_Modal,gameHowTo_Modal) {
+function applyButtonSetup(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal) {
   let buttons = document.getElementsByTagName("button");
   for (let button of buttons) {
     button.addEventListener("click", function () {
@@ -94,9 +103,9 @@ function applyButtonSetup(gameSettings_Modal,gameHowTo_Modal) {
         endGame();
         checkGameState();
       } else if (this.getAttribute("id") === "viewSettings") {
-        showElement(gameHowTo_Modal);
+        showElement(gameAccess_Modal);
       } else if (this.getAttribute("id") === "informationBtn") {
-        alert("information on the game");
+        showElement(gameHowTo_Modal);
       } else if (this.getAttribute("id") === "HomeBtn") {
         window.location.href = "index.html";
       } else if (this.getAttribute("id") === "modalGameSettings-customBtn") {
@@ -307,6 +316,8 @@ function game(gameSettings) {
         clearInterval(gameTick);
         gameOver(active);
         //console.log("Eneded NOW");
+        isPaused=3;
+        defusePerSecond();
         return;
       }
       scoreArea.innerHTML = score;
@@ -330,15 +341,19 @@ function game(gameSettings) {
       active = [];
       bombs = document.getElementsByClassName('bomb_icon');
       //console.log("Eneded NOW");
-      startTime = new Date - startTime;
-      console.log((startTime/1000));
-      console.log(score);
-      console.log(score/(startTime/1000));
+      defusePerSecond();
       return;
     }
   }, gameSpeed);
 
 
+}
+
+function defusePerSecond(){
+  startTime = new Date - startTime;
+  console.log((startTime/1000));
+  console.log(score);
+  console.log(score/(startTime/1000));
 }
 /**
  * This checks to see what bombs have been defused and removes them from the active bombs array. 

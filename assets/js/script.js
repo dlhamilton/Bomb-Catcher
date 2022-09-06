@@ -4,6 +4,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   let gameSettings_Modal = document.getElementById("modalGameSettings");
+  let gameHowTo_Modal = document.getElementById("modalGameHowTo");
   showElement(gameSettings_Modal);
 
   let gameSettings;
@@ -25,13 +26,20 @@ document.getElementById("gameScore").innerHTML = 0;
     hideElement(gameSettings_Modal);
   });
 
+  document.getElementsByClassName("close_HowToModal")[0].addEventListener('click', function () {
+    hideElement(gameHowTo_Modal);
+  });
+
   window.onclick = function (event) {
     if (event.target === modalGameSettings) {
       gameSettings_Modal.style.display = "none";
     }
+    if (event.target === modalGameHowTo) {
+      gameHowTo_Modal.style.display = "none";
+    }
   }
 
-  applyButtonSetup(gameSettings_Modal);
+  applyButtonSetup(gameSettings_Modal,gameHowTo_Modal);
   applyOnChange();
 
 })
@@ -54,7 +62,7 @@ function applyOnChange() {
 
 }
 
-function applyButtonSetup(gameSettings_Modal) {
+function applyButtonSetup(gameSettings_Modal,gameHowTo_Modal) {
   let buttons = document.getElementsByTagName("button");
   for (let button of buttons) {
     button.addEventListener("click", function () {
@@ -86,7 +94,7 @@ function applyButtonSetup(gameSettings_Modal) {
         endGame();
         checkGameState();
       } else if (this.getAttribute("id") === "viewSettings") {
-        alert("settings of game");
+        showElement(gameHowTo_Modal);
       } else if (this.getAttribute("id") === "informationBtn") {
         alert("information on the game");
       } else if (this.getAttribute("id") === "HomeBtn") {
@@ -255,7 +263,7 @@ function gameStartCountdown(gameSettings) {
 let bombs = document.getElementsByClassName('bomb_icon');
 let score = 0;
 let isPaused = 3;
-let startTime;
+let startTime=0;
 /**
  * the game fucntion with all; the key information for the game to run
  * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings

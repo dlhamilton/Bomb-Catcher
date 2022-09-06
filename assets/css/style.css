@@ -238,7 +238,8 @@ nav button i:hover {
 
 
 /* Modal Content */
-.modalGameSettings-content {
+.modalGameSettings-content,
+.modalGameHowTo-content  {
   position: relative;
   background-color: #fefefe;
   margin: auto;
@@ -281,7 +282,8 @@ nav button i:hover {
 }
 
 /* The Close Button */
-.close_SettingsModal {
+.close_SettingsModal,
+.close_HowToModal {
   color: white;
   float: right;
   font-size: 28px;
@@ -290,7 +292,9 @@ nav button i:hover {
 }
 
 .close_SettingsModal:hover,
-.close_SettingsModal:focus {
+.close_SettingsModal:focus,
+.close_HowToModal:hover,
+.close_HowToModal:focus {
   color: #666;
   text-decoration: none;
   cursor: pointer;
@@ -330,11 +334,13 @@ nav button i:hover {
 color: #666;
 }
 
-.modalGameSettings-body {
+.modalGameSettings-body,
+.modalGameHowTo-body {
   padding: 2px 16px;
 }
 
-.modalGameSettings-body > *{
+.modalGameSettings-body > *,
+.modalGameHowTo-body > *{
   margin: 5px 0;
 }
 
@@ -548,10 +554,12 @@ background-size: 200% 200%;
 @media screen and (min-width: 768px){
 
 
-  .modalGameSettings-content{
+  .modalGameSettings-content, .modalGameHowTo-content{
     width:60%;
     max-width: 700px;
   }
+
+  
 }
 
 .combo{
@@ -603,3 +611,38 @@ background-size: 200% 200%;
   font-size: 60px;
 }
 
+/* The Modal (background) */
+#modalGameHowTo {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+.modalGameHowTo-header {
+  padding: 2px 16px;
+  background-color: #26A67D;
+  color: white;
+}
+
+.modalGameHowTo-footer {
+  padding: 2px 16px;
+  background-color: #26A67D;
+  color: white;
+}

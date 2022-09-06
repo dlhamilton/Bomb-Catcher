@@ -156,7 +156,7 @@ modalGameSettings.style.display = "block";
 var span = document.getElementsByClassName("close")[0];
 
 // Get the button that opens the modal
-var modalGameSettingsbtn = document.getElementById("modalGameSettingsOpen");
+let modalGameSettingsbtn = document.getElementById("modalGameSettingsOpen");
 // When the user clicks the button, open the modal 
 modalGameSettingsbtn.onclick = function() {
   modalGameSettings.style.display = "block";

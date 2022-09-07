@@ -53,6 +53,7 @@ document.getElementById("gameScore").innerHTML = 0;
 
 })
 
+
 function applyOnChange() {
   let sliders = document.getElementsByTagName("input");
   for (let slider of sliders) {
@@ -268,7 +269,6 @@ function gameStartCountdown(gameSettings) {
 //----------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------
 
-
 let bombs = document.getElementsByClassName('bomb_icon');
 let score = 0;
 let isPaused = 3;
@@ -329,6 +329,8 @@ function game(gameSettings) {
           bomb.desfuse = true;
           clearTimeout(bomb.bombTimer);
           bomb.style.animation = "";
+console.log(bomb + "jjjj");
+          endBombSound(bomb);
         }
       }
     } else {
@@ -389,6 +391,11 @@ function setBombFuse(bomb, fuseInS) {
   bomb.desfuse = false;
   bomb.blown = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
+
+  var audio = new Audio("./assets/sounds/fuse_sound.mp3");
+  bomb.audiofuse = audio;
+  bomb.audiofuse.play();
+
 }
 
 /**
@@ -400,7 +407,12 @@ function defuseBombFuse() {
     this.desfuse = true;
     clearTimeout(this.bombTimer);
     this.style.animation = "";
+    
     //console.log(this.getAttribute("data-bombnum") + " defused");
+
+    endBombSound(this);
+
+
     ++score;
   }
 }
@@ -437,7 +449,16 @@ function gameOver(active) {
     bombs[x].removeEventListener('click', defuseBombFuse);
     bombs[x].style.animation = "";
     clearTimeout(bombs[x].bombTimer);
+
+    endBombSound(bombs[x]);
   }
   //console.log("game over!!!")
   showElement(document.getElementById("modalGameOver"));
+}
+
+function endBombSound(x){
+  if(x.audiofuse){
+  x.audiofuse.pause();
+  x.audiofuse = null;
+  }
 }

@@ -392,7 +392,7 @@ function setBombFuse(bomb, fuseInS) {
   bomb.blown = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
 
-  var audio = new Audio("./assets/sounds/fuse_sound.mp3");
+  let audio = new Audio("./assets/sounds/fuse_sound.mp3");
   bomb.audiofuse = audio;
   bomb.audiofuse.play();
 
@@ -430,6 +430,10 @@ function bombExplode(bomb) {
   // bomb.parentNode.innerHTML=`<i class="fa-solid fa-burst"></i>`;
   bomb.style.color = "red";
   //console.log(bomb.getAttribute("data-bombnum") + " boom");
+
+  let explodeAudio = new Audio("./assets/sounds/explode_sound.mp3");
+  explodeAudio.play();
+
 }
 
 function endGame() {

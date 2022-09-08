@@ -66,6 +66,17 @@ function applyOnChange() {
         document.getElementById("gameCountdownTimeValue").innerHTML = this.value;
       } else if (this.getAttribute("data-type") === "gameLevel") {
         document.getElementById("gameLevelValue").innerHTML = this.value;
+      } else if (this.getAttribute("id") === "game_Volume"){
+        let explodeAudio = new Audio("./assets/sounds/explode_sound.mp3");
+        explodeAudio.volume = document.getElementById("game_Volume").value;
+       explodeAudio.play();
+      } else if (this.getAttribute("id")==="sound_On_Btn"){
+        if(document.getElementById("volume_Section").style.display ==="none"){
+          document.getElementById("volume_Section").style.display = "block";
+        }else{
+          document.getElementById("volume_Section").style.display = "none";
+        }
+
       }
     })
   }
@@ -394,7 +405,10 @@ function setBombFuse(bomb, fuseInS) {
 
   let audio = new Audio("./assets/sounds/fuse_sound.mp3");
   bomb.audiofuse = audio;
-  bomb.audiofuse.play();
+  console.log(document.getElementById("game_Volume").value);
+  bomb.audiofuse.volume = document.getElementById("game_Volume").value;
+  console.log(document.getElementById("game_Volume").checked);
+  if(document.getElementById("sound_On_Btn").checked === true){ bomb.audiofuse.play();};
 
 }
 
@@ -432,7 +446,8 @@ function bombExplode(bomb) {
   //console.log(bomb.getAttribute("data-bombnum") + " boom");
 
   let explodeAudio = new Audio("./assets/sounds/explode_sound.mp3");
-  explodeAudio.play();
+  explodeAudio.volume = document.getElementById("game_Volume").value;
+ if(document.getElementById("sound_On_Btn").checked === true){ explodeAudio.play();};
 
 }
 

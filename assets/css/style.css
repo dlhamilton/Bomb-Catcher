@@ -694,3 +694,7 @@ input:checked + .switch_Slider:before {
   border-radius: 50%;
 }
 /* end of Switch CSS */
+
+.sound-icon{
+  margin: 15px;
+}

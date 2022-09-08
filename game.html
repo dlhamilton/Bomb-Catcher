@@ -77,12 +77,13 @@
         <h3>Sounds</h3>
         <p>Bomb Sounds: </p>
           <label class="switch">
-            <input type="checkbox" checked>
+            <input id="sound_On_Btn" type="checkbox" checked>
             <span class="switch_Slider round"></span>
           </label>
-        
+        <div id="volume_Section">
         <p>Sound Volume</p>
-        <input type="range" min="1" max="100" value="50">
+        <i class="fa-solid fa-volume-off sound-icon"></i><input id="game_Volume" data-type="game_Volume" type="range" min="0" max="1" value="1" step="0.1"><i class="fa-solid fa-volume-high sound-icon"></i>
+      </div>
         <br>
         <h3>Light Mode</h3>
         <p>Light Mode: </p>

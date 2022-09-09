@@ -47,7 +47,6 @@ document.getElementById("gameScore").innerHTML = 0;
       gameAccess_Modal.style.display = "none";
     }
   }
-
   applyButtonSetup(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal);
   applyOnChange();
 

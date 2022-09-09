@@ -60,7 +60,30 @@
         <h2> <i class="fa-solid fa-circle-info"></i> Game Instructions</h2>
       </div>
       <div class="modalGame-body">
-        <h3>Bomb Catcher - Original</h3>
+        <h3>How to Play:</h3>
+        <p>Touch the lit bombs before they explode.</p>
+        <p>The bomb will slowly start to change colour until it explodes</p>
+        <br>
+        <span class="bomb_instruction_border">
+          <span><i class="fa-solid fa-bomb white_shadow_border"></i></span>
+          <i class="fa-solid fa-arrow-right white_shadow_border"></i>
+          <span class="yllw-bomb white_shadow_border"><i class="fa-solid fa-bomb"></i></span>
+          <i class="fa-solid fa-arrow-right white_shadow_border"></i>
+          <span class="orng-bomb white_shadow_border"><i class="fa-solid fa-bomb"></i></span>
+          <i class="fa-solid fa-arrow-right white_shadow_border"></i>
+          <span class="red-bomb white_shadow_border"><i class="fa-solid fa-bomb"></i></span>
+          <i class="fa-solid fa-arrow-right white_shadow_border"></i>
+          <span class="red-bomb white_shadow_border"><i class="fa-solid fa-burst"></i></span>
+        </span>
+        <br>
+        <br>
+        <p>The game will end when the bomb has not been defused and explodes.</p>
+        <h3>Game Modes:</h3>
+        <h4>Original Game</h4>
+        <p>See how many bombs you can defuse and try and set a high score</p>
+        <h4>Custom Game</h4>
+        <p>In custom game mode you will be able to change the fuse length and the max number of live bombs. You can also
+          increase and decrease the grid size.</p>
       </div>
       <div class="modalGameHowTo-color modalFooter">
       </div>
@@ -76,14 +99,15 @@
       <div class="modalGame-body">
         <h3>Sounds</h3>
         <p>Bomb Sounds: </p>
-          <label class="switch">
-            <input id="sound_On_Btn" type="checkbox" checked>
-            <span class="switch_Slider round"></span>
-          </label>
+        <label class="switch">
+          <input id="sound_On_Btn" type="checkbox" checked>
+          <span class="switch_Slider round"></span>
+        </label>
         <div id="volume_Section">
-        <p>Sound Volume</p>
-        <i class="fa-solid fa-volume-off sound-icon"></i><input id="game_Volume" data-type="game_Volume" type="range" min="0" max="1" value="1" step="0.1"><i class="fa-solid fa-volume-high sound-icon"></i>
-      </div>
+          <p>Sound Volume</p>
+          <i class="fa-solid fa-volume-off sound-icon"></i><input id="game_Volume" data-type="game_Volume" type="range"
+            min="0" max="1" value="1" step="0.1"><i class="fa-solid fa-volume-high sound-icon"></i>
+        </div>
         <br>
         <h3>Light Mode</h3>
         <p>Light Mode: </p>

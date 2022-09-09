@@ -698,3 +698,23 @@ input:checked + .switch_Slider:before {
 .sound-icon{
   margin: 15px;
 }
+.yllw-bomb{
+color: yellow;
+}
+.orng-bomb{
+color:orange;
+}
+.red-bomb{
+color:red;
+
+}
+.white_shadow_border{
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+.bomb_instruction_border{
+  border: 2px solid black;
+  background-color: #999;
+  padding: 5px;
+  font-size: 1.3em;
+  margin: 5px;
+}

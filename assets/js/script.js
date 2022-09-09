@@ -26,21 +26,6 @@ document.getElementById("gameScore").innerHTML = 0;
 
   });
 
-  document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click', function () {
-    hideElement(gameSettings_Modal);
-  });
-
-  document.getElementsByClassName("close_HowToModal")[0].addEventListener('click', function () {
-    hideElement(gameHowTo_Modal);
-    if (!sessionStorage.siteVisited){
-      showElement(gameSettings_Modal);
-      sessionStorage.siteVisited = 1;
-    }
-  });
-
-  document.getElementsByClassName("close_AccessModal")[0].addEventListener('click', function () {
-    hideElement(gameAccess_Modal);
-  });
   
 
   window.onclick = function (event) {
@@ -58,11 +43,29 @@ document.getElementById("gameScore").innerHTML = 0;
       gameAccess_Modal.style.display = "none";
     }
   }
+  applyModalClose(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal);
   applyButtonSetup(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal);
   applyOnChange();
 
 })
 
+function applyModalClose(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal){
+  document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click', function () {
+    hideElement(gameSettings_Modal);
+  });
+
+  document.getElementsByClassName("close_HowToModal")[0].addEventListener('click', function () {
+    hideElement(gameHowTo_Modal);
+    if (!sessionStorage.siteVisited){
+      showElement(gameSettings_Modal);
+      sessionStorage.siteVisited = 1;
+    }
+  });
+
+  document.getElementsByClassName("close_AccessModal")[0].addEventListener('click', function () {
+    hideElement(gameAccess_Modal);
+  });
+}
 
 function applyOnChange() {
   let sliders = document.getElementsByTagName("input");

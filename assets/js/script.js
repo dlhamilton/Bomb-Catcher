@@ -2,66 +2,53 @@
 // Open the settings modal to get the user preference for the game
 
 document.addEventListener("DOMContentLoaded", function () {
-
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   let gameHowTo_Modal = document.getElementById("modalGameHowTo");
   let gameAccess_Modal = document.getElementById("modalGameAccess");
-  if (sessionStorage.siteVisited){
-  showElement(gameSettings_Modal);
-  }else{
+  firstVisitIntro(gameSettings_Modal,gameHowTo_Modal);
+  applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal);
+  applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal);
+  applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal);
+  applyOnChange();
+})
+
+function firstVisitIntro(gameSettings_Modal,gameHowTo_Modal){
+  if (sessionStorage.siteVisited) {
+    showElement(gameSettings_Modal);
+  } else {
     showElement(gameHowTo_Modal);
   }
-  let gameSettings;
+}
 
-  document.getElementById('startGameBtn').addEventListener('click', function () {
-score = 0;
-document.getElementById("thePlayerScore").innerHTML=0;
-document.getElementById("gameScore").innerHTML = 0;
-
-    console.log("ok" + isPaused);
-    gameSettings = getModalInformation(gameSettings_Modal);
-    drawGameGrid(gameSettings.x, gameSettings.y);
-    startGame(gameSettings);
-    hideElement(gameSettings_Modal);
-
-  });
-
-  
-
+function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal) {
   window.onclick = function (event) {
     if (event.target === modalGameSettings) {
-      gameSettings_Modal.style.display = "none";
+      hideElement(gameSettings_Modal);
     }
     if (event.target === modalGameHowTo) {
-      gameHowTo_Modal.style.display = "none";
-      if (!sessionStorage.siteVisited){
+      hideElement(gameHowTo_Modal);
+      if (!sessionStorage.siteVisited) {
         showElement(gameSettings_Modal);
         sessionStorage.siteVisited = 1;
       }
     }
     if (event.target === modalGameAccess) {
-      gameAccess_Modal.style.display = "none";
+      hideElement(gameAccess_Modal);
     }
   }
-  applyModalClose(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal);
-  applyButtonSetup(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal);
-  applyOnChange();
+}
 
-})
-
-function applyModalClose(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal){
+function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal) {
   document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click', function () {
     hideElement(gameSettings_Modal);
   });
-
   document.getElementsByClassName("close_HowToModal")[0].addEventListener('click', function () {
     hideElement(gameHowTo_Modal);
-    if (!sessionStorage.siteVisited){
+    if (!sessionStorage.siteVisited) {
       showElement(gameSettings_Modal);
       sessionStorage.siteVisited = 1;
     }
   });
-
   document.getElementsByClassName("close_AccessModal")[0].addEventListener('click', function () {
     hideElement(gameAccess_Modal);
   });
@@ -79,24 +66,22 @@ function applyOnChange() {
         document.getElementById("gameCountdownTimeValue").innerHTML = this.value;
       } else if (this.getAttribute("data-type") === "gameLevel") {
         document.getElementById("gameLevelValue").innerHTML = this.value;
-      } else if (this.getAttribute("id") === "game_Volume"){
+      } else if (this.getAttribute("id") === "game_Volume") {
         let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
         explodeAudio.volume = document.getElementById("game_Volume").value;
-       explodeAudio.play();
-      } else if (this.getAttribute("id")==="sound_On_Btn"){
-        if(document.getElementById("volume_Section").style.display ==="none"){
-          document.getElementById("volume_Section").style.display = "block";
-        }else{
-          document.getElementById("volume_Section").style.display = "none";
+        explodeAudio.play();
+      } else if (this.getAttribute("id") === "sound_On_Btn") {
+        if (document.getElementById("volume_Section").style.display === "none") {
+          showElement(document.getElementById("volume_Section"));
+        } else {
+          hideElement(document.getElementById("volume_Section"));
         }
-
       }
     })
   }
-
 }
 
-function applyButtonSetup(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal) {
+function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal) {
   let buttons = document.getElementsByTagName("button");
   for (let button of buttons) {
     button.addEventListener("click", function () {
@@ -123,7 +108,7 @@ function applyButtonSetup(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal) {
       } else if (this.getAttribute("id") === "endGame") {
         document.getElementById("pauseGame").children[0].style.color = "white";
         endGame();
-      }else if(this.getAttribute("id") === "EndCurrentGameBtn"){
+      } else if (this.getAttribute("id") === "EndCurrentGameBtn") {
         document.getElementById("pauseGame").children[0].style.color = "white";
         endGame();
         checkGameState();
@@ -135,35 +120,44 @@ function applyButtonSetup(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal) {
         window.location.href = "index.html";
       } else if (this.getAttribute("id") === "modalGameSettings-customBtn") {
         showCustomSettings();
-      } else if (this.getAttribute("id")=== "lets_Play_Btn"){
+      } else if (this.getAttribute("id") === "lets_Play_Btn") {
         hideElement(gameHowTo_Modal);
         showElement(gameSettings_Modal);
         sessionStorage.siteVisited = 1;
+      } else if (this.getAttribute("id") === "startGameBtn") {
+        let gameSettings;
+        score = 0;
+        document.getElementById("thePlayerScore").innerHTML = 0;
+        document.getElementById("gameScore").innerHTML = 0;
+        console.log("ok" + isPaused);
+        gameSettings = getModalInformation(gameSettings_Modal);
+        drawGameGrid(gameSettings.x, gameSettings.y);
+        startGame(gameSettings);
+        hideElement(gameSettings_Modal);
       };
     });
   }
 }
 
-function checkGameState(){
+function checkGameState() {
   if (isPaused === 1) {
     // isPaused=2;
     hideElement(document.getElementById('startGameBtn'));
     showElement(document.getElementById('EndCurrentGameBtn'));
     console.log("here" + isPaused);
   } else {
-    document.getElementById("pauseGame").children[0]. style.color = "white";
+    document.getElementById("pauseGame").children[0].style.color = "white";
     hideElement(document.getElementById('EndCurrentGameBtn'));
     showElement(document.getElementById('startGameBtn'));
   }
 }
 
 function showCustomSettings() {
-
   if (document.getElementById("customGameSettings").style.display != "block") {
     showElement(document.getElementById("customGameSettings"));
     document.getElementById("modalGameSettings-title").innerHTML = "Bomb Catcher - Custom";
     document.getElementById("modalGameSettings-instructions").innerHTML = "Click the button below to play the orginal game";
-    document.getElementById("modalGameSettings-instructions-custom").innerHTML ="Use the options below to create a custom game:";
+    document.getElementById("modalGameSettings-instructions-custom").innerHTML = "Use the options below to create a custom game:";
     document.getElementById("modalGameSettings-customBtn").innerHTML = "Original Game";
     document.getElementById("modalGameSettings-customBtn").style.backgroundColor = `#26A67D`;
     document.getElementById("modalGameSettings-customBtn").style.background = `linear-gradient(180deg,#26A67D,50%,#37d2a1)`;
@@ -174,7 +168,7 @@ function showCustomSettings() {
     hideElement(document.getElementById("customGameSettings"));
     document.getElementById("modalGameSettings-title").innerHTML = "Bomb Catcher - Original";
     document.getElementById("modalGameSettings-instructions").innerHTML = "For more fun, click the button below to change the orginal game and add your own custom settings";
-    document.getElementById("modalGameSettings-instructions-custom").innerHTML =` <p>
+    document.getElementById("modalGameSettings-instructions-custom").innerHTML = ` <p>
     Welcome to bomb catcher. Defuse the bombs before they explode. </p>
   <p>How many bombs can you defuse before you go boom? </p><br>
   <p><strong>Will you set the new highscore?</strong> Click the start button to begin!</p>`;
@@ -184,7 +178,6 @@ function showCustomSettings() {
     document.getElementById("modalGameSettings-customBtn").style.backgroundSize = `200% 200%`;
     document.getElementsByClassName("modalGameSettings-color")[0].classList.remove("modalGameSettings-custom");
     document.getElementsByClassName("modalGameSettings-color ")[1].classList.remove("modalGameSettings-custom");
-
     document.getElementById("col_size").value = "4";
     document.getElementById("row_size").value = "4";
     document.getElementById("fuseSpeed").value = "3";
@@ -196,7 +189,6 @@ function showCustomSettings() {
     document.getElementById("gameLevel").value = "5";
     document.getElementById("gameLevelValue").innerHTML = "5";
   }
-
 }
 
 /**
@@ -225,7 +217,6 @@ function getModalInformation(element) {
  * Hide an element on the DOM by changing display properties
  */
 function hideElement(element) {
-
   element.style.display = "none";
 }
 /**
@@ -259,9 +250,6 @@ function startGame(gameSettings) {
   hideElement(document.getElementById("modalGameOver"));
   isPaused = 0;
   gameStartCountdown(gameSettings);
-
-
-
 }
 /**
  * Will count down from time to 0 and will start the game
@@ -269,18 +257,18 @@ function startGame(gameSettings) {
  */
 function gameStartCountdown(gameSettings) {
   let count = gameSettings['countdownStartNumber'];
-
   let startInterval = setInterval(timeCountDown, 1000);
-
   function timeCountDown() {
     modalStartCountdownElement = document.getElementById("modalStartCountdown");
     modalStartCountdownContent = document.getElementById("startTimer");
     modalStartCountdownElement.style.display = "block";
     modalStartCountdownContent.innerHTML = count;
-    if (isPaused===0){
-    count -= 1;
+    if (isPaused === 0) {
+      count -= 1;
     }
-    if(isPaused>1){count=-2;}
+    if (isPaused > 1) {
+      count = -2;
+    }
     if (count === -1) {
       modalStartCountdownContent.innerHTML = `<i class="fa-solid fa-bomb"></i>`;
     }
@@ -300,7 +288,7 @@ function gameStartCountdown(gameSettings) {
 let bombs = document.getElementsByClassName('bomb_icon');
 let score = 0;
 let isPaused = 3;
-let startTime=0;
+let startTime = 0;
 /**
  * the game fucntion with all; the key information for the game to run
  * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings
@@ -337,14 +325,13 @@ function game(gameSettings) {
 
         bombs[randomBombNumber].bombTimer = setTimeout(bombExplode, fuseInMs, bombs[randomBombNumber]);
       }
-
       active = updateActiveBombs(active);
       gameOverFlag = checkForExploded(active)
       if (gameOverFlag) {
         clearInterval(gameTick);
         gameOver(active);
         //console.log("Eneded NOW");
-        isPaused=3;
+        isPaused = 3;
         defusePerSecond();
         return;
       }
@@ -357,7 +344,7 @@ function game(gameSettings) {
           bomb.desfuse = true;
           clearTimeout(bomb.bombTimer);
           bomb.style.animation = "";
-console.log(bomb + "jjjj");
+          console.log(bomb + "jjjj");
           endBombSound(bomb);
         }
       }
@@ -367,7 +354,6 @@ console.log(bomb + "jjjj");
       if (isPaused === 2) {
         hideElement(document.getElementById("modalGameOver"));
       }
-
       active = [];
       bombs = document.getElementsByClassName('bomb_icon');
       //console.log("Eneded NOW");
@@ -375,16 +361,15 @@ console.log(bomb + "jjjj");
       return;
     }
   }, gameSpeed);
-
-
 }
 
-function defusePerSecond(){
+function defusePerSecond() {
   startTime = new Date - startTime;
-  console.log((startTime/1000));
+  console.log((startTime / 1000));
   console.log(score);
-  console.log(score/(startTime/1000));
+  console.log(score / (startTime / 1000));
 }
+
 /**
  * This checks to see what bombs have been defused and removes them from the active bombs array. 
  * @param {number array - which links to the index number of the bombs that are currently ignited} active 
@@ -419,14 +404,14 @@ function setBombFuse(bomb, fuseInS) {
   bomb.desfuse = false;
   bomb.blown = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
-
   let audio = new Audio("/assets/sounds/fuse_sound.mp3");
   bomb.audiofuse = audio;
   console.log(document.getElementById("game_Volume").value);
   bomb.audiofuse.volume = document.getElementById("game_Volume").value;
   console.log(document.getElementById("game_Volume").checked);
-  if(document.getElementById("sound_On_Btn").checked === true){ bomb.audiofuse.play();};
-
+  if (document.getElementById("sound_On_Btn").checked === true) {
+    bomb.audiofuse.play();
+  };
 }
 
 /**
@@ -438,12 +423,7 @@ function defuseBombFuse() {
     this.desfuse = true;
     clearTimeout(this.bombTimer);
     this.style.animation = "";
-    
-    //console.log(this.getAttribute("data-bombnum") + " defused");
-
     endBombSound(this);
-
-
     ++score;
   }
 }
@@ -453,28 +433,20 @@ function defuseBombFuse() {
  * @param {the bomb that has exploded} bomb 
  */
 function bombExplode(bomb) {
-  // bombs[x].removeEventListener('click', defuseBombFuse);
   gameOverFlag = true;
   bomb.blown = true;
   bomb.classList.remove("fa-bomb");
   bomb.classList.add("fa-burst");
-  // bomb.parentNode.innerHTML=`<i class="fa-solid fa-burst"></i>`;
   bomb.style.color = "red";
-  //console.log(bomb.getAttribute("data-bombnum") + " boom");
-
   let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
   explodeAudio.volume = document.getElementById("game_Volume").value;
- if(document.getElementById("sound_On_Btn").checked === true){ explodeAudio.play();};
-
+  if (document.getElementById("sound_On_Btn").checked === true) {
+    explodeAudio.play();
+  };
 }
 
 function endGame() {
-  // gameOverFlag = true;
-  // for (let bomb of bombs) {
-  //   bomb.blown = true;
-  // }
   isPaused = 3;
-
 }
 
 /**
@@ -485,16 +457,14 @@ function gameOver(active) {
     bombs[x].removeEventListener('click', defuseBombFuse);
     bombs[x].style.animation = "";
     clearTimeout(bombs[x].bombTimer);
-
     endBombSound(bombs[x]);
   }
-  //console.log("game over!!!")
   showElement(document.getElementById("modalGameOver"));
 }
 
-function endBombSound(x){
-  if(x.audiofuse){
-  x.audiofuse.pause();
-  x.audiofuse = null;
+function endBombSound(x) {
+  if (x.audiofuse) {
+    x.audiofuse.pause();
+    x.audiofuse = null;
   }
 }

@@ -6,8 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   let gameHowTo_Modal = document.getElementById("modalGameHowTo");
   let gameAccess_Modal = document.getElementById("modalGameAccess");
+  if (sessionStorage.siteVisited){
   showElement(gameSettings_Modal);
-
+  }else{
+    showElement(gameHowTo_Modal);
+  }
   let gameSettings;
 
   document.getElementById('startGameBtn').addEventListener('click', function () {
@@ -29,6 +32,10 @@ document.getElementById("gameScore").innerHTML = 0;
 
   document.getElementsByClassName("close_HowToModal")[0].addEventListener('click', function () {
     hideElement(gameHowTo_Modal);
+    if (!sessionStorage.siteVisited){
+      showElement(gameSettings_Modal);
+      sessionStorage.siteVisited = 1;
+    }
   });
 
   document.getElementsByClassName("close_AccessModal")[0].addEventListener('click', function () {
@@ -42,6 +49,10 @@ document.getElementById("gameScore").innerHTML = 0;
     }
     if (event.target === modalGameHowTo) {
       gameHowTo_Modal.style.display = "none";
+      if (!sessionStorage.siteVisited){
+        showElement(gameSettings_Modal);
+        sessionStorage.siteVisited = 1;
+      }
     }
     if (event.target === modalGameAccess) {
       gameAccess_Modal.style.display = "none";
@@ -121,6 +132,10 @@ function applyButtonSetup(gameSettings_Modal,gameHowTo_Modal,gameAccess_Modal) {
         window.location.href = "index.html";
       } else if (this.getAttribute("id") === "modalGameSettings-customBtn") {
         showCustomSettings();
+      } else if (this.getAttribute("id")=== "lets_Play_Btn"){
+        hideElement(gameHowTo_Modal);
+        showElement(gameSettings_Modal);
+        sessionStorage.siteVisited = 1;
       };
     });
   }

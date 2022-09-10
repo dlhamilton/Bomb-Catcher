@@ -729,3 +729,26 @@ color:red;
   font-size: 1.3em;
   margin: 5px;
 }
+.center_modal_content{
+text-align: center;
+list-style-position: inside;
+height: 60vh;
+}
+.highScoreGrid{
+  text-align: center;
+  display: inline-block;
+}
+.gridhscontainer{
+  display: grid;
+  grid-template-columns: auto;
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.gridhscontainer .hsGridItem {
+  border: 2px solid black;
+  display: inline;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}

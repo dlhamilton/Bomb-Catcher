@@ -205,6 +205,10 @@ nav button i:hover {
   color:darkgoldenrod !important;
 }
 
+#showhighScoreBtn i:hover{
+color:gold !important;
+}
+
 .scoreCount {
   font-family: 'Silkscreen', cursive;
   margin-top: 20px;
@@ -259,7 +263,8 @@ nav button i:hover {
 /* The Close Button */
 .close_SettingsModal,
 .close_HowToModal,
-.close_AccessModal {
+.close_AccessModal,
+.close_HighScoresModal {
   color: white;
   float: right;
   font-size: 28px;
@@ -272,7 +277,9 @@ nav button i:hover {
 .close_HowToModal:hover,
 .close_HowToModal:focus,
 .close_AccessModal:hover,
-.close_AccessModal:focus {
+.close_AccessModal:focus,
+.close_HighScoresModal:hover,
+.close_HighScoresModal:focus {
   color: #666;
   text-decoration: none;
   cursor: pointer;
@@ -609,6 +616,10 @@ background-size: 200% 200%;
 
 .modalGameHowTo-color {
   background-color: rgb(63, 133, 255);
+}
+
+.modalHighScores-color  {
+  background-color: darkgoldenrod;
 }
 
 .modalGameAccess-color {

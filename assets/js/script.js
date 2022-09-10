@@ -5,10 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   let gameHowTo_Modal = document.getElementById("modalGameHowTo");
   let gameAccess_Modal = document.getElementById("modalGameAccess");
+  let gameHighScore_Modal = document.getElementById("modalHighScores");
   firstVisitIntro(gameSettings_Modal,gameHowTo_Modal);
-  applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal);
-  applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal);
-  applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal);
+  applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal);
+  applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal);
+  applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal);
   applyOnChange();
 })
 
@@ -20,7 +21,7 @@ function firstVisitIntro(gameSettings_Modal,gameHowTo_Modal){
   }
 }
 
-function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal) {
+function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal) {
   window.onclick = function (event) {
     if (event.target === modalGameSettings) {
       hideElement(gameSettings_Modal);
@@ -35,10 +36,13 @@ function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Moda
     if (event.target === modalGameAccess) {
       hideElement(gameAccess_Modal);
     }
+    if (event.target === modalHighScores){
+      hideElement(gameHighScore_Modal);
+    }
   }
 }
 
-function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal) {
+function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal) {
   document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click', function () {
     hideElement(gameSettings_Modal);
   });
@@ -51,6 +55,9 @@ function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal) 
   });
   document.getElementsByClassName("close_AccessModal")[0].addEventListener('click', function () {
     hideElement(gameAccess_Modal);
+  });
+  document.getElementsByClassName("close_HighScoresModal")[0].addEventListener('click', function () {
+    hideElement(gameHighScore_Modal);
   });
 }
 
@@ -81,7 +88,7 @@ function applyOnChange() {
   }
 }
 
-function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal) {
+function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal) {
   let buttons = document.getElementsByTagName("button");
   for (let button of buttons) {
     button.addEventListener("click", function () {
@@ -134,6 +141,8 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal)
         drawGameGrid(gameSettings.x, gameSettings.y);
         startGame(gameSettings);
         hideElement(gameSettings_Modal);
+      }else if(this.getAttribute("id") === "showhighScoreBtn"){
+showElement(gameHighScore_Modal);
       };
     });
   }

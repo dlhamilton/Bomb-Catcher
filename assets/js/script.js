@@ -504,10 +504,19 @@ function checkHighScore() {
 //   }
 let newHighScoreInput = document.getElementById('newHSInput');
 let newHighScoreMessage = document.getElementById('scoreMessage');
+let topScore;
+let tenthScore;
+if (arr=== null){
+  topScore=0;
+  tenthScore=0;
+}else{
+  topScore=arr[0][1];
+  tenthScore=arr[arr.length-1][1];
+}
 
-if(score>arr[arr.length-1][1] ){
+if(score> tenthScore){
   showElement(newHighScoreInput);
-  if(score>arr[0][1]){
+  if(score>topScore){
   newHighScoreMessage.innerHTML = "New high score:";
   }else{
     newHighScoreMessage.innerHTML = "New top 10 score:"; 

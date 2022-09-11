@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
   let gameHowTo_Modal = document.getElementById("modalGameHowTo");
   let gameAccess_Modal = document.getElementById("modalGameAccess");
   let gameHighScore_Modal = document.getElementById("modalHighScores");
-  firstVisitIntro(gameSettings_Modal,gameHowTo_Modal);
-  applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal);
-  applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal);
-  applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal);
+  firstVisitIntro(gameSettings_Modal, gameHowTo_Modal);
+  applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
+  applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
+  applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
   applyOnChange();
 })
 
-function firstVisitIntro(gameSettings_Modal,gameHowTo_Modal){
+function firstVisitIntro(gameSettings_Modal, gameHowTo_Modal) {
   if (sessionStorage.siteVisited) {
     showElement(gameSettings_Modal);
   } else {
@@ -21,7 +21,7 @@ function firstVisitIntro(gameSettings_Modal,gameHowTo_Modal){
   }
 }
 
-function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal) {
+function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
   window.onclick = function (event) {
     if (event.target === modalGameSettings) {
       hideElement(gameSettings_Modal);
@@ -36,13 +36,13 @@ function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Moda
     if (event.target === modalGameAccess) {
       hideElement(gameAccess_Modal);
     }
-    if (event.target === modalHighScores){
+    if (event.target === modalHighScores) {
       hideElement(gameHighScore_Modal);
     }
   }
 }
 
-function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal) {
+function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
   document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click', function () {
     hideElement(gameSettings_Modal);
   });
@@ -75,9 +75,9 @@ function applyOnChange() {
         document.getElementById("gameLevelValue").innerHTML = this.value;
       } else if (this.getAttribute("id") === "game_Volume") {
         // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
-        let explodeAudio =document.getElementById("audioContainer");
+        let explodeAudio = document.getElementById("audioContainer");
         explodeAudio.pause();
-        explodeAudio.currentTime =0;
+        explodeAudio.currentTime = 0;
         explodeAudio.volume = document.getElementById("game_Volume").value;
         explodeAudio.play();
       } else if (this.getAttribute("id") === "sound_On_Btn") {
@@ -91,7 +91,7 @@ function applyOnChange() {
   }
 }
 
-function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,gameHighScore_Modal) {
+function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
   let buttons = document.getElementsByTagName("button");
   for (let button of buttons) {
     button.addEventListener("click", function () {
@@ -114,6 +114,7 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         checkGameState();
         showElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "viewHighScoresBtn") {
+        setScore();
         alert("show high score");
       } else if (this.getAttribute("id") === "endGame") {
         document.getElementById("pauseGame").children[0].style.color = "white";
@@ -144,8 +145,8 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         drawGameGrid(gameSettings.x, gameSettings.y);
         startGame(gameSettings);
         hideElement(gameSettings_Modal);
-      }else if(this.getAttribute("id") === "showhighScoreBtn"){
-showElement(gameHighScore_Modal);
+      } else if (this.getAttribute("id") === "showhighScoreBtn") {
+        showElement(gameHighScore_Modal);
       };
     });
   }
@@ -270,6 +271,7 @@ function startGame(gameSettings) {
 function gameStartCountdown(gameSettings) {
   let count = gameSettings['countdownStartNumber'];
   let startInterval = setInterval(timeCountDown, 1000);
+
   function timeCountDown() {
     modalStartCountdownElement = document.getElementById("modalStartCountdown");
     modalStartCountdownContent = document.getElementById("startTimer");
@@ -317,9 +319,9 @@ function game(gameSettings) {
   let fuseInS = fuseLength / 10;
   let randomBombNumber;
   let gameOverFlag = false;
-  let scoreArea = document.getElementById("thePlayerScore");
-  let scoreAreaGameOver = document.getElementById("gameScore");
-
+  // let scoreArea = document.getElementById("thePlayerScore");
+  // let scoreAreaGameOver = document.getElementById("gameScore");
+  let topScore = getTopScore();
   /**
    * The loop that manages the game, will continue to loop until the user has lost the game or stopped the game.
    */
@@ -347,8 +349,7 @@ function game(gameSettings) {
         defusePerSecond();
         return;
       }
-      scoreArea.innerHTML = score;
-      scoreAreaGameOver.innerHTML = score;
+      updateScore(score,topScore);
     } else if (isPaused === 1) {
       for (let bomb of bombs) {
         if (bomb.blown === false) {
@@ -356,7 +357,6 @@ function game(gameSettings) {
           bomb.desfuse = true;
           clearTimeout(bomb.bombTimer);
           bomb.style.animation = "";
-          console.log(bomb + "jjjj");
           endBombSound(bomb);
         }
       }
@@ -417,7 +417,7 @@ function setBombFuse(bomb, fuseInS) {
   bomb.blown = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
   // let audio = new Audio("/assets/sounds/fuse_sound.mp3");
-  let audio =document.getElementById("audioContainerFuse");
+  let audio = document.getElementById("audioContainerFuse");
   bomb.audiofuse = audio;
   console.log(document.getElementById("game_Volume").value);
   bomb.audiofuse.volume = document.getElementById("game_Volume").value;
@@ -452,10 +452,10 @@ function bombExplode(bomb) {
   bomb.classList.add("fa-burst");
   bomb.style.color = "red";
   // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
-  let explodeAudio =document.getElementById("audioContainer");
+  let explodeAudio = document.getElementById("audioContainer");
   explodeAudio.volume = document.getElementById("game_Volume").value;
   if (document.getElementById("sound_On_Btn").checked === true) {
-    explodeAudio.currentTime =0;
+    explodeAudio.currentTime = 0;
     explodeAudio.play();
   };
 }
@@ -474,6 +474,7 @@ function gameOver(active) {
     clearTimeout(bombs[x].bombTimer);
     endBombSound(bombs[x]);
   }
+  checkHighScore();
   showElement(document.getElementById("modalGameOver"));
 }
 
@@ -481,5 +482,69 @@ function endBombSound(x) {
   if (x.audiofuse) {
     x.audiofuse.pause();
     x.audiofuse = null;
+  }
+}
+
+function getTopScore(){
+  let arr = JSON.parse(localStorage.getItem('hsArray'));
+  if (arr ===null){
+    return 0;
+  }else{
+return arr[0][1];
+  }
+}
+function checkHighScore() {
+  let insertPos = null;
+  let arr = JSON.parse(localStorage.getItem('hsArray'));
+//   for (let i =0; i< arr.length;i++){
+// if (score > arr[i][1] ){
+//   insertPos = i;
+// break;
+// }
+//   }
+let newHighScoreInput = document.getElementById('newHSInput');
+let newHighScoreMessage = document.getElementById('scoreMessage');
+
+if(score>arr[arr.length-1][1] ){
+  showElement(newHighScoreInput);
+  if(score>arr[0][1]){
+  newHighScoreMessage.innerHTML = "New high score:";
+  }else{
+    newHighScoreMessage.innerHTML = "New top 10 score:"; 
+  }
+  console.log('new high score');
+}else{
+  hideElement(newHighScoreInput);
+  newHighScoreMessage.innerHTML = "Your score:";
+  console.log('no score');
+}
+}
+
+function reOrderArr(){
+  for (let i =0; i< arr.length;i++){
+  }
+}
+
+function setScore() {
+  let highScoreArray = [
+    ['Dave', 10, 12.3],
+    ['Kev', 5, 10.3],
+    ['Larry', 4, 11.2]
+  ];
+  localStorage.setItem('hsArray', JSON.stringify(highScoreArray));
+}
+
+function sortScores() {
+
+}
+
+function updateScore(score,hs){
+  let scoreArea = document.getElementById("thePlayerScore");
+  let scoreAreaGameOver = document.getElementById("gameScore");
+  scoreArea.innerHTML = score;
+  scoreAreaGameOver.innerHTML = score;
+  if (score > hs){
+    scoreArea.style.color = "gold";
+    scoreAreaGameOver.style.color = "gold";
   }
 }

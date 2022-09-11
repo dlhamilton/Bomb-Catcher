@@ -53,8 +53,12 @@
     <!-- Modal Game over content -->
     <div class="modalGameOver-content">
       <h2>Game Over!</h2>
-      <h3>Your score:</h3>
+      <h3 id="scoreMessage">Your score:</h3>
       <p><span id="thePlayerScore">0</span></p>
+      <div id="newHSInput">
+        <input type="text" id="newHSName" name="newHSName" placeholder="Enter name here..">
+        <button id="newHSButton"><i class="fa fa-search"></i></button>
+      </div>
       <button id="resetGameOver" class="modalBtn startGameBtn">Go again</button>
       <button id="viewHighScoresBtn" class="modalBtn startGameBtn highScoreBtn">View high scores</button>
     </div>
@@ -70,11 +74,11 @@
       <div class="modalGame-body center_modal_content">
         <h3>Top 10 Scores:</h3>
         <div id="highScoreArea" class="highScoreGrid gridhscontainer">
-<div class ="hsGridItem">AAAAA</div>
-<div class ="hsGridItem">BBBBB</div>
-<div class ="hsGridItem">CCCCC</div>
-<div class ="hsGridItem">DDDDD</div>
-<div class ="hsGridItem">EEEEE</div>
+<div class ="hsGridItem"><table><tr><td class="hsPos">1</td><td class="hsName">aaaaa</td><td>12.5</td><td>123</td></tr></table></div>
+<div class ="hsGridItem"><table><tr><td class="hsPos">2</td><td class="hsName">bbbbbbb</td><td>12.5</td><td>123</td></tr></table></div>
+<div class ="hsGridItem"><table><tr><td class="hsPos">3</td><td class="hsName">ccc</td><td>12.5</td><td>123</td></tr></table></div>
+<div class ="hsGridItem"><table><tr><td class="hsPos">4</td><td class="hsName">aaadddaa</td><td>12.5</td><td>123</td></tr></table></div>
+<div class ="hsGridItem"><table><tr><td class="hsPos">5</td><td class="hsName">eeeee</td><td>12.5</td><td>123</td></tr></table></div>
         </div>
       </div>
       <div class="modalHighScores-color modalFooter">

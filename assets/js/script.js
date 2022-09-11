@@ -74,7 +74,10 @@ function applyOnChange() {
       } else if (this.getAttribute("data-type") === "gameLevel") {
         document.getElementById("gameLevelValue").innerHTML = this.value;
       } else if (this.getAttribute("id") === "game_Volume") {
-        let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
+        // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
+        let explodeAudio =document.getElementById("audioContainer");
+        explodeAudio.pause();
+        explodeAudio.currentTime =0;
         explodeAudio.volume = document.getElementById("game_Volume").value;
         explodeAudio.play();
       } else if (this.getAttribute("id") === "sound_On_Btn") {
@@ -413,7 +416,8 @@ function setBombFuse(bomb, fuseInS) {
   bomb.desfuse = false;
   bomb.blown = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
-  let audio = new Audio("/assets/sounds/fuse_sound.mp3");
+  // let audio = new Audio("/assets/sounds/fuse_sound.mp3");
+  let audio =document.getElementById("audioContainerFuse");
   bomb.audiofuse = audio;
   console.log(document.getElementById("game_Volume").value);
   bomb.audiofuse.volume = document.getElementById("game_Volume").value;
@@ -447,9 +451,11 @@ function bombExplode(bomb) {
   bomb.classList.remove("fa-bomb");
   bomb.classList.add("fa-burst");
   bomb.style.color = "red";
-  let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
+  // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
+  let explodeAudio =document.getElementById("audioContainer");
   explodeAudio.volume = document.getElementById("game_Volume").value;
   if (document.getElementById("sound_On_Btn").checked === true) {
+    explodeAudio.currentTime =0;
     explodeAudio.play();
   };
 }

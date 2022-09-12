@@ -3,7 +3,7 @@
 
 let explodeAudio = document.getElementById("audioContainer");
 let audio = document.getElementById("audioContainerFuse");
-
+let defuseSpeed;
 
 document.addEventListener("DOMContentLoaded", function () {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
@@ -66,7 +66,7 @@ function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, 
 }
 
 function applyOnChange() {
-  
+
   let sliders = document.getElementsByTagName("input");
   for (let slider of sliders) {
     slider.addEventListener("input", function () {
@@ -80,7 +80,7 @@ function applyOnChange() {
         document.getElementById("gameLevelValue").innerHTML = this.value;
       } else if (this.getAttribute("id") === "game_Volume") {
         // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
-        
+
         explodeAudio.pause();
         explodeAudio.currentTime = 0;
         explodeAudio.volume = document.getElementById("game_Volume").value;
@@ -146,13 +146,14 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         score = 0;
         document.getElementById("thePlayerScore").innerHTML = 0;
         document.getElementById("gameScore").innerHTML = 0;
-        console.log("ok" + isPaused);
         gameSettings = getModalInformation(gameSettings_Modal);
         drawGameGrid(gameSettings.x, gameSettings.y);
         startGame(gameSettings);
         hideElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "showhighScoreBtn") {
         showElement(gameHighScore_Modal);
+      } else if (this.getAttribute("id") === "newHSButton") {
+        addNewHighScore();
       };
     });
   }
@@ -355,7 +356,7 @@ function game(gameSettings) {
         defusePerSecond();
         return;
       }
-      updateScore(score,topScore);
+      updateScore(score, topScore);
     } else if (isPaused === 1) {
       for (let bomb of bombs) {
         if (bomb.blown === false) {
@@ -386,6 +387,7 @@ function defusePerSecond() {
   console.log((startTime / 1000));
   console.log(score);
   console.log(score / (startTime / 1000));
+  defuseSpeed = score / (startTime / 1000);
 }
 
 /**
@@ -422,13 +424,13 @@ function setBombFuse(bomb, fuseInS) {
   bomb.desfuse = false;
   bomb.blown = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
-  
+
   // let audio = new Audio("/assets/sounds/fuse_sound.mp3");
-  
+
 }
 
-function playFuseSound(){
-  
+function playFuseSound() {
+
   audio.currentTime = 0;
   audio.volume = document.getElementById("game_Volume").value;
   if (document.getElementById("sound_On_Btn").checked === true) {
@@ -496,53 +498,94 @@ function gameOver(active) {
 //   }
 // }
 
-function getTopScore(){
+function getTopScore() {
   let arr = JSON.parse(localStorage.getItem('hsArray'));
-  if (arr ===null){
+  if (arr === null) {
     return 0;
-  }else{
-return arr[0][1];
+  } else {
+    return arr[0][1];
   }
 }
+
 function checkHighScore() {
+  let arr = JSON.parse(localStorage.getItem('hsArray'));
+  //   for (let i =0; i< arr.length;i++){
+  // if (score > arr[i][1] ){
+  //   insertPos = i;
+  // break;
+  // }
+  //   }
+  let newHighScoreInput = document.getElementById('newHSInput');
+  let newHighScoreMessage = document.getElementById('scoreMessage');
+  let topScore;
+  let tenthScore;
+  if (arr === null) {
+    topScore = 0;
+    tenthScore = 0;
+  } else {
+    topScore = arr[0][1];
+    if (arr.length - 1 < 9) {
+      tenthScore = 0;
+    } else {
+      tenthScore = arr[arr.length - 1][1];
+    }
+  }
+
+  if (score > tenthScore) {
+    showElement(newHighScoreInput);
+    if (score > topScore) {
+      newHighScoreMessage.innerHTML = "New high score:";
+    } else {
+      newHighScoreMessage.innerHTML = "New top 10 score:";
+    }
+    console.log('new high score');
+  } else {
+    hideElement(newHighScoreInput);
+    newHighScoreMessage.innerHTML = "Your score:";
+    console.log('no score');
+  }
+}
+
+function addNewHighScore() {
   let insertPos = null;
   let arr = JSON.parse(localStorage.getItem('hsArray'));
-//   for (let i =0; i< arr.length;i++){
-// if (score > arr[i][1] ){
-//   insertPos = i;
-// break;
-// }
-//   }
-let newHighScoreInput = document.getElementById('newHSInput');
-let newHighScoreMessage = document.getElementById('scoreMessage');
-let topScore;
-let tenthScore;
-if (arr=== null){
-  topScore=0;
-  tenthScore=0;
-}else{
-  topScore=arr[0][1];
-  tenthScore=arr[arr.length-1][1];
-}
+  let HSName = document.getElementById("newHSName").value;
+  let HSScore = score;
+  let HSTime = defuseSpeed;
+  if (HSName != "") {
+    if (arr != null) {
+      for (let i = 0; i < arr.length; i++) {
+        if (score > arr[i][1]) {
+          insertPos = i;
+          break;
+        }
+      }
 
-if(score> tenthScore){
-  showElement(newHighScoreInput);
-  if(score>topScore){
-  newHighScoreMessage.innerHTML = "New high score:";
-  }else{
-    newHighScoreMessage.innerHTML = "New top 10 score:"; 
-  }
-  console.log('new high score');
-}else{
-  hideElement(newHighScoreInput);
-  newHighScoreMessage.innerHTML = "Your score:";
-  console.log('no score');
-}
-}
+      if (insertPos === null) {
+        insertPos = arr.length;
+      } else {
+      let j = arr.length - 1;
 
-function reOrderArr(){
-  for (let i =0; i< arr.length;i++){
+      if (j < 9) {
+        arr[j + 1] = arr[j];
+      }
+
+      do {
+        arr[j] = arr[j - 1];
+        j--;
+      } while (j > insertPos);
+    }
+      arr[insertPos] = [HSName, HSScore, HSTime];
+
+    } else {
+      arr = [
+        []
+      ]
+      arr[0] = [HSName, HSScore, HSTime];
+    }
   }
+  console.log(insertPos);
+  localStorage.setItem('hsArray', JSON.stringify(arr));
 }
 
 function setScore() {
@@ -558,12 +601,14 @@ function sortScores() {
 
 }
 
-function updateScore(score,hs){
+function updateScore(score, hs) {
   let scoreArea = document.getElementById("thePlayerScore");
   let scoreAreaGameOver = document.getElementById("gameScore");
+  scoreArea.style.color = "white";
+  scoreAreaGameOver.style.color = "white";
   scoreArea.innerHTML = score;
   scoreAreaGameOver.innerHTML = score;
-  if (score > hs){
+  if (score > hs) {
     scoreArea.style.color = "gold";
     scoreAreaGameOver.style.color = "gold";
   }

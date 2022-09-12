@@ -1,6 +1,10 @@
 // Wait for the Dom to finish loading before running the game 
 // Open the settings modal to get the user preference for the game
 
+let explodeAudio = document.getElementById("audioContainer");
+let audio = document.getElementById("audioContainerFuse");
+
+
 document.addEventListener("DOMContentLoaded", function () {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   let gameHowTo_Modal = document.getElementById("modalGameHowTo");
@@ -62,6 +66,7 @@ function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, 
 }
 
 function applyOnChange() {
+  
   let sliders = document.getElementsByTagName("input");
   for (let slider of sliders) {
     slider.addEventListener("input", function () {
@@ -75,13 +80,14 @@ function applyOnChange() {
         document.getElementById("gameLevelValue").innerHTML = this.value;
       } else if (this.getAttribute("id") === "game_Volume") {
         // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
-        let explodeAudio = document.getElementById("audioContainer");
+        
         explodeAudio.pause();
         explodeAudio.currentTime = 0;
         explodeAudio.volume = document.getElementById("game_Volume").value;
         explodeAudio.play();
       } else if (this.getAttribute("id") === "sound_On_Btn") {
-        if (document.getElementById("volume_Section").style.display === "none") {
+        if (document.getElementById("sound_On_Btn").checked === true) {
+          explodeAudio.play();
           showElement(document.getElementById("volume_Section"));
         } else {
           hideElement(document.getElementById("volume_Section"));
@@ -357,7 +363,7 @@ function game(gameSettings) {
           bomb.desfuse = true;
           clearTimeout(bomb.bombTimer);
           bomb.style.animation = "";
-          endBombSound(bomb);
+          // endBombSound(bomb);
         }
       }
     } else {
@@ -416,27 +422,32 @@ function setBombFuse(bomb, fuseInS) {
   bomb.desfuse = false;
   bomb.blown = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
+  
   // let audio = new Audio("/assets/sounds/fuse_sound.mp3");
-  let audio = document.getElementById("audioContainerFuse");
-  bomb.audiofuse = audio;
-  console.log(document.getElementById("game_Volume").value);
-  bomb.audiofuse.volume = document.getElementById("game_Volume").value;
-  console.log(document.getElementById("game_Volume").checked);
+  
+}
+
+function playFuseSound(){
+  
+  audio.currentTime = 0;
+  audio.volume = document.getElementById("game_Volume").value;
   if (document.getElementById("sound_On_Btn").checked === true) {
-    bomb.audiofuse.play();
+    audio.play();
   };
 }
+
 
 /**
  * defuses the bomb that has been clickeed by the user by clearing the timeout and removing the event listener
  */
 function defuseBombFuse() {
   if (this.blown === false) {
+    playFuseSound();
     this.removeEventListener('click', defuseBombFuse);
     this.desfuse = true;
     clearTimeout(this.bombTimer);
     this.style.animation = "";
-    endBombSound(this);
+    // endBombSound(this);
     ++score;
   }
 }
@@ -472,18 +483,18 @@ function gameOver(active) {
     bombs[x].removeEventListener('click', defuseBombFuse);
     bombs[x].style.animation = "";
     clearTimeout(bombs[x].bombTimer);
-    endBombSound(bombs[x]);
+    // endBombSound(bombs[x]);
   }
   checkHighScore();
   showElement(document.getElementById("modalGameOver"));
 }
 
-function endBombSound(x) {
-  if (x.audiofuse) {
-    x.audiofuse.pause();
-    x.audiofuse = null;
-  }
-}
+// function endBombSound(x) {
+//   if (x.audiofuse) {
+//     x.audiofuse.pause();
+//     x.audiofuse = null;
+//   }
+// }
 
 function getTopScore(){
   let arr = JSON.parse(localStorage.getItem('hsArray'));

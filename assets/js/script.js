@@ -120,8 +120,7 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         checkGameState();
         showElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "viewHighScoresBtn") {
-        setScore();
-        alert("show high score");
+        showElement(gameHighScore_Modal);
       } else if (this.getAttribute("id") === "endGame") {
         document.getElementById("pauseGame").children[0].style.color = "white";
         endGame();

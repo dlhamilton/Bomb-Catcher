@@ -508,6 +508,7 @@ function getTopScore() {
 
 function checkHighScore() {
   let arr = JSON.parse(localStorage.getItem('hsArray'));
+  hideElement(document.getElementById("HSAcceptMessage"));
   //   for (let i =0; i< arr.length;i++){
   // if (score > arr[i][1] ){
   //   insertPos = i;
@@ -532,6 +533,7 @@ function checkHighScore() {
 
   if (score > tenthScore) {
     showElement(newHighScoreInput);
+    
     if (score > topScore) {
       newHighScoreMessage.innerHTML = "New high score:";
     } else {
@@ -545,12 +547,18 @@ function checkHighScore() {
   }
 }
 
+function getTodaysDate(){
+  let currentDate = new Date();
+ return currentDate.toLocaleDateString();
+}
+
 function addNewHighScore() {
   let insertPos = null;
   let arr = JSON.parse(localStorage.getItem('hsArray'));
   let HSName = document.getElementById("newHSName").value;
   let HSScore = score;
   let HSTime = defuseSpeed;
+  let todaysDate=getTodaysDate();
   if (HSName != "") {
     if (arr != null) {
       for (let i = 0; i < arr.length; i++) {
@@ -574,17 +582,20 @@ function addNewHighScore() {
         j--;
       } while (j > insertPos);
     }
-      arr[insertPos] = [HSName, HSScore, HSTime];
+      arr[insertPos] = [HSName, HSScore, HSTime,todaysDate];
 
     } else {
       arr = [
         []
       ]
-      arr[0] = [HSName, HSScore, HSTime];
+      arr[0] = [HSName, HSScore, HSTime,todaysDate];
     }
   }
   console.log(insertPos);
+  hideElement(document.getElementById("newHSInput"));
+  showElement(document.getElementById("HSAcceptMessage"));
   localStorage.setItem('hsArray', JSON.stringify(arr));
+  showElement(document.getElementById("modalHighScores"));
 }
 
 function setScore() {

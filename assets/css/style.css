@@ -755,19 +755,23 @@ height: 60vh;
 .hsGridItem table{
   margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .hsGridItem table td{
 border:2px solid red;
 overflow: hidden;
 }
-.hsPos{
-width:fit-content !important;
+.ten{
+width:15%;
 }
-.hsName{
-  width:40%;
+.thirty{
+  width:30%;
+}
+.thirty_hide{
+  width:30%;
 }
 #newHSName{
   width: 80%;
@@ -821,4 +825,11 @@ display:none;
   text-shadow: 0 0 BLACK;
   box-sizing: border-box;
   border: 3px solid #666;
+}
+
+/* for tablet screen sizes and above */
+@media screen and (max-width: 425px){
+  .thirty_hide{
+    display: none;
+  }
 }

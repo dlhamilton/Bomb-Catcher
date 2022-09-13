@@ -120,6 +120,7 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         checkGameState();
         showElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "viewHighScoresBtn") {
+        loadHighScores();
         showElement(gameHighScore_Modal);
       } else if (this.getAttribute("id") === "endGame") {
         document.getElementById("pauseGame").children[0].style.color = "white";
@@ -150,6 +151,7 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         startGame(gameSettings);
         hideElement(gameSettings_Modal);
       } else if (this.getAttribute("id") === "showhighScoreBtn") {
+        loadHighScores();
         showElement(gameHighScore_Modal);
       } else if (this.getAttribute("id") === "newHSButton") {
         addNewHighScore();
@@ -557,7 +559,7 @@ function addNewHighScore() {
   let arr = JSON.parse(localStorage.getItem('hsArray'));
   let HSName = document.getElementById("newHSName").value;
   let HSScore = score;
-  let HSTime = defuseSpeed;
+  let HSTime = defuseSpeed.toFixed(2);
   let todaysDate=getTodaysDate();
   if (HSName != "") {
     if (arr != null) {
@@ -595,6 +597,7 @@ function addNewHighScore() {
   hideElement(document.getElementById("newHSInput"));
   showElement(document.getElementById("HSAcceptMessage"));
   localStorage.setItem('hsArray', JSON.stringify(arr));
+  loadHighScores();
   showElement(document.getElementById("modalHighScores"));
 }
 
@@ -622,4 +625,31 @@ function updateScore(score, hs) {
     scoreArea.style.color = "gold";
     scoreAreaGameOver.style.color = "gold";
   }
+}
+
+function loadHighScores(){
+  let HSArr = JSON.parse(localStorage.getItem('hsArray'));
+  let HSArea = document.getElementById("highScoreArea");
+let htmlString = `<div class ="hsGridItem"><table><tr>
+<th class="ten">Pos.</th>
+<th class="forty">Name</th>
+<th class="ten">Score</th>
+<th class="ten">Bps</th>
+<th class="thirty_hide">Date Set</th>
+</tr></table></div>`;
+  if (HSArr != null) {
+    for (let i = 0; i < HSArr.length; i++) {
+htmlString = htmlString + `<div class ="hsGridItem"><table><tr>
+<td class="ten">${i+1}</td>
+<td class="forty">${HSArr[i][0]}</td>
+<td class="ten">${HSArr[i][1]}</td>
+<td class="ten">${HSArr[i][2]}</td>
+<td class="thirty_hide">${HSArr[i][3]}</td>
+</tr></table></div>`;
+    }
+  } else{
+    htmlString = "No high scores set";
+  }
+HSArea.innerHTML = htmlString;
+  console.log(htmlString);
 }

@@ -161,6 +161,8 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         sortHS(2);
       }else if (this.getAttribute("id") === "sortbyDate") {
         sortHS(3);
+      }else if (this.getAttribute("id") === "resetHSScores") {
+        localStorage.removeItem("hsArray");
       };
     });
   }
@@ -640,6 +642,7 @@ function loadHighScores() {
 
 function sortHS(item) {
   let HSArr = JSON.parse(localStorage.getItem('hsArray'));
+  if (HSArr != null) {
   let swapped;
   let temp;
   for (let i = 0; i < HSArr.length-1; i++) {
@@ -657,6 +660,7 @@ function sortHS(item) {
     }
   }
   loadHSTable(HSArr);
+}
 }
 
 function loadHSTable(arr) {

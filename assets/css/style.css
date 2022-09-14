@@ -437,6 +437,9 @@ nav i {
   font-size: 16px;
   letter-spacing: 2px;
 }
+.modalPadding{
+  padding:1px !important;
+}
 
 #EndCurrentGameBtn{
   color:white;

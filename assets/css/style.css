@@ -441,7 +441,7 @@ nav i {
   padding:1px !important;
 }
 
-#EndCurrentGameBtn{
+#endCurrentGameBtn{
   color:white;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   display: none;
@@ -455,11 +455,27 @@ background-size: 200% 200%;
   animation: l-r_redAnimation 2s linear infinite alternate;
 }
 
-#EndCurrentGameBtn:hover{
+#endCurrentGameBtn:hover{
   border-color: red;
   color:#666
-
 }
+
+.redModalBtn{
+  color:white;
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+border-color: black;
+background-color: red;
+background: linear-gradient(90deg,#FF7070,70%,red);
+background-size: 200% 200%;
+-webkit-animation: l-r_redAnimation 2s linear infinite alternate;
+  -moz-animation: l-r_redAnimation 2s linear infinite alternate;
+  animation: l-r_redAnimation 2s linear infinite alternate;
+}
+.redModalBtn:hover{
+  border-color: red;
+  color:#666
+}
+
 @-webkit-keyframes l-r_redAnimation {
   0%{background-position:0% 0%}
   /* 50%{background-position:100% 0%} */
@@ -652,7 +668,7 @@ background-size: 200% 200%;
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 20px;
 }
 
 .switch input { 
@@ -676,8 +692,8 @@ background-size: 200% 200%;
 .switch_Slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 13px;
+  width: 13px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -694,9 +710,9 @@ input:focus + .switch_Slider {
 }
 
 input:checked + .switch_Slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(39px);
+  -ms-transform: translateX(39px);
+  transform: translateX(39px);
 }
 
 /* Rounded sliders */
@@ -745,8 +761,9 @@ height: 60vh;
   display: grid;
   grid-template-columns: auto;
   gap: 10px;
-  background-color: #2196F3;
+  background-color:goldenrod;
   padding: 10px;
+  border-radius: 20px;
 }
 
 .gridhscontainer .hsGridItem {

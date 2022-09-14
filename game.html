@@ -133,23 +133,26 @@
         <h2><i class="fa-solid fa-user-gear"></i> Settings</h2>
       </div>
       <div class="modalGame-body">
-        <h3>Sounds</h3>
-        <p>Bomb Sounds: </p>
+        <h3>Sounds:</h3>
+        <p>Turn on bomb sounds to hear the defuse and explosion sound.</p>
         <label class="switch">
           <input id="sound_On_Btn" type="checkbox">
           <span class="switch_Slider round"></span>
-        </label>
+        </label> 
         <div id="volume_Section">
-          <p>Sound Volume</p>
+          <p>Sound Volume:</p>
           <i class="fa-solid fa-volume-off sound-icon"></i><input id="game_Volume" data-type="game_Volume" type="range"
             min="0" max="1" value="1" step="0.1"><i class="fa-solid fa-volume-high sound-icon"></i>
         </div>
-        <h3>Light Mode</h3>
-        <p>Light Mode: </p>
+        <h3>Light Mode:</h3>
+        <p>Turn on light mode to switch the game colours.</p>
         <label class="switch">
           <input type="checkbox" checked>
           <span class="switch_Slider round"></span>
         </label>
+        <h3>Reset High Scores:</h3>
+        <p>click the button below to reset the high scores</p>
+        <button id="" class="modalBtn redModalBtn">Reset High Scores</button>
       </div>
       <div class="modalGameAccess-color modalFooter">
       </div>
@@ -219,7 +222,7 @@
           </div>
         </form>
         <button id="startGameBtn" class="modalBtn startGameBtn">Start Game</button>
-        <button id="EndCurrentGameBtn" class="modalBtn">End Current Game</button>
+        <button id="endCurrentGameBtn" class="modalBtn">End Current Game</button>
         <p id="modalGameSettings-instructions">For more fun, click the button below to change the orginal game and add
           your own custom settings</p>
       </div>

@@ -125,7 +125,7 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
       } else if (this.getAttribute("id") === "endGame") {
         document.getElementById("pauseGame").children[0].style.color = "white";
         endGame();
-      } else if (this.getAttribute("id") === "EndCurrentGameBtn") {
+      } else if (this.getAttribute("id") === "endCurrentGameBtn") {
         document.getElementById("pauseGame").children[0].style.color = "white";
         endGame();
         checkGameState();
@@ -155,6 +155,12 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         showElement(gameHighScore_Modal);
       } else if (this.getAttribute("id") === "newHSButton") {
         addNewHighScore();
+      }else if (this.getAttribute("id") === "sortbyScore") {
+        sortHS(1);
+      }else if (this.getAttribute("id") === "sortbyBPS") {
+        sortHS(2);
+      }else if (this.getAttribute("id") === "sortbyDate") {
+        sortHS(3);
       };
     });
   }
@@ -164,11 +170,11 @@ function checkGameState() {
   if (isPaused === 1) {
     // isPaused=2;
     hideElement(document.getElementById('startGameBtn'));
-    showElement(document.getElementById('EndCurrentGameBtn'));
+    showElement(document.getElementById('endCurrentGameBtn'));
     console.log("here" + isPaused);
   } else {
     document.getElementById("pauseGame").children[0].style.color = "white";
-    hideElement(document.getElementById('EndCurrentGameBtn'));
+    hideElement(document.getElementById('endCurrentGameBtn'));
     showElement(document.getElementById('startGameBtn'));
   }
 }
@@ -535,7 +541,7 @@ function checkHighScore() {
 
   if (score > tenthScore) {
     showElement(newHighScoreInput);
-    
+
     if (score > topScore) {
       newHighScoreMessage.innerHTML = "New high score:";
     } else {
@@ -549,9 +555,9 @@ function checkHighScore() {
   }
 }
 
-function getTodaysDate(){
+function getTodaysDate() {
   let currentDate = new Date();
- return currentDate.toLocaleDateString();
+  return currentDate.toLocaleDateString();
 }
 
 function addNewHighScore() {
@@ -560,7 +566,7 @@ function addNewHighScore() {
   let HSName = document.getElementById("newHSName").value;
   let HSScore = score;
   let HSTime = defuseSpeed.toFixed(2);
-  let todaysDate=getTodaysDate();
+  let todaysDate = getTodaysDate();
   if (HSName != "") {
     if (arr != null) {
       for (let i = 0; i < arr.length; i++) {
@@ -573,24 +579,24 @@ function addNewHighScore() {
       if (insertPos === null) {
         insertPos = arr.length;
       } else {
-      let j = arr.length - 1;
+        let j = arr.length - 1;
 
-      if (j < 9) {
-        arr[j + 1] = arr[j];
+        if (j < 9) {
+          arr[j + 1] = arr[j];
+        }
+
+        do {
+          arr[j] = arr[j - 1];
+          j--;
+        } while (j > insertPos);
       }
-
-      do {
-        arr[j] = arr[j - 1];
-        j--;
-      } while (j > insertPos);
-    }
-      arr[insertPos] = [HSName, HSScore, HSTime,todaysDate];
+      arr[insertPos] = [HSName, HSScore, HSTime, todaysDate];
 
     } else {
       arr = [
         []
       ]
-      arr[0] = [HSName, HSScore, HSTime,todaysDate];
+      arr[0] = [HSName, HSScore, HSTime, todaysDate];
     }
   }
   console.log(insertPos);
@@ -627,29 +633,54 @@ function updateScore(score, hs) {
   }
 }
 
-function loadHighScores(){
+function loadHighScores() {
   let HSArr = JSON.parse(localStorage.getItem('hsArray'));
+  loadHSTable(HSArr);
+}
+
+function sortHS(item) {
+  let HSArr = JSON.parse(localStorage.getItem('hsArray'));
+  let swapped;
+  let temp;
+  for (let i = 0; i < HSArr.length-1; i++) {
+    swapped = false;
+    for (let j = 0; j < HSArr.length-i-1; j++) {
+      if(HSArr[j][item]<HSArr[j+1][item]){
+        temp = HSArr[j];
+        HSArr[j]=HSArr[j+1];
+        HSArr[j+1]=temp;
+        swapped = true;
+      }
+    }
+    if (swapped === false){
+      break;
+    }
+  }
+  loadHSTable(HSArr);
+}
+
+function loadHSTable(arr) {
   let HSArea = document.getElementById("highScoreArea");
-let htmlString = `<div class ="hsGridItem"><table><tr>
+  let htmlString = `<div class ="hsGridItem"><table><tr>
 <th class="ten">Pos.</th>
 <th class="forty">Name</th>
 <th class="ten">Score</th>
 <th class="ten">Bps</th>
 <th class="thirty_hide">Date Set</th>
 </tr></table></div>`;
-  if (HSArr != null) {
-    for (let i = 0; i < HSArr.length; i++) {
-htmlString = htmlString + `<div class ="hsGridItem"><table><tr>
+  if (arr != null) {
+    for (let i = 0; i < arr.length; i++) {
+      htmlString = htmlString + `<div class ="hsGridItem"><table><tr>
 <td class="ten">${i+1}</td>
-<td class="forty">${HSArr[i][0]}</td>
-<td class="ten">${HSArr[i][1]}</td>
-<td class="ten">${HSArr[i][2]}</td>
-<td class="thirty_hide">${HSArr[i][3]}</td>
+<td class="forty">${arr[i][0]}</td>
+<td class="ten">${arr[i][1]}</td>
+<td class="ten">${arr[i][2]}</td>
+<td class="thirty_hide">${arr[i][3]}</td>
 </tr></table></div>`;
     }
-  } else{
+  } else {
     htmlString = "No high scores set";
   }
-HSArea.innerHTML = htmlString;
+  HSArea.innerHTML = htmlString;
   console.log(htmlString);
 }

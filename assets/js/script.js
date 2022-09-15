@@ -163,6 +163,9 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         sortHS(3);
       }else if (this.getAttribute("id") === "resetHSScores") {
         localStorage.removeItem("hsArray");
+      }else if(this.getAttribute("id") === "firstPlayButton"){
+        checkGameState();
+        showElement(gameSettings_Modal);
       };
     });
   }

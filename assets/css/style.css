@@ -93,10 +93,10 @@ body {
   /* Stay in place */
   z-index: 1;
   /* Sit on top */
-  padding-top: 100px;
+  /* padding-top: 100px; */
   /* Location of the box */
   left: 0;
-  top: 10%;
+  top: 15%;
   width: 100%;
   /* Full width */
   height: 100%;
@@ -407,7 +407,7 @@ nav i {
   padding-top: 100px;
   /* Location of the box */
   left: 0;
-  top: 10%;
+  top: 15%;
   width: 100%;
   /* Full width */
   height: 100%;

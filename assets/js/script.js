@@ -92,9 +92,15 @@ function applyOnChange() {
         } else {
           hideElement(document.getElementById("volume_Section"));
         }
+      } else if(this.getAttribute("id") === "lightmode_Btn"){
+        setlightmode();
       }
     })
   }
+}
+
+function setlightmode(){
+  document.body.classList.toggle("body_light");
 }
 
 function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {

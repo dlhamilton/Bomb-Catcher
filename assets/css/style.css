@@ -17,6 +17,10 @@ body {
   border-top: 10px solid transparent;
 }
 
+.body_light{
+  background-image: url("../images/metalBackground_light.png");
+  background-color: rgb(238, 238, 238);
+}
 #index_logo {
   height: 200px;
   width: 220px;

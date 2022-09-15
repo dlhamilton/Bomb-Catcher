@@ -805,9 +805,9 @@ width:15%;
   transition: 0.5s;
   outline: none;
 }
-#newHSName:focus{
+/* #newHSName:focus, #newHSName:focus + #newHSButton {
   border: 3px solid #666;
-}
+} */
 #newHSButton{
   float: left;
   width: 20%;

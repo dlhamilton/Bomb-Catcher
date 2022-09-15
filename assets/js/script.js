@@ -4,6 +4,7 @@
 let explodeAudio = document.getElementById("audioContainer");
 let audio = document.getElementById("audioContainerFuse");
 let defuseSpeed;
+let light_mode = false;
 
 document.addEventListener("DOMContentLoaded", function () {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
@@ -101,6 +102,19 @@ function applyOnChange() {
 
 function setlightmode(){
   document.body.classList.toggle("body_light");
+  if (light_mode === false){
+light_mode = true;
+  }else{
+    light_mode = false;
+  }
+  let scoreArea = document.getElementById("gameScore");
+  if( scoreArea.style.color ==="black"){
+    scoreArea.style.color = "white";
+  }else if(scoreArea.style.color ==="white"){
+    scoreArea.style.color = "black";
+  }
+
+
 }
 
 function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
@@ -117,10 +131,16 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
       } else if (this.getAttribute("id") === "pauseGame") {
         if (isPaused === 1) {
           isPaused = 0;
+          if(light_mode){
+            this.children[0].style.color = "black";
+          }else{
           this.children[0].style.color = "white";
+          }
         } else if (isPaused === 0) {
           isPaused = 1;
+         
           this.children[0].style.color = "darkgoldenrod";
+          
         } else {}
       } else if (this.getAttribute("id") === "resetGameOver") {
         checkGameState();
@@ -129,10 +149,18 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         loadHighScores();
         showElement(gameHighScore_Modal);
       } else if (this.getAttribute("id") === "endGame") {
+        if(light_mode){
+          document.getElementById("pauseGame").children[0].style.color = "black";
+        }else{
         document.getElementById("pauseGame").children[0].style.color = "white";
+        }
         endGame();
       } else if (this.getAttribute("id") === "endCurrentGameBtn") {
+        if(light_mode){
+          document.getElementById("pauseGame").children[0].style.color = "black";
+        }else{
         document.getElementById("pauseGame").children[0].style.color = "white";
+        }
         endGame();
         checkGameState();
       } else if (this.getAttribute("id") === "viewSettings") {
@@ -152,6 +180,7 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         score = 0;
         document.getElementById("thePlayerScore").innerHTML = 0;
         document.getElementById("gameScore").innerHTML = 0;
+        document.getElementById("gameScore").classList.remove("hsGold");
         gameSettings = getModalInformation(gameSettings_Modal);
         drawGameGrid(gameSettings.x, gameSettings.y);
         startGame(gameSettings);
@@ -184,7 +213,11 @@ function checkGameState() {
     showElement(document.getElementById('endCurrentGameBtn'));
     console.log("here" + isPaused);
   } else {
+    if(light_mode){
+      document.getElementById("pauseGame").children[0].style.color = "black";
+    }else{
     document.getElementById("pauseGame").children[0].style.color = "white";
+    }
     hideElement(document.getElementById('endCurrentGameBtn'));
     showElement(document.getElementById('startGameBtn'));
   }
@@ -632,14 +665,19 @@ function sortScores() {
 }
 
 function updateScore(score, hs) {
-  let scoreArea = document.getElementById("thePlayerScore");
-  let scoreAreaGameOver = document.getElementById("gameScore");
+  let scoreArea = document.getElementById("gameScore");
+  let scoreAreaGameOver = document.getElementById("thePlayerScore");
+  if(light_mode){
+    scoreArea.style.color = "black";
+  }else{
   scoreArea.style.color = "white";
+  }
   scoreAreaGameOver.style.color = "white";
   scoreArea.innerHTML = score;
   scoreAreaGameOver.innerHTML = score;
   if (score > hs) {
-    scoreArea.style.color = "gold";
+    scoreArea.classList.add("hsGold");
+    // scoreArea.style.color = "gold";
     scoreAreaGameOver.style.color = "gold";
   }
 }

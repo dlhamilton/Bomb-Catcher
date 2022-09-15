@@ -372,6 +372,24 @@ nav i {
   text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
   color: black;
 }
+.body_light .bomb_icon{
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+  color: white;
+}
+.body_light .scoreCount,
+.body_light nav i ,
+.body_light #game_title
+{
+  color:black;
+}
+
+.hsGold{
+  color:gold !important;
+}
+.body_light .hsGold{
+  color:darkgoldenrod !important;
+}
+
 
 .center_items_inside {
   display: flex;

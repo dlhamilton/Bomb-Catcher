@@ -791,3 +791,16 @@ function loadHSTable(arr) {
   HSArea.innerHTML = htmlString;
   console.log(htmlString);
 }
+
+function reDrawBombs(){
+  $('.bomb_icon').flowtype({
+    fontRatio: 1
+  });
+}
+
+function getOrientation(){
+  let orientation = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
+  console.log(orientation);
+}
+
+window.onresize = function(){ getOrientation(); }

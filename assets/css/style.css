@@ -827,6 +827,9 @@ width:15%;
   transition: 0.5s;
   outline: none;
 }
+.missingName::placeholder {
+  color: red !important;
+}
 /* #newHSName:focus, #newHSName:focus + #newHSButton {
   border: 3px solid #666;
 } */
@@ -858,7 +861,7 @@ display:none;
   display:none;
 }
 
-#HSAcceptMessage{
+#hsAcceptMessage{
   display: none;
   color: green;
   letter-spacing: 1px;

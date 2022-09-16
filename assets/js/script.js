@@ -84,7 +84,7 @@ function applyOnChange() {
 function sliderMaxAmount() {
   let amountOfBombsSlider = document.getElementById("bombAmount");
   amountOfBombsSlider.max = document.getElementById("col_size").value * document.getElementById("row_size").value;
-    document.getElementById("bombAmountValue").innerHTML = amountOfBombsSlider.value;
+  document.getElementById("bombAmountValue").innerHTML = amountOfBombsSlider.value;
 }
 
 function applyOnInput() {
@@ -578,7 +578,7 @@ function getTopScore() {
 
 function checkHighScore() {
   let arr = JSON.parse(localStorage.getItem('hsArray'));
-  hideElement(document.getElementById("HSAcceptMessage"));
+  hideElement(document.getElementById("hsAcceptMessage"));
   //   for (let i =0; i< arr.length;i++){
   // if (score > arr[i][1] ){
   //   insertPos = i;
@@ -622,14 +622,21 @@ function getTodaysDate() {
   return currentDate.toLocaleDateString();
 }
 
+function sentanceCaseText(str) {
+  str = str.charAt(0).toUpperCase() + str.slice(1);
+  return str;
+}
+
 function addNewHighScore() {
   let insertPos = null;
   let arr = JSON.parse(localStorage.getItem('hsArray'));
-  let HSName = document.getElementById("newHSName").value;
-  let HSScore = score;
-  let HSTime = defuseSpeed.toFixed(2);
+  let hSName = document.getElementById("newHSName").value;
+  let hSScore = score;
+  let hSTime = defuseSpeed.toFixed(2);
   let todaysDate = getTodaysDate();
-  if (HSName != "") {
+  if (hSName != "") {
+    document.getElementById("newHSName").classList.remove("missingName");
+    hSName = sentanceCaseText(hSName);
     if (arr != null) {
       for (let i = 0; i < arr.length; i++) {
         if (score > arr[i][1]) {
@@ -652,21 +659,25 @@ function addNewHighScore() {
           j--;
         } while (j > insertPos);
       }
-      arr[insertPos] = [HSName, HSScore, HSTime, todaysDate];
+      arr[insertPos] = [hSName, hSScore, hSTime, todaysDate];
 
     } else {
       arr = [
         []
       ]
-      arr[0] = [HSName, HSScore, HSTime, todaysDate];
+      arr[0] = [hSName, hSScore, hSTime, todaysDate];
     }
+
+    console.log(insertPos);
+    hideElement(document.getElementById("newHSInput"));
+    showElement(document.getElementById("hsAcceptMessage"));
+    localStorage.setItem('hsArray', JSON.stringify(arr));
+    loadHighScores();
+    showElement(document.getElementById("modalHighScores"));
+    document.getElementById("newHSName").value = "";
+  }else{
+    document.getElementById("newHSName").classList.add("missingName");
   }
-  console.log(insertPos);
-  hideElement(document.getElementById("newHSInput"));
-  showElement(document.getElementById("HSAcceptMessage"));
-  localStorage.setItem('hsArray', JSON.stringify(arr));
-  loadHighScores();
-  showElement(document.getElementById("modalHighScores"));
 }
 
 function setScore() {

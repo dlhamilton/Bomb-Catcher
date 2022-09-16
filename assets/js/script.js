@@ -292,7 +292,7 @@ function getModalInformation(element) {
   let level = getDetails['fuseSpeed'].value;
   let bombs = getDetails['bombAmount'].value;
   let countdown = getDetails['gameCountdownTime'].value;
-  let gameSpeed = getDetails['gameLevel'].value;
+  let gameSpeed = convertGameSpeed(getDetails['gameLevel'].value);
   return {
     x: x_size,
     y: y_size,
@@ -301,6 +301,33 @@ function getModalInformation(element) {
     countdownStartNumber: countdown,
     speed: gameSpeed
   };
+}
+
+function convertGameSpeed(speed) {
+  switch (speed) {
+    case 0:
+      return 10;
+    case 1:
+      return 9;
+    case 2:
+      return 8;
+    case 3:
+      return 7;
+    case 4:
+      return 6;
+    case 5:
+      return 5;
+    case 6:
+      return 4;
+    case 7:
+      return 3;
+    case 8:
+      return 2;
+    case 9:
+      return 1;
+    case 10:
+      return 0;
+  }
 }
 /**
  * Hide an element on the DOM by changing display properties
@@ -675,7 +702,7 @@ function addNewHighScore() {
     loadHighScores();
     showElement(document.getElementById("modalHighScores"));
     document.getElementById("newHSName").value = "";
-  }else{
+  } else {
     document.getElementById("newHSName").classList.add("missingName");
   }
 }

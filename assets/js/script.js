@@ -800,7 +800,14 @@ function reDrawBombs(){
 
 function getOrientation(){
   let orientation = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
+  let bombArea = document.getElementsByClassName("grid-container")[0];
   console.log(orientation);
+  if(orientation==="Landscape"){
+    bombArea.style.maxWidth = "50vh";
+  }else{
+    bombArea.style.maxWidth = "500px";
+  }
+  reDrawBombs();
 }
 
 window.onresize = function(){ getOrientation(); }

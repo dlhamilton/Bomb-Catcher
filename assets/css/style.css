@@ -431,7 +431,7 @@ nav i {
   border: 3px solid black;
 }
 
-#modalGameSettings-warning{
+/* #modalGameSettings-warning{
   color: rgb(0, 0, 0);
   text-decoration: underline;
   font-style: italic;
@@ -439,7 +439,7 @@ nav i {
   border: 3px solid black;
   padding: 3px;
   margin: 0!important;
-}
+} */
 
 #customGameSettings{
   display: none;

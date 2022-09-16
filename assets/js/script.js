@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
   applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
   applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
+  applyOnInput();
   applyOnChange();
 })
 
@@ -67,7 +68,26 @@ function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, 
 }
 
 function applyOnChange() {
+  let selectors = document.getElementsByTagName("select");
 
+  for (let selector of selectors) {
+    selector.addEventListener("change", function () {
+      if (this.getAttribute("id") === "col_size") {
+        sliderMaxAmount();
+      } else if (this.getAttribute("id") === "row_size") {
+        sliderMaxAmount();
+      }
+    })
+  }
+}
+
+function sliderMaxAmount() {
+  let amountOfBombsSlider = document.getElementById("bombAmount");
+  amountOfBombsSlider.max = document.getElementById("col_size").value * document.getElementById("row_size").value;
+    document.getElementById("bombAmountValue").innerHTML = amountOfBombsSlider.value;
+}
+
+function applyOnInput() {
   let sliders = document.getElementsByTagName("input");
   for (let slider of sliders) {
     slider.addEventListener("input", function () {
@@ -80,8 +100,6 @@ function applyOnChange() {
       } else if (this.getAttribute("data-type") === "gameLevel") {
         document.getElementById("gameLevelValue").innerHTML = this.value;
       } else if (this.getAttribute("id") === "game_Volume") {
-        // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
-
         explodeAudio.pause();
         explodeAudio.currentTime = 0;
         explodeAudio.volume = document.getElementById("game_Volume").value;
@@ -93,24 +111,24 @@ function applyOnChange() {
         } else {
           hideElement(document.getElementById("volume_Section"));
         }
-      } else if(this.getAttribute("id") === "lightmode_Btn"){
+      } else if (this.getAttribute("id") === "lightmode_Btn") {
         setlightmode();
       }
     })
   }
 }
 
-function setlightmode(){
+function setlightmode() {
   document.body.classList.toggle("body_light");
-  if (light_mode === false){
-light_mode = true;
-  }else{
+  if (light_mode === false) {
+    light_mode = true;
+  } else {
     light_mode = false;
   }
   let scoreArea = document.getElementById("gameScore");
-  if( scoreArea.style.color ==="black"){
+  if (scoreArea.style.color === "black") {
     scoreArea.style.color = "white";
-  }else if(scoreArea.style.color ==="white"){
+  } else if (scoreArea.style.color === "white") {
     scoreArea.style.color = "black";
   }
 
@@ -131,16 +149,16 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
       } else if (this.getAttribute("id") === "pauseGame") {
         if (isPaused === 1) {
           isPaused = 0;
-          if(light_mode){
+          if (light_mode) {
             this.children[0].style.color = "black";
-          }else{
-          this.children[0].style.color = "white";
+          } else {
+            this.children[0].style.color = "white";
           }
         } else if (isPaused === 0) {
           isPaused = 1;
-         
+
           this.children[0].style.color = "darkgoldenrod";
-          
+
         } else {}
       } else if (this.getAttribute("id") === "resetGameOver") {
         checkGameState();
@@ -149,17 +167,17 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         loadHighScores();
         showElement(gameHighScore_Modal);
       } else if (this.getAttribute("id") === "endGame") {
-        if(light_mode){
+        if (light_mode) {
           document.getElementById("pauseGame").children[0].style.color = "black";
-        }else{
-        document.getElementById("pauseGame").children[0].style.color = "white";
+        } else {
+          document.getElementById("pauseGame").children[0].style.color = "white";
         }
         endGame();
       } else if (this.getAttribute("id") === "endCurrentGameBtn") {
-        if(light_mode){
+        if (light_mode) {
           document.getElementById("pauseGame").children[0].style.color = "black";
-        }else{
-        document.getElementById("pauseGame").children[0].style.color = "white";
+        } else {
+          document.getElementById("pauseGame").children[0].style.color = "white";
         }
         endGame();
         checkGameState();
@@ -190,15 +208,15 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
         showElement(gameHighScore_Modal);
       } else if (this.getAttribute("id") === "newHSButton") {
         addNewHighScore();
-      }else if (this.getAttribute("id") === "sortbyScore") {
+      } else if (this.getAttribute("id") === "sortbyScore") {
         sortHS(1);
-      }else if (this.getAttribute("id") === "sortbyBPS") {
+      } else if (this.getAttribute("id") === "sortbyBPS") {
         sortHS(2);
-      }else if (this.getAttribute("id") === "sortbyDate") {
+      } else if (this.getAttribute("id") === "sortbyDate") {
         sortHS(3);
-      }else if (this.getAttribute("id") === "resetHSScores") {
+      } else if (this.getAttribute("id") === "resetHSScores") {
         localStorage.removeItem("hsArray");
-      }else if(this.getAttribute("id") === "firstPlayButton"){
+      } else if (this.getAttribute("id") === "firstPlayButton") {
         checkGameState();
         showElement(gameSettings_Modal);
       };
@@ -213,10 +231,10 @@ function checkGameState() {
     showElement(document.getElementById('endCurrentGameBtn'));
     console.log("here" + isPaused);
   } else {
-    if(light_mode){
+    if (light_mode) {
       document.getElementById("pauseGame").children[0].style.color = "black";
-    }else{
-    document.getElementById("pauseGame").children[0].style.color = "white";
+    } else {
+      document.getElementById("pauseGame").children[0].style.color = "white";
     }
     hideElement(document.getElementById('endCurrentGameBtn'));
     showElement(document.getElementById('startGameBtn'));
@@ -667,10 +685,10 @@ function sortScores() {
 function updateScore(score, hs) {
   let scoreArea = document.getElementById("gameScore");
   let scoreAreaGameOver = document.getElementById("thePlayerScore");
-  if(light_mode){
+  if (light_mode) {
     scoreArea.style.color = "black";
-  }else{
-  scoreArea.style.color = "white";
+  } else {
+    scoreArea.style.color = "white";
   }
   scoreAreaGameOver.style.color = "white";
   scoreArea.innerHTML = score;
@@ -690,24 +708,24 @@ function loadHighScores() {
 function sortHS(item) {
   let HSArr = JSON.parse(localStorage.getItem('hsArray'));
   if (HSArr != null) {
-  let swapped;
-  let temp;
-  for (let i = 0; i < HSArr.length-1; i++) {
-    swapped = false;
-    for (let j = 0; j < HSArr.length-i-1; j++) {
-      if(HSArr[j][item]<HSArr[j+1][item]){
-        temp = HSArr[j];
-        HSArr[j]=HSArr[j+1];
-        HSArr[j+1]=temp;
-        swapped = true;
+    let swapped;
+    let temp;
+    for (let i = 0; i < HSArr.length - 1; i++) {
+      swapped = false;
+      for (let j = 0; j < HSArr.length - i - 1; j++) {
+        if (HSArr[j][item] < HSArr[j + 1][item]) {
+          temp = HSArr[j];
+          HSArr[j] = HSArr[j + 1];
+          HSArr[j + 1] = temp;
+          swapped = true;
+        }
+      }
+      if (swapped === false) {
+        break;
       }
     }
-    if (swapped === false){
-      break;
-    }
+    loadHSTable(HSArr);
   }
-  loadHSTable(HSArr);
-}
 }
 
 function loadHSTable(arr) {

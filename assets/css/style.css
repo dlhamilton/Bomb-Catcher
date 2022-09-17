@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;700&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,6 +15,7 @@ body {
   padding: 0;
   margin: 0;
   border-top: 10px solid transparent;
+  font-family: 'Lexend Deca', sans-serif;
 }
 
 .body_light{
@@ -774,7 +775,6 @@ color:red;
 .center_modal_content{
 text-align: center;
 list-style-position: inside;
-height: 60vh;
 }
 .highScoreGrid{
   text-align: center;

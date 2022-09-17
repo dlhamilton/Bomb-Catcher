@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
   applyOnInput();
   applyOnChange();
+  window.onresize = function(){ getOrientation(); }
 })
 
 function firstVisitIntro(gameSettings_Modal, gameHowTo_Modal) {
@@ -360,9 +361,10 @@ function drawGameGrid(cols, rows) {
 }
 
 function startGame(gameSettings) {
-  $('.bomb_icon').flowtype({
-    fontRatio: 1
-  });
+  getOrientation();
+  // $('.bomb_icon').flowtype({
+  //   fontRatio: 1
+  // });
   hideElement(document.getElementById("modalGameOver"));
   isPaused = 0;
   gameStartCountdown(gameSettings);
@@ -804,10 +806,13 @@ function getOrientation(){
   console.log(orientation);
   if(orientation==="Landscape"){
     bombArea.style.maxWidth = "50vh";
+    document.getElementById("modalGameOver").style.top="23%";
+    document.getElementById("modalStartCountdown").style.top="20%";
   }else{
     bombArea.style.maxWidth = "500px";
+    document.getElementById("modalGameOver").style.top="20%";
+    document.getElementById("modalStartCountdown").style.top="15%";
   }
   reDrawBombs();
 }
 
-window.onresize = function(){ getOrientation(); }

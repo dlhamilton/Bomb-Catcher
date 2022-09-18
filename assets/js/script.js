@@ -108,6 +108,7 @@ function applyOnInput() {
       } else if (this.getAttribute("id") === "sound_On_Btn") {
         if (document.getElementById("sound_On_Btn").checked === true) {
           explodeAudio.play();
+          audio.play();
           showElement(document.getElementById("volume_Section"));
         } else {
           hideElement(document.getElementById("volume_Section"));

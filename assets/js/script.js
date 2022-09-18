@@ -1,9 +1,8 @@
+let defuseSpeed; // Store the number of bombs popped per second
+let light_mode = false; //State of the light mode setting
+
 // Wait for the Dom to finish loading before running the game 
 // Open the settings modal to get the user preference for the game
-
-let defuseSpeed;
-let light_mode = false;
-
 document.addEventListener("DOMContentLoaded", function () {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   let gameHowTo_Modal = document.getElementById("modalGameHowTo");
@@ -17,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
   applyOnChange();
   window.onresize = function () {
     getOrientation();
-  }
-})
+  };
+});
 
 function firstVisitIntro(gameSettings_Modal, gameHowTo_Modal) {
   if (sessionStorage.siteVisited) {
@@ -30,23 +29,23 @@ function firstVisitIntro(gameSettings_Modal, gameHowTo_Modal) {
 
 function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
   window.onclick = function (event) {
-    if (event.target === modalGameSettings) {
+    if (event.target.id === "modalGameSettings") {
       hideElement(gameSettings_Modal);
     }
-    if (event.target === modalGameHowTo) {
+    if (event.target.id === "modalGameHowTo") {
       hideElement(gameHowTo_Modal);
       if (!sessionStorage.siteVisited) {
         showElement(gameSettings_Modal);
         sessionStorage.siteVisited = 1;
       }
     }
-    if (event.target === modalGameAccess) {
+    if (event.target.id === "modalGameAccess") {
       hideElement(gameAccess_Modal);
     }
-    if (event.target === modalHighScores) {
+    if (event.target.id === "modalHighScores") {
       hideElement(gameHighScore_Modal);
     }
-  }
+  };
 }
 
 function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
@@ -68,16 +67,18 @@ function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, 
   });
 }
 
+
 function applyOnChange() {
   let selectors = document.getElementsByTagName("select");
   for (let selector of selectors) {
-    selector.addEventListener("change", function () {
-      if (this.getAttribute("id") === "col_size") {
-        sliderMaxAmount();
-      } else if (this.getAttribute("id") === "row_size") {
-        sliderMaxAmount();
-      }
-    })
+    switch (selector.getAttribute("id")) {
+      case "col_size":
+        selector.addEventListener("change", sliderMaxAmount);
+        break;
+      case "row_size":
+        selector.addEventListener("change", sliderMaxAmount);
+        break;
+    }
   }
 }
 
@@ -111,7 +112,7 @@ function applyOnInput() {
       } else if (this.getAttribute("id") === "lightmode_Btn") {
         setlightmode();
       }
-    })
+    });
   }
 }
 
@@ -212,7 +213,7 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
       } else if (this.getAttribute("id") === "firstPlayButton") {
         checkGameState();
         showElement(gameSettings_Modal);
-      };
+      }
     });
   }
 }
@@ -276,12 +277,12 @@ function showCustomSettings() {
  */
 function getModalInformation(element) {
   let getDetails = document.getElementById('customGameSettings');
-  let x_size = getDetails['col_size'].value;
-  let y_size = getDetails['row_size'].value;
-  let level = getDetails['fuseSpeed'].value;
-  let bombs = getDetails['bombAmount'].value;
-  let countdown = getDetails['gameCountdownTime'].value;
-  let gameSpeed = convertGameSpeed(getDetails['gameLevel'].value);
+  let x_size = getDetails.col_size.value;
+  let y_size = getDetails.row_size.value;
+  let level = getDetails.fuseSpeed.value;
+  let bombs = getDetails.bombAmount.value;
+  let countdown = getDetails.gameCountdownTime.value;
+  let gameSpeed = convertGameSpeed(getDetails.gameLevel.value);
   return {
     x: x_size,
     y: y_size,
@@ -342,7 +343,7 @@ function drawGameGrid(cols, rows) {
   for (let x = 0; x < rows * cols; x++) {
     htmlString = htmlString + `<div class="grid-item" >
   <i class="fa-solid fa-bomb bomb_icon" data-bombnum="${x}"></i>
-  </div>`
+  </div>`;
   }
   gridContainer.innerHTML = htmlString;
 }
@@ -358,12 +359,12 @@ function startGame(gameSettings) {
  * @param {The number you want the countdown to start at } time 
  */
 function gameStartCountdown(gameSettings) {
-  let count = gameSettings['countdownStartNumber'];
+  let count = gameSettings.countdownStartNumber;
   let startInterval = setInterval(timeCountDown, 1000);
 
   function timeCountDown() {
-    modalStartCountdownElement = document.getElementById("modalStartCountdown");
-    modalStartCountdownContent = document.getElementById("startTimer");
+    let modalStartCountdownElement = document.getElementById("modalStartCountdown");
+    let modalStartCountdownContent = document.getElementById("startTimer");
     modalStartCountdownElement.style.display = "block";
     modalStartCountdownContent.innerHTML = count;
     if (isPaused === 0) {
@@ -393,10 +394,10 @@ let startTime = 0;
 function game(gameSettings) {
   startTime = new Date();
   score = 0;
-  let numberOfBombs = gameSettings['x'] * gameSettings['y']; // 4 * 4 = 16
-  let fuseLength = gameSettings['l'] * 10; // 30
-  let numberOfLiveBombs = gameSettings['noBombs']; // 3
-  let gameSpeed = gameSettings['speed'] * 100; //5
+  let numberOfBombs = gameSettings.x * gameSettings.y; // 4 * 4 = 16
+  let fuseLength = gameSettings.l * 10; // 30
+  let numberOfLiveBombs = gameSettings.noBombs; // 3
+  let gameSpeed = gameSettings.speed * 100; //5
   let active = [];
   let fuseInMs = fuseLength * 100;
   let fuseInS = fuseLength / 10;
@@ -418,7 +419,7 @@ function game(gameSettings) {
         bombs[randomBombNumber].bombTimer = setTimeout(bombExplode, fuseInMs, bombs[randomBombNumber]);
       }
       active = updateActiveBombs(active);
-      gameOverFlag = checkForExploded(active)
+      gameOverFlag = checkForExploded(active);
       if (gameOverFlag) {
         clearInterval(gameTick);
         gameOver(active);
@@ -451,7 +452,7 @@ function game(gameSettings) {
 }
 
 function defusePerSecond() {
-  startTime = new Date - startTime;
+  startTime = new Date() - startTime;
   defuseSpeed = score / (startTime / 1000);
 }
 /**
@@ -461,16 +462,16 @@ function defusePerSecond() {
  */
 function updateActiveBombs(active) {
   let newActive = [];
-  for (x of active) {
+  for (let x of active) {
     if (bombs[x].desfuse === false) {
       newActive.push(x);
     }
   }
-  return newActive
+  return newActive;
 }
 
 function checkForExploded(active) {
-  for (x of active) {
+  for (let x of active) {
     if (bombs[x].blown === true) {
       return true;
     }
@@ -499,7 +500,7 @@ function playFuseSound(type) {
     audio.currentTime = 0;
     audio.volume = document.getElementById("game_Volume").value;
     audio.play();
-  };
+  }
 }
 /**
  * defuses the bomb that has been clickeed by the user by clearing the timeout and removing the event listener
@@ -519,14 +520,13 @@ function defuseBombFuse() {
  * @param {the bomb that has exploded} bomb 
  */
 function bombExplode(bomb) {
-  gameOverFlag = true;
   bomb.blown = true;
   bomb.classList.remove("fa-bomb");
   bomb.classList.add("fa-burst");
   bomb.style.color = "red";
   if (document.getElementById("sound_On_Btn").checked === true) {
     playFuseSound("explode");
-  };
+  }
 }
 
 function endGame() {
@@ -536,7 +536,7 @@ function endGame() {
  * show the gameover screen to the user
  */
 function gameOver(active) {
-  for (x of active) {
+  for (let x of active) {
     bombs[x].removeEventListener('click', defuseBombFuse);
     bombs[x].style.animation = "";
     clearTimeout(bombs[x].bombTimer);
@@ -630,7 +630,7 @@ function addNewHighScore() {
     } else {
       arr = [
         []
-      ]
+      ];
       arr[0] = [hSName, hSScore, hSTime, todaysDate];
     }
     hideElement(document.getElementById("newHSInput"));
@@ -642,15 +642,6 @@ function addNewHighScore() {
   } else {
     document.getElementById("newHSName").classList.add("missingName");
   }
-}
-
-function setScore() {
-  let highScoreArray = [
-    ['Dave', 10, 12.3],
-    ['Kev', 5, 10.3],
-    ['Larry', 4, 11.2]
-  ];
-  localStorage.setItem('hsArray', JSON.stringify(highScoreArray));
 }
 
 function updateScore(score, hs) {

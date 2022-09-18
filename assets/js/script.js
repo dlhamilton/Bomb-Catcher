@@ -568,8 +568,8 @@ function bombExplode(bomb) {
   bomb.classList.add("fa-burst");
   bomb.style.color = "red";
   // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
-  let explodeAudio = document.getElementById("audioContainer");
-  explodeAudio.volume = document.getElementById("game_Volume").value;
+  // let explodeAudio = document.getElementById("audioContainer");
+  // explodeAudio.volume = document.getElementById("game_Volume").value;
   if (document.getElementById("sound_On_Btn").checked === true) {
     explodeAudio.currentTime = 0;
     explodeAudio.play();

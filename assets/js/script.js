@@ -1,8 +1,6 @@
 // Wait for the Dom to finish loading before running the game 
 // Open the settings modal to get the user preference for the game
 
-// let explodeAudio = document.getElementById("audioContainer");
-// let audio = document.getElementById("audioContainerFuse");
 let defuseSpeed;
 let light_mode = false;
 
@@ -72,7 +70,6 @@ function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, 
 
 function applyOnChange() {
   let selectors = document.getElementsByTagName("select");
-
   for (let selector of selectors) {
     selector.addEventListener("change", function () {
       if (this.getAttribute("id") === "col_size") {
@@ -103,15 +100,9 @@ function applyOnInput() {
       } else if (this.getAttribute("data-type") === "gameLevel") {
         document.getElementById("gameLevelValue").innerHTML = this.value;
       } else if (this.getAttribute("id") === "game_Volume") {
-        // explodeAudio.pause();
-        // explodeAudio.currentTime = 0;
-        // explodeAudio.volume = document.getElementById("game_Volume").value;
-        // explodeAudio.play();
         playFuseSound("explode");
       } else if (this.getAttribute("id") === "sound_On_Btn") {
         if (document.getElementById("sound_On_Btn").checked === true) {
-          // explodeAudio.play();
-          // audio.play();
           playFuseSound("explode");
           showElement(document.getElementById("volume_Section"));
         } else {
@@ -137,8 +128,6 @@ function setlightmode() {
   } else if (scoreArea.style.color === "white") {
     scoreArea.style.color = "black";
   }
-
-
 }
 
 function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
@@ -162,9 +151,7 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
           }
         } else if (isPaused === 0) {
           isPaused = 1;
-
           this.children[0].style.color = "darkgoldenrod";
-
         } else {}
       } else if (this.getAttribute("id") === "resetGameOver") {
         checkGameState();
@@ -232,10 +219,8 @@ function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal,
 
 function checkGameState() {
   if (isPaused === 1) {
-    // isPaused=2;
     hideElement(document.getElementById('startGameBtn'));
     showElement(document.getElementById('endCurrentGameBtn'));
-    console.log("here" + isPaused);
   } else {
     if (light_mode) {
       document.getElementById("pauseGame").children[0].style.color = "black";
@@ -285,13 +270,11 @@ function showCustomSettings() {
     document.getElementById("gameLevelValue").innerHTML = "5";
   }
 }
-
 /**
  * show a modal element on the DOM by changing display properties.
  * Then get the form data that is inputted.
  */
 function getModalInformation(element) {
-  //get form, detaisl from form
   let getDetails = document.getElementById('customGameSettings');
   let x_size = getDetails['col_size'].value;
   let y_size = getDetails['row_size'].value;
@@ -347,7 +330,6 @@ function hideElement(element) {
 function showElement(element) {
   element.style.display = "block";
 }
-
 /**
  * Creates the correct number of bombs based from the grid size passed in.
  * @param {the number of columns} cols 
@@ -367,9 +349,6 @@ function drawGameGrid(cols, rows) {
 
 function startGame(gameSettings) {
   getOrientation();
-  // $('.bomb_icon').flowtype({
-  //   fontRatio: 1
-  // });
   hideElement(document.getElementById("modalGameOver"));
   isPaused = 0;
   gameStartCountdown(gameSettings);
@@ -399,16 +378,10 @@ function gameStartCountdown(gameSettings) {
     if (count === -2) {
       modalStartCountdownElement.style.display = "none";
       clearInterval(startInterval);
-      // mainGame(gameSettings);
       game(gameSettings);
     }
   }
 }
-
-//----------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------
-
 let bombs = document.getElementsByClassName('bomb_icon');
 let score = 0;
 let isPaused = 3;
@@ -429,8 +402,6 @@ function game(gameSettings) {
   let fuseInS = fuseLength / 10;
   let randomBombNumber;
   let gameOverFlag = false;
-  // let scoreArea = document.getElementById("thePlayerScore");
-  // let scoreAreaGameOver = document.getElementById("gameScore");
   let topScore = getTopScore();
   /**
    * The loop that manages the game, will continue to loop until the user has lost the game or stopped the game.
@@ -442,11 +413,8 @@ function game(gameSettings) {
           randomBombNumber = Math.floor(Math.random() * numberOfBombs);
         } while (active.indexOf(randomBombNumber) != -1);
         active.push(randomBombNumber);
-
         bombs[randomBombNumber].addEventListener('click', defuseBombFuse);
-        //console.log(bombs[randomBombNumber].getAttribute("data-bombnum") + " started");
         setBombFuse(bombs[randomBombNumber], fuseInS);
-
         bombs[randomBombNumber].bombTimer = setTimeout(bombExplode, fuseInMs, bombs[randomBombNumber]);
       }
       active = updateActiveBombs(active);
@@ -454,7 +422,6 @@ function game(gameSettings) {
       if (gameOverFlag) {
         clearInterval(gameTick);
         gameOver(active);
-        //console.log("Eneded NOW");
         isPaused = 3;
         defusePerSecond();
         return;
@@ -467,7 +434,6 @@ function game(gameSettings) {
           bomb.desfuse = true;
           clearTimeout(bomb.bombTimer);
           bomb.style.animation = "";
-          // endBombSound(bomb);
         }
       }
     } else {
@@ -478,7 +444,6 @@ function game(gameSettings) {
       }
       active = [];
       bombs = document.getElementsByClassName('bomb_icon');
-      //console.log("Eneded NOW");
       defusePerSecond();
       return;
     }
@@ -487,12 +452,8 @@ function game(gameSettings) {
 
 function defusePerSecond() {
   startTime = new Date - startTime;
-  console.log((startTime / 1000));
-  console.log(score);
-  console.log(score / (startTime / 1000));
   defuseSpeed = score / (startTime / 1000);
 }
-
 /**
  * This checks to see what bombs have been defused and removes them from the active bombs array. 
  * @param {number array - which links to the index number of the bombs that are currently ignited} active 
@@ -516,20 +477,15 @@ function checkForExploded(active) {
   }
   return false;
 }
-
 /**
  * Start the bombs colour change animation and set its dfuse property to false
  * @param {the current bomb being set} bomb 
  * @param {the length of the fuse time in seconds} fuseInS 
  */
 function setBombFuse(bomb, fuseInS) {
-  //bomb.style.color = "red";
   bomb.desfuse = false;
   bomb.blown = false;
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
-
-  // let audio = new Audio("/assets/sounds/fuse_sound.mp3");
-
 }
 
 function playFuseSound(type) {
@@ -545,8 +501,6 @@ function playFuseSound(type) {
     audio.play();
   };
 }
-
-
 /**
  * defuses the bomb that has been clickeed by the user by clearing the timeout and removing the event listener
  */
@@ -557,11 +511,9 @@ function defuseBombFuse() {
     this.desfuse = true;
     clearTimeout(this.bombTimer);
     this.style.animation = "";
-    // endBombSound(this);
     ++score;
   }
 }
-
 /**
  * Registers the bom,b has exploded and changes it style to show the user the bomb has exploded
  * @param {the bomb that has exploded} bomb 
@@ -572,14 +524,7 @@ function bombExplode(bomb) {
   bomb.classList.remove("fa-bomb");
   bomb.classList.add("fa-burst");
   bomb.style.color = "red";
-  // // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
-  // let explodeAudio = document.getElementById("audioContainer");
-  // explodeAudio.pause();
-  // let explodeAudio = document.getElementById("audioContainer");
   if (document.getElementById("sound_On_Btn").checked === true) {
-    // explodeAudio.volume = document.getElementById("game_Volume").value;
-    // explodeAudio.currentTime = 0;
-    // explodeAudio.play();
     playFuseSound("explode");
   };
 }
@@ -587,7 +532,6 @@ function bombExplode(bomb) {
 function endGame() {
   isPaused = 3;
 }
-
 /**
  * show the gameover screen to the user
  */
@@ -596,18 +540,10 @@ function gameOver(active) {
     bombs[x].removeEventListener('click', defuseBombFuse);
     bombs[x].style.animation = "";
     clearTimeout(bombs[x].bombTimer);
-    // endBombSound(bombs[x]);
   }
   checkHighScore();
   showElement(document.getElementById("modalGameOver"));
 }
-
-// function endBombSound(x) {
-//   if (x.audiofuse) {
-//     x.audiofuse.pause();
-//     x.audiofuse = null;
-//   }
-// }
 
 function getTopScore() {
   let arr = JSON.parse(localStorage.getItem('hsArray'));
@@ -621,12 +557,6 @@ function getTopScore() {
 function checkHighScore() {
   let arr = JSON.parse(localStorage.getItem('hsArray'));
   hideElement(document.getElementById("hsAcceptMessage"));
-  //   for (let i =0; i< arr.length;i++){
-  // if (score > arr[i][1] ){
-  //   insertPos = i;
-  // break;
-  // }
-  //   }
   let newHighScoreInput = document.getElementById('newHSInput');
   let newHighScoreMessage = document.getElementById('scoreMessage');
   let topScore;
@@ -642,20 +572,16 @@ function checkHighScore() {
       tenthScore = arr[arr.length - 1][1];
     }
   }
-
   if (score > tenthScore) {
     showElement(newHighScoreInput);
-
     if (score > topScore) {
       newHighScoreMessage.innerHTML = "New high score:";
     } else {
       newHighScoreMessage.innerHTML = "New top 10 score:";
     }
-    console.log('new high score');
   } else {
     hideElement(newHighScoreInput);
     newHighScoreMessage.innerHTML = "Your score:";
-    console.log('no score');
   }
 }
 
@@ -686,7 +612,6 @@ function addNewHighScore() {
           break;
         }
       }
-
       if (insertPos === null) {
         insertPos = arr.length;
       } else {
@@ -702,15 +627,12 @@ function addNewHighScore() {
         } while (j > insertPos);
       }
       arr[insertPos] = [hSName, hSScore, hSTime, todaysDate];
-
     } else {
       arr = [
         []
       ]
       arr[0] = [hSName, hSScore, hSTime, todaysDate];
     }
-
-    console.log(insertPos);
     hideElement(document.getElementById("newHSInput"));
     showElement(document.getElementById("hsAcceptMessage"));
     localStorage.setItem('hsArray', JSON.stringify(arr));
@@ -731,10 +653,6 @@ function setScore() {
   localStorage.setItem('hsArray', JSON.stringify(highScoreArray));
 }
 
-function sortScores() {
-
-}
-
 function updateScore(score, hs) {
   let scoreArea = document.getElementById("gameScore");
   let scoreAreaGameOver = document.getElementById("thePlayerScore");
@@ -748,7 +666,6 @@ function updateScore(score, hs) {
   scoreAreaGameOver.innerHTML = score;
   if (score > hs) {
     scoreArea.classList.add("hsGold");
-    // scoreArea.style.color = "gold";
     scoreAreaGameOver.style.color = "gold";
   }
 }
@@ -804,7 +721,6 @@ function loadHSTable(arr) {
     htmlString = "No high scores set";
   }
   HSArea.innerHTML = htmlString;
-  console.log(htmlString);
 }
 
 function reDrawBombs() {
@@ -816,7 +732,6 @@ function reDrawBombs() {
 function getOrientation() {
   let orientation = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
   let bombArea = document.getElementsByClassName("grid-container")[0];
-  console.log(orientation);
   if (orientation === "Landscape") {
     bombArea.style.maxWidth = "50vh";
     document.getElementById("modalGameOver").style.top = "23%";

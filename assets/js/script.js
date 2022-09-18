@@ -565,7 +565,7 @@ function bombExplode(bomb) {
   // // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
   // let explodeAudio = document.getElementById("audioContainer");
   // explodeAudio.pause();
-  let explodeAudio = document.getElementById("audioContainer");
+  // let explodeAudio = document.getElementById("audioContainer");
   if (document.getElementById("sound_On_Btn").checked === true) {
   explodeAudio.volume = document.getElementById("game_Volume").value;
     explodeAudio.currentTime = 0;

@@ -1,8 +1,8 @@
 // Wait for the Dom to finish loading before running the game 
 // Open the settings modal to get the user preference for the game
 
-let explodeAudio = document.getElementById("audioContainer");
-let audio = document.getElementById("audioContainerFuse");
+// let explodeAudio = document.getElementById("audioContainer");
+// let audio = document.getElementById("audioContainerFuse");
 let defuseSpeed;
 let light_mode = false;
 
@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
   applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
   applyOnInput();
   applyOnChange();
-  window.onresize = function(){ getOrientation(); }
+  window.onresize = function () {
+    getOrientation();
+  }
 })
 
 function firstVisitIntro(gameSettings_Modal, gameHowTo_Modal) {
@@ -101,14 +103,16 @@ function applyOnInput() {
       } else if (this.getAttribute("data-type") === "gameLevel") {
         document.getElementById("gameLevelValue").innerHTML = this.value;
       } else if (this.getAttribute("id") === "game_Volume") {
-        explodeAudio.pause();
-        explodeAudio.currentTime = 0;
-        explodeAudio.volume = document.getElementById("game_Volume").value;
-        explodeAudio.play();
+        // explodeAudio.pause();
+        // explodeAudio.currentTime = 0;
+        // explodeAudio.volume = document.getElementById("game_Volume").value;
+        // explodeAudio.play();
+        playFuseSound("explode");
       } else if (this.getAttribute("id") === "sound_On_Btn") {
         if (document.getElementById("sound_On_Btn").checked === true) {
-          explodeAudio.play();
-          audio.play();
+          // explodeAudio.play();
+          // audio.play();
+          playFuseSound("explode");
           showElement(document.getElementById("volume_Section"));
         } else {
           hideElement(document.getElementById("volume_Section"));
@@ -528,11 +532,16 @@ function setBombFuse(bomb, fuseInS) {
 
 }
 
-function playFuseSound() {
+function playFuseSound(type) {
   if (document.getElementById("sound_On_Btn").checked === true) {
-     let audio = new Audio("./assets/sounds/fuse_sound.mp3");
-  audio.currentTime = 0;
-  audio.volume = document.getElementById("game_Volume").value;
+    let audio = new Audio();
+    if (type === "explode") {
+      audio.src = "./assets/sounds/explode_sound.mp3";
+    } else {
+      audio.src = "./assets/sounds/fuse_sound.mp3";
+    }
+    audio.currentTime = 0;
+    audio.volume = document.getElementById("game_Volume").value;
     audio.play();
   };
 }
@@ -543,7 +552,7 @@ function playFuseSound() {
  */
 function defuseBombFuse() {
   if (this.blown === false) {
-    playFuseSound();
+    playFuseSound("bomb");
     this.removeEventListener('click', defuseBombFuse);
     this.desfuse = true;
     clearTimeout(this.bombTimer);
@@ -568,9 +577,10 @@ function bombExplode(bomb) {
   // explodeAudio.pause();
   // let explodeAudio = document.getElementById("audioContainer");
   if (document.getElementById("sound_On_Btn").checked === true) {
-  explodeAudio.volume = document.getElementById("game_Volume").value;
-    explodeAudio.currentTime = 0;
-    explodeAudio.play();
+    // explodeAudio.volume = document.getElementById("game_Volume").value;
+    // explodeAudio.currentTime = 0;
+    // explodeAudio.play();
+    playFuseSound("explode");
   };
 }
 
@@ -797,25 +807,24 @@ function loadHSTable(arr) {
   console.log(htmlString);
 }
 
-function reDrawBombs(){
+function reDrawBombs() {
   $('.bomb_icon').flowtype({
     fontRatio: 1
   });
 }
 
-function getOrientation(){
+function getOrientation() {
   let orientation = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
   let bombArea = document.getElementsByClassName("grid-container")[0];
   console.log(orientation);
-  if(orientation==="Landscape"){
+  if (orientation === "Landscape") {
     bombArea.style.maxWidth = "50vh";
-    document.getElementById("modalGameOver").style.top="23%";
-    document.getElementById("modalStartCountdown").style.top="20%";
-  }else{
+    document.getElementById("modalGameOver").style.top = "23%";
+    document.getElementById("modalStartCountdown").style.top = "20%";
+  } else {
     bombArea.style.maxWidth = "500px";
-    document.getElementById("modalGameOver").style.top="20%";
-    document.getElementById("modalStartCountdown").style.top="15%";
+    document.getElementById("modalGameOver").style.top = "20%";
+    document.getElementById("modalStartCountdown").style.top = "15%";
   }
   reDrawBombs();
 }
-

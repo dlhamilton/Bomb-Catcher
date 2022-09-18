@@ -91,28 +91,48 @@ function sliderMaxAmount() {
 function applyOnInput() {
   let sliders = document.getElementsByTagName("input");
   for (let slider of sliders) {
-    slider.addEventListener("input", function () {
-      if (this.getAttribute("data-type") === "fuseSpeed") {
-        document.getElementById("fuseSpeedValue").innerHTML = this.value;
-      } else if (this.getAttribute("data-type") === "bombAmount") {
-        document.getElementById("bombAmountValue").innerHTML = this.value;
-      } else if (this.getAttribute("data-type") === "gameCountdownTime") {
-        document.getElementById("gameCountdownTimeValue").innerHTML = this.value;
-      } else if (this.getAttribute("data-type") === "gameLevel") {
-        document.getElementById("gameLevelValue").innerHTML = this.value;
-      } else if (this.getAttribute("id") === "game_Volume") {
-        playFuseSound("explode");
-      } else if (this.getAttribute("id") === "sound_On_Btn") {
-        if (document.getElementById("sound_On_Btn").checked === true) {
+    switch (slider.getAttribute("data-type")) {
+      case "fuseSpeed":
+        slider.addEventListener("input", function () {
+          document.getElementById("fuseSpeedValue").innerHTML = slider.value;
+        });
+        break;
+      case "bombAmount":
+        slider.addEventListener("input", function () {
+          document.getElementById("bombAmountValue").innerHTML = slider.value;
+        });
+        break;
+      case "gameCountdownTime":
+        slider.addEventListener("input", function () {
+          document.getElementById("gameCountdownTimeValue").innerHTML = slider.value;
+        });
+        break;
+      case "gameLevel":
+        slider.addEventListener("input", function () {
+          document.getElementById("gameLevelValue").innerHTML = slider.value;
+        });
+        break;
+      case "game_Volume":
+        slider.addEventListener("input", function () {
           playFuseSound("explode");
-          showElement(document.getElementById("volume_Section"));
-        } else {
-          hideElement(document.getElementById("volume_Section"));
-        }
-      } else if (this.getAttribute("id") === "lightmode_Btn") {
-        setlightmode();
-      }
-    });
+        });
+        break;
+      case "sound_On_Btn":
+        slider.addEventListener("input", toggleSoundElement);
+        break;
+      case "lightmode_Btn":
+        slider.addEventListener("input", setlightmode);
+        break;
+    }
+  }
+}
+
+function toggleSoundElement() {
+  if (document.getElementById("sound_On_Btn").checked === true) {
+    playFuseSound("explode");
+    showElement(document.getElementById("volume_Section"));
+  } else {
+    hideElement(document.getElementById("volume_Section"));
   }
 }
 

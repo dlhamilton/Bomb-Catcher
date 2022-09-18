@@ -1,8 +1,10 @@
 // Wait for the Dom to finish loading before running the game 
 // Open the settings modal to get the user preference for the game
 
-let explodeAudio = document.getElementById("audioContainer");
-let audio = document.getElementById("audioContainerFuse");
+// let explodeAudio = document.getElementById("audioContainer");
+// let audio = document.getElementById("audioContainerFuse");
+let explodeAudio = new Audio("assets/sounds/explode_sound.mp3");
+let audio = new Audio("assets/sounds/fuse_sound.mp3");
 let defuseSpeed;
 let light_mode = false;
 
@@ -532,9 +534,9 @@ function playFuseSound() {
 
   audio.currentTime = 0;
   audio.volume = document.getElementById("game_Volume").value;
-  if (document.getElementById("sound_On_Btn").checked === true) {
+  
     audio.play();
-  };
+
 }
 
 
@@ -543,7 +545,9 @@ function playFuseSound() {
  */
 function defuseBombFuse() {
   if (this.blown === false) {
+    if (document.getElementById("sound_On_Btn").checked === true) {
     playFuseSound();
+    };
     this.removeEventListener('click', defuseBombFuse);
     this.desfuse = true;
     clearTimeout(this.bombTimer);

@@ -107,6 +107,8 @@ function applyOnInput() {
         explodeAudio.play();
       } else if (this.getAttribute("id") === "sound_On_Btn") {
         if (document.getElementById("sound_On_Btn").checked === true) {
+          explodeAudio.pause();
+          explodeAudio.currentTime = 0;
           explodeAudio.play();
           audio.play();
           showElement(document.getElementById("volume_Section"));
@@ -565,8 +567,9 @@ function bombExplode(bomb) {
   bomb.style.color = "red";
   // // let explodeAudio = new Audio("/assets/sounds/explode_sound.mp3");
   // let explodeAudio = document.getElementById("audioContainer");
-  explodeAudio.volume = document.getElementById("game_Volume").value;
+  // explodeAudio.pause();
   if (document.getElementById("sound_On_Btn").checked === true) {
+  explodeAudio.volume = document.getElementById("game_Volume").value;
     explodeAudio.currentTime = 0;
     explodeAudio.play();
   };

@@ -529,10 +529,9 @@ function setBombFuse(bomb, fuseInS) {
 }
 
 function playFuseSound() {
-
+  if (document.getElementById("sound_On_Btn").checked === true) {
   audio.currentTime = 0;
   audio.volume = document.getElementById("game_Volume").value;
-  if (document.getElementById("sound_On_Btn").checked === true) {
     audio.play();
   };
 }

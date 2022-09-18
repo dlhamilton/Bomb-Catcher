@@ -107,9 +107,7 @@ function applyOnInput() {
         explodeAudio.play();
       } else if (this.getAttribute("id") === "sound_On_Btn") {
         if (document.getElementById("sound_On_Btn").checked === true) {
-          explodeAudio.pause();
-          explodeAudio.currentTime = 0;
-          explodeAudio.play();
+          // explodeAudio.play();
           audio.play();
           showElement(document.getElementById("volume_Section"));
         } else {
@@ -569,6 +567,7 @@ function bombExplode(bomb) {
   // let explodeAudio = document.getElementById("audioContainer");
   // explodeAudio.pause();
   if (document.getElementById("sound_On_Btn").checked === true) {
+    let explodeAudio = document.getElementById("audioContainer");
   explodeAudio.volume = document.getElementById("game_Volume").value;
     explodeAudio.currentTime = 0;
     explodeAudio.play();

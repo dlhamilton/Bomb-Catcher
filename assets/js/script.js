@@ -530,6 +530,7 @@ function setBombFuse(bomb, fuseInS) {
 
 function playFuseSound() {
   if (document.getElementById("sound_On_Btn").checked === true) {
+     let audio = document.getElementById("audioContainer");
   audio.currentTime = 0;
   audio.volume = document.getElementById("game_Volume").value;
     audio.play();

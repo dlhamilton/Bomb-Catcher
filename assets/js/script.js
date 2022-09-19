@@ -347,30 +347,8 @@ function getModalInformation(element) {
 }
 
 function convertGameSpeed(speed) {
-  switch (speed) {
-    case 0:
-      return 10;
-    case 1:
-      return 9;
-    case 2:
-      return 8;
-    case 3:
-      return 7;
-    case 4:
-      return 6;
-    case 5:
-      return 5;
-    case 6:
-      return 4;
-    case 7:
-      return 3;
-    case 8:
-      return 2;
-    case 9:
-      return 1;
-    case 10:
-      return 0;
-  }
+  let x =[10,9,8,7,6,5,4,3,2,1,0];
+  return x[speed];
 }
 /**
  * Hide an element on the DOM by changing display properties
@@ -440,6 +418,24 @@ let bombs = document.getElementsByClassName('bomb_icon');
 let score = 0;
 let isPaused = 3;
 let startTime = 0;
+let topScore = getTopScore();
+
+function StartBombFuse(active,gameSettings){
+  let numberOfBombs = gameSettings.x * gameSettings.y; // 4 * 4 = 16
+  let fuseLength = gameSettings.l * 10; // 30
+  let fuseInMs = fuseLength * 100;
+  let fuseInS = fuseLength / 10;
+  let randomBombNumber;
+  do {
+    randomBombNumber = Math.floor(Math.random() * numberOfBombs);
+  } while (active.indexOf(randomBombNumber) != -1);
+  active.push(randomBombNumber);
+  bombs[randomBombNumber].addEventListener('click', defuseBombFuse);
+  setBombFuse(bombs[randomBombNumber], fuseInS);
+  bombs[randomBombNumber].bombTimer = setTimeout(bombExplode, fuseInMs, bombs[randomBombNumber]);
+}
+
+
 /**
  * the game fucntion with all; the key information for the game to run
  * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings
@@ -447,61 +443,53 @@ let startTime = 0;
 function game(gameSettings) {
   startTime = new Date();
   score = 0;
-  let numberOfBombs = gameSettings.x * gameSettings.y; // 4 * 4 = 16
-  let fuseLength = gameSettings.l * 10; // 30
   let numberOfLiveBombs = gameSettings.noBombs; // 3
   let gameSpeed = gameSettings.speed * 100; //5
   let active = [];
-  let fuseInMs = fuseLength * 100;
-  let fuseInS = fuseLength / 10;
-  let randomBombNumber;
   let gameOverFlag = false;
-  let topScore = getTopScore();
+  
   /**
    * The loop that manages the game, will continue to loop until the user has lost the game or stopped the game.
    */
   let gameTick = setInterval(function () {
     if (isPaused === 0) {
       if (active.length < numberOfLiveBombs && gameOverFlag === false) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
-        do {
-          randomBombNumber = Math.floor(Math.random() * numberOfBombs);
-        } while (active.indexOf(randomBombNumber) != -1);
-        active.push(randomBombNumber);
-        bombs[randomBombNumber].addEventListener('click', defuseBombFuse);
-        setBombFuse(bombs[randomBombNumber], fuseInS);
-        bombs[randomBombNumber].bombTimer = setTimeout(bombExplode, fuseInMs, bombs[randomBombNumber]);
+        StartBombFuse(active,gameSettings);
       }
       active = updateActiveBombs(active);
       gameOverFlag = checkForExploded(active);
       if (gameOverFlag) {
         clearInterval(gameTick);
-        gameOver(active);
-        isPaused = 3;
-        defusePerSecond();
+        userEndGame(active);
         return;
       }
-      updateScore(score, topScore);
+      updateScore(score);
     } else if (isPaused === 1) {
-      for (let bomb of bombs) {
-        if (bomb.blown === false) {
-          bomb.removeEventListener('click', defuseBombFuse);
-          bomb.desfuse = true;
-          clearTimeout(bomb.bombTimer);
-          bomb.style.animation = "";
-        }
-      }
+      pauseTheGame();
     } else {
       clearInterval(gameTick);
-      gameOver(active);
-      if (isPaused === 2) {
-        hideElement(document.getElementById("modalGameOver"));
-      }
-      active = [];
-      bombs = document.getElementsByClassName('bomb_icon');
-      defusePerSecond();
+      userEndGame(active)
       return;
     }
   }, gameSpeed);
+}
+
+function userEndGame(active){
+  isPaused = 3;
+  gameOver(active);
+  active = [];
+  defusePerSecond();
+}
+
+function pauseTheGame(){
+  for (let bomb of bombs) {
+    if (bomb.blown === false) {
+      bomb.removeEventListener('click', defuseBombFuse);
+      bomb.desfuse = true;
+      clearTimeout(bomb.bombTimer);
+      bomb.style.animation = "";
+    }
+  }
 }
 
 function defusePerSecond() {
@@ -697,7 +685,7 @@ function addNewHighScore() {
   }
 }
 
-function updateScore(score, hs) {
+function updateScore(score) {
   let scoreArea = document.getElementById("gameScore");
   let scoreAreaGameOver = document.getElementById("thePlayerScore");
   if (light_mode) {
@@ -708,7 +696,7 @@ function updateScore(score, hs) {
   scoreAreaGameOver.style.color = "white";
   scoreArea.innerHTML = score;
   scoreAreaGameOver.innerHTML = score;
-  if (score > hs) {
+  if (score > topScore) {
     scoreArea.classList.add("hsGold");
     scoreAreaGameOver.style.color = "gold";
   }

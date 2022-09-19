@@ -1,108 +1,105 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Bomb Catcher
 
-Welcome Dan Hamilton,
+ The live link can be found here - [Bomb Catcher](https://dlhamilton.github.io/Bomb-Catcher/)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+About the Game
+Image of screens
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+Contents
+Analyse and UX
+    Project Goals
+    User Stories
+Design
+    Wireframes
+    Colour Scheme
+    Fonts
+Features and Implemenation 
+Testing
+    Validator Testing
+    User Stories Testing
+    Accessibility Testing
+    Manual Testing
+    Fixed Bugs
+Deployment
+    Cloning & Forking
+    Local Deployment
+    Remote Deployment
+Credits
+Useful Links
 
-## Gitpod Reminders
+Analyse and UX
+    Project Goals
+    User Stories
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+Design
+    Wireframes
+    Colour Scheme
+    Fonts
 
-`python3 -m http.server`
+Features and Implemenation 
 
-A blue button should appear to click: _Make Public_,
+Testing
+    Validator Testing
+        HTML
+        CSS
+        JS
+    User Stories Testing
+    Accessibility Testing
+    Manual Testing
+    Fixed Bugs
 
-Another blue button should appear to click: _Open Browser_.
+***
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+## Deployment
 
-A blue button should appear to click: _Make Public_,
+### Cloning & Forking
+#### Fork
+1. On GitHub.com, navigate to the [dlhamilton/Bomb-Catcher](https://github.com/dlhamilton/Bomb-Catcher) repository.
+2. In the top-right corner of the page, click Fork.
+3. By default, forks are named the same as their parent repositories. You can change the name of the fork to distinguish it further.
+4. Add a description to your fork.
+5. Click Create fork.
 
-Another blue button should appear to click: _Open Browser_.
+#### Clone
+1. Above the list of files click the button that says 'Code'.
+2. Copy the URL for the repository.
+3. Open Terminal. Change the directory to the location where you want the cloned directory.
+4. Type git clone, and then paste the URL
+5. Press Enter.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### Local Deployment
+1. Sign up to [Gitpod](https://gitpod.io/)
+2. Download the Gitpod browser extension.
+3. On GitHub.com, navigate to the [dlhamilton/Bomb-Catcher](https://github.com/dlhamilton/Bomb-Catcher) repository.
+4. Above the list of files click the button that says 'Gitpod'.
 
-To log into the Heroku toolbelt CLI:
+### Remote Deployment 
+ The site was deployed to Github pages. If you have forked/cloned the repository the steps to deploy are:
+ 1. On GitHub.com, navigate to your repository.
+ 2. Navigate to the settings tab.
+ 3. Click on the tab called 'pages' on the left hand side.
+ 4. From the source drop down list under the heading Build and deployment, select main.
+ 5. The page will hten provide the link to the website.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+ The live link can be found here - [Bomb Catcher](https://dlhamilton.github.io/Bomb-Catcher/)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+*** 
 
-------
+## Credits
 
-## Release History
+### Content
+- Processes from the CI Love Running project was used to help create this website - [CI Love Running](https://code-institute-org.github.io/love-running-2.0/index.html)
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+- HTML, CSS and Javascript code help was taken from w3schools - [W3Schools](https://www.w3schools.com/)
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+### Media
+#### Images
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+#### Sounds
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+#### Icons
+- All page Icons - [Font Awesome](https://fontawesome.com/)
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+***
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+Useful Links

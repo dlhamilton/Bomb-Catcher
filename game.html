@@ -14,7 +14,7 @@
 
 <body>
   <header class="center">
-    <img id="game_logo" src="assets/images/bomb.png">
+    <img id="game_logo" src="assets/images/bomb.png" alt="Bomb Catcher Logo">
     <h1 id="game_title">Bomb Catcher</h1>
   </header>
   <nav class="center">
@@ -27,24 +27,24 @@
     <button id="HomeBtn"><i class="fa-solid fa-right-from-bracket"></i></button>
   </nav>
 
-  <section class="center">
+  <div class="center">
     <div class="grid-container">
       <button id="firstPlayButton" class="modalBtn startGameBtn">Click to start new game</button>
     </div>
-  </section>
+  </div>
 
-  <section class="center scoreCount">
+  <div class="center scoreCount">
     <p>Score: </p><span id=gameScore>0</span>
-  </section>
+  </div>
   <div id="modalStartCountdown">
     <!-- Modal startUp content -->
     <div class="modalStartCountdown-content">
       <p id="startTimer"></p>
     </div>
   </div>
-<!-- Modal Game over content -->
+  <!-- Modal Game over content -->
   <div id="modalGameOver">
-    
+
     <div class="modalGameOver-content">
       <h2>Game Over!</h2>
       <h3 id="scoreMessage">Your score:</h3>
@@ -73,9 +73,12 @@
         <div id="highScoreArea" class="highScoreGrid gridhscontainer">
           No high scores set
         </div>
-        <button id="sortbyScore" class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i> Score</button>
-        <button id="sortbyBPS" class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i> BPS</button>
-        <button id="sortbyDate" class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i> Date</button>
+        <button id="sortbyScore" class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i>
+          Score</button>
+        <button id="sortbyBPS" class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i>
+          BPS</button>
+        <button id="sortbyDate" class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i>
+          Date</button>
       </div>
       <div class="modalHighScores-color modalFooter">
       </div>
@@ -132,7 +135,7 @@
         <label class="switch">
           <input id="sound_On_Btn" data-type="sound_On_Btn" type="checkbox">
           <span class="switch_Slider round"></span>
-        </label> 
+        </label>
         <div id="volume_Section">
           <p>Sound Volume:</p>
           <i class="fa-solid fa-volume-off sound-icon"></i><input id="game_Volume" data-type="game_Volume" type="range"
@@ -224,12 +227,12 @@
         <button id="modalGameSettings-customBtn" class="modalBtn">Custom Game</button>
       </div>
 
-
     </div>
-    <script src="assets/js/script.js"></script>
-    <script src="//code.jquery.com/jquery-latest.min.js"></script>
-    <script src="assets/js/flowtype.js"></script>
-    <script src="https://kit.fontawesome.com/372da758e4.js" crossorigin="anonymous"></script>
+  </div>
+  <script src="assets/js/script.js"></script>
+  <script src="//code.jquery.com/jquery-latest.min.js"></script>
+  <script src="assets/js/flowtype.js"></script>
+  <script src="https://kit.fontawesome.com/372da758e4.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

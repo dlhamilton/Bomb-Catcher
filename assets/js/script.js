@@ -4,22 +4,26 @@ let light_mode = false; //State of the light mode setting
 // Wait for the Dom to finish loading before running the game 
 // Open the settings modal to get the user preference for the game
 document.addEventListener("DOMContentLoaded", function () {
-  let gameSettings_Modal = document.getElementById("modalGameSettings");
-  let gameHowTo_Modal = document.getElementById("modalGameHowTo");
-  let gameAccess_Modal = document.getElementById("modalGameAccess");
-  let gameHighScore_Modal = document.getElementById("modalHighScores");
-  firstVisitIntro(gameSettings_Modal, gameHowTo_Modal);
-  applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
-  applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
-  applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal);
-  applyOnInput();
+  firstVisitIntro();
+  applyWindowOnClick();
+  applyModalClose();
+  let buttons = document.getElementsByTagName("button");
+  for (let button of buttons) {
+    applyButtonSetup(button);
+  }
+  let sliders = document.getElementsByTagName("input");
+  for (let slider of sliders) {
+    applyOnInput(slider);
+  }
   applyOnChange();
   window.onresize = function () {
     getOrientation();
   };
 });
 
-function firstVisitIntro(gameSettings_Modal, gameHowTo_Modal) {
+function firstVisitIntro() {
+  let gameSettings_Modal = document.getElementById("modalGameSettings");
+  let gameHowTo_Modal = document.getElementById("modalGameHowTo");
   if (sessionStorage.siteVisited) {
     showElement(gameSettings_Modal);
   } else {
@@ -27,12 +31,14 @@ function firstVisitIntro(gameSettings_Modal, gameHowTo_Modal) {
   }
 }
 
-function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
+function applyWindowOnClick() {
+  let gameSettings_Modal = document.getElementById("modalGameSettings");
   window.onclick = function (event) {
     if (event.target.id === "modalGameSettings") {
       hideElement(gameSettings_Modal);
     }
     if (event.target.id === "modalGameHowTo") {
+      let gameHowTo_Modal = document.getElementById("modalGameHowTo");
       hideElement(gameHowTo_Modal);
       if (!sessionStorage.siteVisited) {
         showElement(gameSettings_Modal);
@@ -40,19 +46,23 @@ function applyWindowOnClick(gameSettings_Modal, gameHowTo_Modal, gameAccess_Moda
       }
     }
     if (event.target.id === "modalGameAccess") {
+      let gameAccess_Modal = document.getElementById("modalGameAccess");
       hideElement(gameAccess_Modal);
     }
     if (event.target.id === "modalHighScores") {
+      let gameHighScore_Modal = document.getElementById("modalHighScores");
       hideElement(gameHighScore_Modal);
     }
   };
 }
 
-function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
+function applyModalClose() {
+  let gameSettings_Modal = document.getElementById("modalGameSettings");
   document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click', function () {
     hideElement(gameSettings_Modal);
   });
   document.getElementsByClassName("close_HowToModal")[0].addEventListener('click', function () {
+    let gameHowTo_Modal = document.getElementById("modalGameHowTo");
     hideElement(gameHowTo_Modal);
     if (!sessionStorage.siteVisited) {
       showElement(gameSettings_Modal);
@@ -60,9 +70,11 @@ function applyModalClose(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, 
     }
   });
   document.getElementsByClassName("close_AccessModal")[0].addEventListener('click', function () {
+    let gameAccess_Modal = document.getElementById("modalGameAccess");
     hideElement(gameAccess_Modal);
   });
   document.getElementsByClassName("close_HighScoresModal")[0].addEventListener('click', function () {
+    let gameHighScore_Modal = document.getElementById("modalHighScores");
     hideElement(gameHighScore_Modal);
   });
 }
@@ -88,43 +100,32 @@ function sliderMaxAmount() {
   document.getElementById("bombAmountValue").innerHTML = amountOfBombsSlider.value;
 }
 
-function applyOnInput() {
-  let sliders = document.getElementsByTagName("input");
-  for (let slider of sliders) {
-    switch (slider.getAttribute("data-type")) {
+function applyOnInput(slider) {
+  slider.addEventListener("input", function () {
+    switch (slider.getAttribute("id")) {
       case "fuseSpeed":
-        slider.addEventListener("input", function () {
-          document.getElementById("fuseSpeedValue").innerHTML = slider.value;
-        });
+        document.getElementById("fuseSpeedValue").innerHTML = slider.value;
         break;
       case "bombAmount":
-        slider.addEventListener("input", function () {
-          document.getElementById("bombAmountValue").innerHTML = slider.value;
-        });
+        document.getElementById("bombAmountValue").innerHTML = slider.value;
         break;
       case "gameCountdownTime":
-        slider.addEventListener("input", function () {
-          document.getElementById("gameCountdownTimeValue").innerHTML = slider.value;
-        });
+        document.getElementById("gameCountdownTimeValue").innerHTML = slider.value;
         break;
       case "gameLevel":
-        slider.addEventListener("input", function () {
-          document.getElementById("gameLevelValue").innerHTML = slider.value;
-        });
+        document.getElementById("gameLevelValue").innerHTML = slider.value;
         break;
       case "game_Volume":
-        slider.addEventListener("input", function () {
-          playFuseSound("explode");
-        });
+        playFuseSound("explode");
         break;
       case "sound_On_Btn":
-        slider.addEventListener("input", toggleSoundElement);
+        toggleSoundElement();
         break;
       case "lightmode_Btn":
-        slider.addEventListener("input", setlightmode);
+        setlightmode();
         break;
     }
-  }
+  });
 }
 
 function toggleSoundElement() {
@@ -151,91 +152,123 @@ function setlightmode() {
   }
 }
 
-function applyButtonSetup(gameSettings_Modal, gameHowTo_Modal, gameAccess_Modal, gameHighScore_Modal) {
-  let buttons = document.getElementsByTagName("button");
-  for (let button of buttons) {
-    button.addEventListener("click", function () {
-      if (this.getAttribute("id") === "modalGameSettingsOpen") {
-        if (isPaused === 0) {
-          isPaused = 1;
-          document.getElementById("pauseGame").children[0].style.color = "darkgoldenrod";
-        }
-        checkGameState();
-        showElement(gameSettings_Modal);
-      } else if (this.getAttribute("id") === "pauseGame") {
-        if (isPaused === 1) {
-          isPaused = 0;
-          if (light_mode) {
-            this.children[0].style.color = "black";
-          } else {
-            this.children[0].style.color = "white";
-          }
-        } else if (isPaused === 0) {
-          isPaused = 1;
-          this.children[0].style.color = "darkgoldenrod";
-        } else {}
-      } else if (this.getAttribute("id") === "resetGameOver") {
-        checkGameState();
-        showElement(gameSettings_Modal);
-      } else if (this.getAttribute("id") === "viewHighScoresBtn") {
-        loadHighScores();
-        showElement(gameHighScore_Modal);
-      } else if (this.getAttribute("id") === "endGame") {
-        if (light_mode) {
-          document.getElementById("pauseGame").children[0].style.color = "black";
-        } else {
-          document.getElementById("pauseGame").children[0].style.color = "white";
-        }
-        endGame();
-      } else if (this.getAttribute("id") === "endCurrentGameBtn") {
-        if (light_mode) {
-          document.getElementById("pauseGame").children[0].style.color = "black";
-        } else {
-          document.getElementById("pauseGame").children[0].style.color = "white";
-        }
-        endGame();
-        checkGameState();
-      } else if (this.getAttribute("id") === "viewSettings") {
-        showElement(gameAccess_Modal);
-      } else if (this.getAttribute("id") === "informationBtn") {
-        showElement(gameHowTo_Modal);
-      } else if (this.getAttribute("id") === "HomeBtn") {
-        window.location.href = "index.html";
-      } else if (this.getAttribute("id") === "modalGameSettings-customBtn") {
-        showCustomSettings();
-      } else if (this.getAttribute("id") === "lets_Play_Btn") {
-        hideElement(gameHowTo_Modal);
-        showElement(gameSettings_Modal);
-        sessionStorage.siteVisited = 1;
-      } else if (this.getAttribute("id") === "startGameBtn") {
-        let gameSettings;
-        score = 0;
-        document.getElementById("thePlayerScore").innerHTML = 0;
-        document.getElementById("gameScore").innerHTML = 0;
-        document.getElementById("gameScore").classList.remove("hsGold");
-        gameSettings = getModalInformation(gameSettings_Modal);
-        drawGameGrid(gameSettings.x, gameSettings.y);
-        startGame(gameSettings);
-        hideElement(gameSettings_Modal);
-      } else if (this.getAttribute("id") === "showhighScoreBtn") {
-        loadHighScores();
-        showElement(gameHighScore_Modal);
-      } else if (this.getAttribute("id") === "newHSButton") {
-        addNewHighScore();
-      } else if (this.getAttribute("id") === "sortbyScore") {
-        sortHS(1);
-      } else if (this.getAttribute("id") === "sortbyBPS") {
-        sortHS(2);
-      } else if (this.getAttribute("id") === "sortbyDate") {
-        sortHS(3);
-      } else if (this.getAttribute("id") === "resetHSScores") {
-        localStorage.removeItem("hsArray");
-      } else if (this.getAttribute("id") === "firstPlayButton") {
-        checkGameState();
-        showElement(gameSettings_Modal);
-      }
-    });
+function openGameSettingModal(gameSettings_Modal) {
+  if (isPaused === 0) {
+    isPaused = 1;
+    document.getElementById("pauseGame").children[0].style.color = "darkgoldenrod";
   }
+  checkGameState();
+  showElement(gameSettings_Modal);
+}
+
+function pauseThegame(button) {
+  if (isPaused === 1) {
+    isPaused = 0;
+    if (light_mode) {
+      button.children[0].style.color = "black";
+    } else {
+      button.children[0].style.color = "white";
+    }
+  } else if (isPaused === 0) {
+    isPaused = 1;
+    button.children[0].style.color = "darkgoldenrod";
+  }
+}
+
+function endTheGame() {
+  if (light_mode) {
+    document.getElementById("pauseGame").children[0].style.color = "black";
+  } else {
+    document.getElementById("pauseGame").children[0].style.color = "white";
+  }
+  endGame();
+}
+
+function startTheGame(gameSettings_Modal) {
+  let gameSettings;
+  score = 0;
+  document.getElementById("thePlayerScore").innerHTML = 0;
+  document.getElementById("gameScore").innerHTML = 0;
+  document.getElementById("gameScore").classList.remove("hsGold");
+  gameSettings = getModalInformation(gameSettings_Modal);
+  drawGameGrid(gameSettings.x, gameSettings.y);
+  startGame(gameSettings);
+  hideElement(gameSettings_Modal);
+}
+
+function applyButtonSetup(button) {
+  let gameSettings_Modal = document.getElementById("modalGameSettings");
+  let gameHowTo_Modal = document.getElementById("modalGameHowTo");
+  let gameAccess_Modal = document.getElementById("modalGameAccess");
+  let gameHighScore_Modal = document.getElementById("modalHighScores");
+  button.addEventListener("click", function () {
+    switch (this.getAttribute("id")) {
+      case "modalGameSettingsOpen":
+        openGameSettingModal(gameSettings_Modal);
+        break;
+      case "pauseGame":
+        pauseThegame(this);
+        break;
+      case "resetGameOver":
+        checkGameState();
+        showElement(gameSettings_Modal);
+        break;
+      case "viewHighScoresBtn":
+        loadHighScores();
+        showElement(gameHighScore_Modal);
+        break;
+      case "endGame":
+        endTheGame();
+        break;
+      case "endCurrentGameBtn":
+        endTheGame();
+        checkGameState();
+        break;
+      case "viewSettings":
+        showElement(gameAccess_Modal);
+        break;
+      case "informationBtn":
+        showElement(gameHowTo_Modal);
+        break;
+      case "HomeBtn":
+        window.location.href = "index.html";
+        break;
+      case "modalGameSettings-customBtn":
+        showCustomSettings();
+        break;
+      case "lets_Play_Btn":
+        hideElement(gameHowTo_Modal);
+        openGameSettingModal(gameSettings_Modal);
+        sessionStorage.siteVisited = 1;
+        break;
+      case "startGameBtn":
+        startTheGame(gameSettings_Modal);
+        break;
+      case "showhighScoreBtn":
+        loadHighScores();
+        showElement(gameHighScore_Modal);
+        break;
+      case "newHSButton":
+        addNewHighScore();
+        break;
+      case "sortbyScore":
+        sortHS(1);
+        break;
+      case "sortbyBPS":
+        sortHS(2);
+        break;
+      case "sortbyDate":
+        sortHS(3);
+        break;
+      case "resetHSScores":
+        localStorage.removeItem("hsArray");
+        break;
+      case "firstPlayButton":
+        checkGameState();
+        showElement(gameSettings_Modal);
+        break;
+    }
+  });
 }
 
 function checkGameState() {

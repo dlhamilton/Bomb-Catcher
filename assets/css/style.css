@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;700&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,10 +19,11 @@ body {
   font-family: 'Lexend Deca', sans-serif;
 }
 
-.body_light{
+.body_light {
   background-image: url("../images/metalBackground_light.png");
   background-color: rgb(238, 238, 238);
 }
+
 #index_logo {
   height: 200px;
   width: 220px;
@@ -69,6 +71,21 @@ body {
   border-radius: 15px;
   box-shadow: 0 9px #999;
   font-family: 'Silkscreen', cursive;
+}
+.creatorFooter{
+  position: fixed;
+   left: 0;
+   bottom: 5%;
+   width: 100%;
+   color: white;
+   text-align: center;
+}
+#welcomeMessage {
+  margin-top: 20px;
+  color: white;
+  float: left;
+  text-align: center;
+  width: 100%;
 }
 
 .button:hover {
@@ -171,6 +188,7 @@ body {
   30% {
     color: rgba(255, 196, 0, 0.847);
   }
+
   40% {
     color: orange;
   }
@@ -195,43 +213,43 @@ nav button i:hover {
   cursor: pointer;
 }
 
-#informationBtn i:hover{
-  color:rgb(63, 133, 255);
+#informationBtn i:hover {
+  color: rgb(63, 133, 255);
 }
 
-#HomeBtn i:hover{
-  color:brown;
+#HomeBtn i:hover {
+  color: brown;
 }
 
-#endGame i:hover{
-  color:darkred;
+#endGame i:hover {
+  color: darkred;
 }
 
-#pauseGame i:hover{
-  color:darkgoldenrod !important;
+#pauseGame i:hover {
+  color: darkgoldenrod !important;
 }
 
-#showhighScoreBtn i:hover{
-color:gold !important;
+#showhighScoreBtn i:hover {
+  color: gold !important;
 }
 
 .scoreCount {
   font-family: 'Silkscreen', cursive;
   margin-top: 20px;
   font-size: xx-large;
-  color:white;
+  color: white;
 }
 
 /* Modal Content */
 .modalGameSettings-content,
-.modalGame-content  {
+.modalGame-content {
   position: relative;
   background-color: #fefefe;
   margin: auto;
   padding: 0;
   border: 5px solid white;
   border-radius: 16px;
-  animation:gameSettingsFrameAnimation 4s infinite, animatetop 0.4s;
+  animation: gameSettingsFrameAnimation 4s infinite, animatetop 0.4s;
   overflow: hidden;
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -291,17 +309,18 @@ color:gold !important;
   cursor: pointer;
 }
 
-#modalGameSettings-customBtn{ 
-  color:white;
+#modalGameSettings-customBtn {
+  color: white;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   background-color: #0091ff;
-  background: linear-gradient(180deg,#0091ff,50%,#00d4ff);
+  background: linear-gradient(180deg, #0091ff, 50%, #00d4ff);
   background-size: 200% 200%;
 
   -webkit-animation: u-d_Animation 2s linear infinite alternate;
   -moz-animation: u-d_Animation 2s linear infinite alternate;
   animation: u-d_Animation 2s linear infinite alternate;
 }
+
 /* .modalGameSettings-customBtn-org{
   background-color: #26A67D!important;
   background: linear-gradient(180deg,#26A67D,50%,#37d2a1)!important;
@@ -312,8 +331,8 @@ color:gold !important;
   animation: u-d_Animation 2s linear infinite alternate;
 } */
 
-#modalGameSettings-customBtn:hover{ 
-color: #666;
+#modalGameSettings-customBtn:hover {
+  color: #666;
 }
 
 .modalGameSettings-body,
@@ -321,8 +340,8 @@ color: #666;
   padding: 2px 16px;
 }
 
-.modalGameSettings-body > *,
-.modalGame-body > *{
+.modalGameSettings-body>*,
+.modalGame-body>* {
   margin: 5px 0;
 }
 
@@ -373,22 +392,24 @@ nav i {
   text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
   color: black;
 }
-.body_light .bomb_icon{
+
+.body_light .bomb_icon {
   text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
   color: white;
 }
+
 .body_light .scoreCount,
-.body_light nav i ,
-.body_light #game_title
-{
-  color:black;
+.body_light nav i,
+.body_light #game_title {
+  color: black;
 }
 
-.hsGold{
-  color:gold !important;
+.hsGold {
+  color: gold !important;
 }
-.body_light .hsGold{
-  color:darkgoldenrod !important;
+
+.body_light .hsGold {
+  color: darkgoldenrod !important;
 }
 
 
@@ -420,7 +441,7 @@ nav i {
 
 /* Modal Content */
 .modalGameOver-content {
-  color:white;
+  color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   margin: auto;
   padding: 20px;
@@ -442,91 +463,112 @@ nav i {
   margin: 0!important;
 } */
 
-#customGameSettings{
+#customGameSettings {
   display: none;
   border: 3px solid black;
   border-radius: 16px;
-  padding:5px;
+  padding: 5px;
 }
 
-#customGameSettings > *{
+#customGameSettings>* {
   margin: 5px 0;
 }
 
-.modalBtn{
+.modalBtn {
   border: 2px solid black;
   padding: 10px;
   border-radius: 6px;
-  background-color:#eee;
+  background-color: #eee;
   font-size: 16px;
   letter-spacing: 2px;
 }
-.modalPadding{
-  padding:1px !important;
+
+.modalPadding {
+  padding: 1px !important;
 }
 
-#endCurrentGameBtn{
-  color:white;
+#endCurrentGameBtn {
+  color: white;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   display: none;
-border-color: black;
-background-color: red;
-background: linear-gradient(90deg,#FF7070,70%,red);
-background-size: 200% 200%;
+  border-color: black;
+  background-color: red;
+  background: linear-gradient(90deg, #FF7070, 70%, red);
+  background-size: 200% 200%;
 
--webkit-animation: l-r_redAnimation 2s linear infinite alternate;
+  -webkit-animation: l-r_redAnimation 2s linear infinite alternate;
   -moz-animation: l-r_redAnimation 2s linear infinite alternate;
   animation: l-r_redAnimation 2s linear infinite alternate;
 }
 
-#endCurrentGameBtn:hover{
+#endCurrentGameBtn:hover {
   border-color: red;
-  color:#666
+  color: #666
 }
 
-.redModalBtn{
-  color:white;
+.redModalBtn {
+  color: white;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-border-color: black;
-background-color: red;
-background: linear-gradient(90deg,#FF7070,70%,red);
-background-size: 200% 200%;
--webkit-animation: l-r_redAnimation 2s linear infinite alternate;
+  border-color: black;
+  background-color: red;
+  background: linear-gradient(90deg, #FF7070, 70%, red);
+  background-size: 200% 200%;
+  -webkit-animation: l-r_redAnimation 2s linear infinite alternate;
   -moz-animation: l-r_redAnimation 2s linear infinite alternate;
   animation: l-r_redAnimation 2s linear infinite alternate;
 }
-.redModalBtn:hover{
+
+.redModalBtn:hover {
   border-color: red;
-  color:#666
+  color: #666
 }
 
 @-webkit-keyframes l-r_redAnimation {
-  0%{background-position:0% 0%}
+  0% {
+    background-position: 0% 0%
+  }
+
   /* 50%{background-position:100% 0%} */
-  100%{background-position:100% 0%}
+  100% {
+    background-position: 100% 0%
+  }
 }
+
 @-moz-keyframes l-r_redAnimation {
-  0%{background-position:0% 0%}
+  0% {
+    background-position: 0% 0%
+  }
+
   /* 50%{background-position:100% 0%} */
-  100%{background-position:100% 0%}
+  100% {
+    background-position: 100% 0%
+  }
 }
-@keyframes l-r_redAnimation { 
-  0%{background-position:0% 0%}
+
+@keyframes l-r_redAnimation {
+  0% {
+    background-position: 0% 0%
+  }
+
   /* 50%{background-position:100% 0%} */
-  100%{background-position:100% 0%}
+  100% {
+    background-position: 100% 0%
+  }
 }
 
 
-@keyframes gameSettingsFrameAnimation{
-  50%{border-color: #666;}
+@keyframes gameSettingsFrameAnimation {
+  50% {
+    border-color: #666;
+  }
 }
 
 
-.startGameBtn{
-  color:white;
+.startGameBtn {
+  color: white;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   background-color: #FF9900;
-  background: linear-gradient(180deg,#FF9900,50%,#FFC670);
+  background: linear-gradient(180deg, #FF9900, 50%, #FFC670);
   background-size: 200% 200%;
 
   -webkit-animation: u-d_Animation 2s linear infinite alternate;
@@ -534,29 +576,47 @@ background-size: 200% 200%;
   animation: u-d_Animation 2s linear infinite alternate;
 }
 
-.highScoreBtn{
+.highScoreBtn {
   background-color: #2aa42e;
-  background: linear-gradient(180deg,#2aa42e,50%,#abe3aa);
+  background: linear-gradient(180deg, #2aa42e, 50%, #abe3aa);
 }
-.startGameBtn:hover{
-  color:#666;
+
+.startGameBtn:hover {
+  color: #666;
   /* border-color: #666; */
 }
 
 @-webkit-keyframes u-d_Animation {
-  0%{background-position:0% 0%}
+  0% {
+    background-position: 0% 0%
+  }
+
   /* 50%{background-position:100% 0%} */
-  100%{background-position:0% 100%}
+  100% {
+    background-position: 0% 100%
+  }
 }
+
 @-moz-keyframes u-d_Animation {
-  0%{background-position:0% 0%}
+  0% {
+    background-position: 0% 0%
+  }
+
   /* 50%{background-position:100% 0%} */
-  100%{background-position:0% 100%}
+  100% {
+    background-position: 0% 100%
+  }
 }
-@keyframes u-d_Animation { 
-  0%{background-position:0% 0%}
+
+@keyframes u-d_Animation {
+  0% {
+    background-position: 0% 0%
+  }
+
   /* 50%{background-position:100% 0%} */
-  100%{background-position:0% 100%}
+  100% {
+    background-position: 0% 100%
+  }
 }
 
 
@@ -564,18 +624,19 @@ background-size: 200% 200%;
 
 
 /* for tablet screen sizes and above */
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
 
 
-  .modalGameSettings-content, .modalGame-content{
-    width:60%;
+  .modalGameSettings-content,
+  .modalGame-content {
+    width: 60%;
     max-width: 700px;
   }
 
-  
+
 }
 
-.combo{
+.combo {
   border: 1px solid black;
   border-radius: 3px;
 }
@@ -583,7 +644,7 @@ background-size: 200% 200%;
 .slider {
   -webkit-appearance: none;
   width: 80%;
-  height:5px;
+  height: 5px;
   border: 1px solid black;
   border-radius: 5px;
   background: #AAA;
@@ -600,7 +661,7 @@ background-size: 200% 200%;
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-    border-radius:50%;
+  border-radius: 50%;
   height: 15px;
   width: 15px;
   background: #0091ff;
@@ -614,11 +675,12 @@ background-size: 200% 200%;
   cursor: pointer;
 }
 
-.sliderNums{
-  font-weight:bolder;
+.sliderNums {
+  font-weight: bolder;
   font-size: 17px;
-  color:#666;
+  color: #666;
 }
+
 #thePlayerScore {
   color: mintcream;
   font-size: 60px;
@@ -634,7 +696,7 @@ background-size: 200% 200%;
 
 } */
 /* The Modal (background) */
-.modalBackground{
+.modalBackground {
   display: none;
   /* Hidden by default */
   position: fixed;
@@ -661,7 +723,7 @@ background-size: 200% 200%;
   background-color: rgb(63, 133, 255);
 }
 
-.modalHighScores-color  {
+.modalHighScores-color {
   background-color: darkgoldenrod;
 }
 
@@ -673,15 +735,16 @@ background-size: 200% 200%;
   background-color: #26A67D;
 }
 
-.modalGameSettings-custom{
+.modalGameSettings-custom {
   background-color: #0091ff !important;
 }
 
-.modalHeader{
+.modalHeader {
   padding: 2px 16px;
   color: white;
 }
-.modalFooter{
+
+.modalFooter {
   padding: 2px 16px;
   color: white;
   min-height: 42px;
@@ -695,7 +758,7 @@ background-size: 200% 200%;
   height: 20px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -725,15 +788,15 @@ background-size: 200% 200%;
   transition: .4s;
 }
 
-input:checked + .switch_Slider {
+input:checked+.switch_Slider {
   background-color: #2196F3;
 }
 
-input:focus + .switch_Slider {
+input:focus+.switch_Slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .switch_Slider:before {
+input:checked+.switch_Slider:before {
   -webkit-transform: translateX(39px);
   -ms-transform: translateX(39px);
   transform: translateX(39px);
@@ -747,44 +810,53 @@ input:checked + .switch_Slider:before {
 .switch_Slider.round:before {
   border-radius: 50%;
 }
+
 /* end of Switch CSS */
 
-.sound-icon{
+.sound-icon {
   margin: 15px;
 }
-.yllw-bomb{
-color: yellow;
+
+.yllw-bomb {
+  color: yellow;
 }
-.orng-bomb{
-color:orange;
+
+.orng-bomb {
+  color: orange;
 }
-.red-bomb{
-color:red;
+
+.red-bomb {
+  color: red;
 
 }
-.white_shadow_border{
+
+.white_shadow_border {
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
-.bomb_instruction_border{
+
+.bomb_instruction_border {
   border: 2px solid black;
   background-color: #999;
   padding: 5px;
   font-size: 1.3em;
   margin: 5px;
 }
-.center_modal_content{
-text-align: center;
-list-style-position: inside;
+
+.center_modal_content {
+  text-align: center;
+  list-style-position: inside;
 }
-.highScoreGrid{
+
+.highScoreGrid {
   text-align: center;
   display: inline-block;
 }
-.gridhscontainer{
+
+.gridhscontainer {
   display: grid;
   grid-template-columns: auto;
   gap: 10px;
-  background-color:goldenrod;
+  background-color: goldenrod;
   padding: 10px;
   border-radius: 20px;
 }
@@ -795,29 +867,34 @@ list-style-position: inside;
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
 }
-.hsGridItem table{
+
+.hsGridItem table {
   margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+  margin-right: auto;
+  width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
 }
 
-.hsGridItem table td{
-border:2px solid red;
-overflow: hidden;
-}
-.ten{
+.hsGridItem table td {
+  border: 2px solid red;
   overflow: hidden;
-width:15%;
 }
-.thirty{
-  width:30%;
+
+.ten {
+  overflow: hidden;
+  width: 15%;
 }
-.thirty_hide{
-  width:30%;
+
+.thirty {
+  width: 30%;
 }
-#newHSName{
+
+.thirty_hide {
+  width: 30%;
+}
+
+#newHSName {
   width: 80%;
   float: left;
   padding: 12px 20px;
@@ -828,13 +905,15 @@ width:15%;
   transition: 0.5s;
   outline: none;
 }
+
 .missingName::placeholder {
   color: red !important;
 }
+
 /* #newHSName:focus, #newHSName:focus + #newHSButton {
   border: 3px solid #666;
 } */
-#newHSButton{
+#newHSButton {
   float: left;
   width: 20%;
   padding: 12px 20px;
@@ -846,23 +925,25 @@ width:15%;
   cursor: pointer;
 }
 
-#newHSButton:hover{
+#newHSButton:hover {
   background: #0b7dda;
 }
 
-#newHSInput::after{
+#newHSInput::after {
   content: "";
   clear: both;
   display: table;
 }
-#newHSInput{
-display:none;
-}
-#volume_Section{
-  display:none;
+
+#newHSInput {
+  display: none;
 }
 
-#hsAcceptMessage{
+#volume_Section {
+  display: none;
+}
+
+#hsAcceptMessage {
   display: none;
   color: green;
   letter-spacing: 1px;
@@ -875,8 +956,8 @@ display:none;
 }
 
 /* for tablet screen sizes and above */
-@media screen and (max-width: 425px){
-  .thirty_hide{
+@media screen and (max-width: 425px) {
+  .thirty_hide {
     display: none;
   }
 }

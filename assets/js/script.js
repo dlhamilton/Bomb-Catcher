@@ -1,8 +1,14 @@
 let defuseSpeed; // Store the number of bombs popped per second
 let light_mode = false; //State of the light mode setting
+let bombs = document.getElementsByClassName('bomb_icon');//stores all the bombs in an array
+let score = 0;// The game score
+let isPaused = 3;// the current state of the game, if it is running - 0 paused - 1 or game over - 3
+let startTime = 0;//The time the game was started
+let topScore = getTopScore();// the current top score
+let gameTick;// The speed of the bombs being lit
+let activeBombs;//The array of bombs that are currently lit
 
 // Wait for the Dom to finish loading before running the game 
-// Open the settings modal to get the user preference for the game
 document.addEventListener("DOMContentLoaded", function () {
   firstVisitIntro();
   applyWindowOnClick();
@@ -21,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 });
 
+/**
+ * Will check session storage to see if it is their first time to the site. if it is, it will show the instructions modal first before the settings modal
+ */
 function firstVisitIntro() {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   let gameHowTo_Modal = document.getElementById("modalGameHowTo");
@@ -31,12 +40,17 @@ function firstVisitIntro() {
   }
 }
 
+/**
+ * Will apply a click event to the modals background when the modals are open. It will check if the user clicks off the modal and closes it.
+ */
 function applyWindowOnClick() {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   window.onclick = function (event) {
+    //close the game settings modal
     if (event.target.id === "modalGameSettings") {
       hideElement(gameSettings_Modal);
     }
+    //close the game instructions modal
     if (event.target.id === "modalGameHowTo") {
       let gameHowTo_Modal = document.getElementById("modalGameHowTo");
       hideElement(gameHowTo_Modal);
@@ -45,10 +59,12 @@ function applyWindowOnClick() {
         sessionStorage.siteVisited = 1;
       }
     }
+    //close the settings modal
     if (event.target.id === "modalGameAccess") {
       let gameAccess_Modal = document.getElementById("modalGameAccess");
       hideElement(gameAccess_Modal);
     }
+    //close the game high score modal
     if (event.target.id === "modalHighScores") {
       let gameHighScore_Modal = document.getElementById("modalHighScores");
       hideElement(gameHighScore_Modal);
@@ -56,11 +72,16 @@ function applyWindowOnClick() {
   };
 }
 
+/**
+ * Will apply a click event to the close icon when the modals are open. It will check if the user clicks the icon and closes the modal.
+ */
 function applyModalClose() {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
+  //close the game settings modal
   document.getElementsByClassName("close_SettingsModal")[0].addEventListener('click', function () {
     hideElement(gameSettings_Modal);
   });
+  //close the game instructions modal
   document.getElementsByClassName("close_HowToModal")[0].addEventListener('click', function () {
     let gameHowTo_Modal = document.getElementById("modalGameHowTo");
     hideElement(gameHowTo_Modal);
@@ -69,17 +90,21 @@ function applyModalClose() {
       sessionStorage.siteVisited = 1;
     }
   });
+  //close the settings modal
   document.getElementsByClassName("close_AccessModal")[0].addEventListener('click', function () {
     let gameAccess_Modal = document.getElementById("modalGameAccess");
     hideElement(gameAccess_Modal);
   });
+  //close the game high score modal
   document.getElementsByClassName("close_HighScoresModal")[0].addEventListener('click', function () {
     let gameHighScore_Modal = document.getElementById("modalHighScores");
     hideElement(gameHighScore_Modal);
   });
 }
 
-
+/**
+ * Will apply a onchange to the col and row inputs.  Will update the game settings 
+ */
 function applyOnChange() {
   let selectors = document.getElementsByTagName("select");
   for (let selector of selectors) {
@@ -93,13 +118,18 @@ function applyOnChange() {
     }
   }
 }
-
+/**
+ * called from applyOnChange, sets the max amount of bombs that can be live at one time
+ */
 function sliderMaxAmount() {
   let amountOfBombsSlider = document.getElementById("bombAmount");
   amountOfBombsSlider.max = document.getElementById("col_size").value * document.getElementById("row_size").value;
   document.getElementById("bombAmountValue").innerHTML = amountOfBombsSlider.value;
 }
-
+/**
+ * sets the event listener for the sliders in the game settings, will update the slider labels, turn on sound or light mode.
+ * @param {HTMLElement} slider - input elemets of HTML page
+ */
 function applyOnInput(slider) {
   slider.addEventListener("input", function () {
     switch (slider.getAttribute("id")) {
@@ -127,7 +157,9 @@ function applyOnInput(slider) {
     }
   });
 }
-
+/**
+ * will show the volume element or hide depending on state of sound_On_Btn
+ */
 function toggleSoundElement() {
   if (document.getElementById("sound_On_Btn").checked === true) {
     playFuseSound("explode");
@@ -137,6 +169,9 @@ function toggleSoundElement() {
   }
 }
 
+/**
+ * will toggle the page to light mode and change the font colour of some elements
+ */
 function setlightmode() {
   document.body.classList.toggle("body_light");
   if (light_mode === false) {
@@ -152,6 +187,10 @@ function setlightmode() {
   }
 }
 
+/**
+ * will opent he game settings but will check to see if a game is currently running and pause it
+ * @param {HTMLElement} gameSettings_Modal 
+ */
 function openGameSettingModal(gameSettings_Modal) {
   if (isPaused === 0) {
     isPaused = 1;
@@ -161,6 +200,10 @@ function openGameSettingModal(gameSettings_Modal) {
   showElement(gameSettings_Modal);
 }
 
+/**
+ * will set the game state to paused and change the icon button colour
+ * @param {HTMLElement} button 
+ */
 function pauseThegame(button) {
   if (isPaused === 1) {
     isPaused = 0;
@@ -175,6 +218,9 @@ function pauseThegame(button) {
   }
 }
 
+/**
+ * Will start the progress of ending the game by removing pause button pause colour 
+ */
 function endTheGame() {
   if (light_mode) {
     document.getElementById("pauseGame").children[0].style.color = "black";
@@ -184,6 +230,14 @@ function endTheGame() {
   endGame();
 }
 
+/**
+ * Will start the game.
+ * Put all scores to 0. 
+ * Get the settings that the user wants. 
+ * Draws grid and hides the modals.
+ * Finally starts the count down to begin game.
+ * @param {HTMLElement} gameSettings_Modal 
+ */
 function startTheGame(gameSettings_Modal) {
   let gameSettings;
   score = 0;
@@ -196,6 +250,11 @@ function startTheGame(gameSettings_Modal) {
   hideElement(gameSettings_Modal);
 }
 
+/**
+ * /**
+ * Will apply a click event to all the buttons and clickable items 
+ * @param {HTMLElement} button from HTML page
+ */
 function applyButtonSetup(button) {
   let gameSettings_Modal = document.getElementById("modalGameSettings");
   let gameHowTo_Modal = document.getElementById("modalGameHowTo");
@@ -270,7 +329,9 @@ function applyButtonSetup(button) {
     }
   });
 }
-
+/**
+ * Will check to see if the game is paused. If it is you will not be able to start a new game until the game is ended. Will show end game button and hide start button
+ */
 function checkGameState() {
   if (isPaused === 1) {
     hideElement(document.getElementById('startGameBtn'));
@@ -286,6 +347,9 @@ function checkGameState() {
   }
 }
 
+/**
+ * toggle to show all the designs and commands for custom game and orgianl game on game settings modal
+ */
 function showCustomSettings() {
   if (document.getElementById("customGameSettings").style.display != "block") {
     showElement(document.getElementById("customGameSettings"));
@@ -328,7 +392,7 @@ function showCustomSettings() {
  * show a modal element on the DOM by changing display properties.
  * Then get the form data that is inputted.
  */
-function getModalInformation(element) {
+function getModalInformation() {
   let getDetails = document.getElementById('customGameSettings');
   let x_size = getDetails.col_size.value;
   let y_size = getDetails.row_size.value;
@@ -346,26 +410,34 @@ function getModalInformation(element) {
   };
 }
 
+/**
+ * turns the level selected into game tick speed.
+ * @param {integer} speed - the level the user selected between 0 and 10
+ * @returns games tick speed
+ */
 function convertGameSpeed(speed) {
   let x = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
   return x[speed];
 }
+
 /**
  * Hide an element on the DOM by changing display properties
+ * @param {HTMLElement} element 
  */
 function hideElement(element) {
   element.style.display = "none";
 }
 /**
  * Show an element on the DOM by changing display properties
+ * @param {HTMLElement} element 
  */
 function showElement(element) {
   element.style.display = "block";
 }
 /**
  * Creates the correct number of bombs based from the grid size passed in.
- * @param {the number of columns} cols 
- * @param {the number of rows} rows 
+ * @param {number} cols - of game grid
+ * @param {number} rows - of game grid
  */
 function drawGameGrid(cols, rows) {
   let htmlString = "";
@@ -378,7 +450,10 @@ function drawGameGrid(cols, rows) {
   }
   gridContainer.innerHTML = htmlString;
 }
-
+/**
+ * Will start the game count down and hide modals
+ * @param {HTMLElement} gameSettings 
+ */
 function startGame(gameSettings) {
   getOrientation();
   hideElement(document.getElementById("modalGameOver"));
@@ -387,12 +462,15 @@ function startGame(gameSettings) {
 }
 /**
  * Will count down from time to 0 and will start the game
- * @param {The number you want the countdown to start at } time 
+ * @param {number} time - The number you want the countdown to start at
  */
 function gameStartCountdown(gameSettings) {
   let count = gameSettings.countdownStartNumber;
   let startInterval = setInterval(timeCountDown, 1000);
 
+  /**
+   * puts the numbers of screen when counting down
+   */
   function timeCountDown() {
     let modalStartCountdownElement = document.getElementById("modalStartCountdown");
     let modalStartCountdownContent = document.getElementById("startTimer");
@@ -414,14 +492,11 @@ function gameStartCountdown(gameSettings) {
     }
   }
 }
-let bombs = document.getElementsByClassName('bomb_icon');
-let score = 0;
-let isPaused = 3;
-let startTime = 0;
-let topScore = getTopScore();
-let gameTick;
-let activeBombs;
 
+/**
+ * Starts a bomb, give it an event listener and add it to the active array. Will check that the bomb is not already active
+ * @param {HTMLElement} gameSettings 
+ */
 function StartBombFuse(gameSettings) {
   let numberOfBombs = gameSettings.x * gameSettings.y; // 4 * 4 = 16
   let fuseLength = gameSettings.l * 10; // 30
@@ -439,7 +514,7 @@ function StartBombFuse(gameSettings) {
 
 
 /**
- * the game fucntion with all; the key information for the game to run
+ * the game function with all; the key information for the game to run
  * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings
  */
 function game(gameSettings) {
@@ -457,8 +532,14 @@ function game(gameSettings) {
   }, gameSpeed);
 }
 
+/**
+ * The controls for the game, keep track of score and if the game has been stop or lost
+ * @param {boolean} gameOverFlag 
+ * @param {HTMLElement} gameSettings 
+ * @returns nothing - end the function 
+ */
 function gameOperation(gameOverFlag, gameSettings) {
-  let numberOfLiveBombs = gameSettings.noBombs; // 3
+  let numberOfLiveBombs = gameSettings.noBombs;
   if (isPaused === 0) {
     if (activeBombs.length < numberOfLiveBombs && gameOverFlag === false) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
       StartBombFuse(gameSettings);
@@ -478,6 +559,9 @@ function gameOperation(gameOverFlag, gameSettings) {
   }
 }
 
+/**
+ * The user has eneded the game. Game interval stopped and game over is called
+ */
 function userEndGame() {
   clearInterval(gameTick);
   isPaused = 3;
@@ -486,6 +570,9 @@ function userEndGame() {
   defusePerSecond();
 }
 
+/**
+ * The game has been paused and current bombs are pasued and no new bombs will be created
+ */
 function pauseTheGame() {
   for (let bomb of bombs) {
     if (bomb.blown === false) {
@@ -497,14 +584,16 @@ function pauseTheGame() {
   }
 }
 
+/**
+ * Will work out the number of bombs defused per second on average
+ */
 function defusePerSecond() {
   startTime = new Date() - startTime;
   defuseSpeed = score / (startTime / 1000);
 }
 /**
  * This checks to see what bombs have been defused and removes them from the active bombs array. 
- * @param {number array - which links to the index number of the bombs that are currently ignited} active 
- * @returns a new array with all the bombs that hve been defused removed
+ * @returns a new array with all the bombs that have been defused removed
  */
 function updateActiveBombs() {
   let newActive = [];
@@ -516,6 +605,10 @@ function updateActiveBombs() {
   return newActive;
 }
 
+/**
+ * checks all active bombs to see if one has exploded
+ * @returns boolean if bomb has exploded
+ */
 function checkForExploded() {
   for (let x of activeBombs) {
     if (bombs[x].blown === true) {
@@ -526,8 +619,8 @@ function checkForExploded() {
 }
 /**
  * Start the bombs colour change animation and set its dfuse property to false
- * @param {the current bomb being set} bomb 
- * @param {the length of the fuse time in seconds} fuseInS 
+ * @param {HTMLElement} bomb 
+ * @param {number} fuseInS - the length of the fuse time in seconds
  */
 function setBombFuse(bomb, fuseInS) {
   bomb.desfuse = false;
@@ -535,6 +628,10 @@ function setBombFuse(bomb, fuseInS) {
   bomb.style.animation = `startBombColor ${fuseInS}s ease 0s 1`;
 }
 
+/**
+ * Play the sound that is requested from the parameter
+ * @param {string} type - explode or defuse
+ */
 function playFuseSound(type) {
   if (document.getElementById("sound_On_Btn").checked === true) {
     let audio = new Audio();
@@ -549,7 +646,7 @@ function playFuseSound(type) {
   }
 }
 /**
- * defuses the bomb that has been clickeed by the user by clearing the timeout and removing the event listener
+ * defuses the bomb that has been clicked by the user by clearing the timeout and removing the event listener
  */
 function defuseBombFuse() {
   if (this.blown === false) {
@@ -562,8 +659,8 @@ function defuseBombFuse() {
   }
 }
 /**
- * Registers the bom,b has exploded and changes it style to show the user the bomb has exploded
- * @param {the bomb that has exploded} bomb 
+ * Registers the bomb has exploded and changes it style to show the user the bomb has exploded
+ * @param {HTMLElement} bomb 
  */
 function bombExplode(bomb) {
   bomb.blown = true;
@@ -574,7 +671,9 @@ function bombExplode(bomb) {
     playFuseSound("explode");
   }
 }
-
+/**
+ * set the game state as game over
+ */
 function endGame() {
   isPaused = 3;
 }
@@ -591,6 +690,10 @@ function gameOver() {
   showElement(document.getElementById("modalGameOver"));
 }
 
+/**
+ * Gets the high score from local storage if it exists
+ * @returns the high score from local storage
+ */
 function getTopScore() {
   let arr = JSON.parse(localStorage.getItem('hsArray'));
   if (arr === null) {
@@ -600,6 +703,9 @@ function getTopScore() {
   }
 }
 
+/**
+ * will check if the user score is able to be in the top 10 scores. shows high score message if it is.
+ */
 function checkHighScore() {
   let arr = JSON.parse(localStorage.getItem('hsArray'));
   hideElement(document.getElementById("hsAcceptMessage"));
@@ -631,16 +737,30 @@ function checkHighScore() {
   }
 }
 
+/**
+ * get the date and put it in short form
+ * @returns todays date
+ */
 function getTodaysDate() {
   let currentDate = new Date();
   return currentDate.toLocaleDateString();
 }
 
+/**
+ * will capitalize the players name
+ * @param {string} str - users name
+ * @returns users name with captial first letter
+ */
 function sentanceCaseText(str) {
   str = str.charAt(0).toUpperCase() + str.slice(1);
   return str;
 }
 
+/**
+ * find where the high score should be inserted into the array
+ * @param {array} arr 
+ * @returns number of where the high score should be inserted in the array
+ */
 function findHSindex(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (score > arr[i][1]) {
@@ -649,6 +769,12 @@ function findHSindex(arr) {
   }
 }
 
+/**
+ * Moves all the items in the array down one posisiton from the insert pos and will remove last item if there is 10 items in the array
+ * @param {array} arr 
+ * @param {number} insertPos 
+ * @returns new array with one duplicate item
+ */
 function moveHighScoreDown(arr, insertPos) {
   let j = arr.length - 1;
   if (j < 9) {
@@ -661,6 +787,9 @@ function moveHighScoreDown(arr, insertPos) {
   return arr;
 }
 
+/**
+ *  Will add a new high score to the array and add to local storage
+ */
 function addNewHighScore() {
   let insertPos = null;
   let arr = JSON.parse(localStorage.getItem('hsArray'));
@@ -676,7 +805,7 @@ function addNewHighScore() {
       if (insertPos === null) {
         insertPos = arr.length;
       } else {
-      arr=  moveHighScoreDown(arr, insertPos);
+        arr = moveHighScoreDown(arr, insertPos);
       }
       arr[insertPos] = [hSName, hSScore, hSTime, todaysDate];
     } else {
@@ -691,6 +820,10 @@ function addNewHighScore() {
   }
 }
 
+/**
+ * place new array of scores into local storage
+ * @param {array} arr 
+ */
 function storeHighScore(arr) {
   hideElement(document.getElementById("newHSInput"));
   showElement(document.getElementById("hsAcceptMessage"));
@@ -700,6 +833,10 @@ function storeHighScore(arr) {
   document.getElementById("newHSName").value = "";
 }
 
+/**
+ * Will update the score on the html page and will change colour if new high score is set
+ * @param {number} score 
+ */
 function updateScore(score) {
   let scoreArea = document.getElementById("gameScore");
   let scoreAreaGameOver = document.getElementById("thePlayerScore");
@@ -717,11 +854,18 @@ function updateScore(score) {
   }
 }
 
+/**
+ * will load the high scores from local storage
+ */
 function loadHighScores() {
   let HSArr = JSON.parse(localStorage.getItem('hsArray'));
   loadHSTable(HSArr);
 }
 
+/**
+ * Sort the high scores based on the parameter 
+ * @param {number} item - sort type 1 - points, 2 - BPS, 3 - Date
+ */
 function sortHS(item) {
   let HSArr = JSON.parse(localStorage.getItem('hsArray'));
   if (HSArr != null) {
@@ -745,6 +889,10 @@ function sortHS(item) {
   }
 }
 
+/**
+ * Add the high score tables on the high score modal 
+ * @param {array} arr - of high scores
+ */
 function loadHSTable(arr) {
   let HSArea = document.getElementById("highScoreArea");
   let htmlString = `<div class ="hsGridItem"><table><tr>
@@ -770,12 +918,18 @@ function loadHSTable(arr) {
   HSArea.innerHTML = htmlString;
 }
 
+/**
+ * Will call the flowtype ratio command to keep the bomb icon size inside the game grid
+ */
 function reDrawBombs() {
   $('.bomb_icon').flowtype({
     fontRatio: 1
   });
 }
 
+/**
+ * Gets the orientation of the device and resizes the game grid so it fits on screen.
+ */
 function getOrientation() {
   let orientation = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
   let bombArea = document.getElementsByClassName("grid-container")[0];

@@ -30,9 +30,7 @@ body {
 }
 
 #game_logo {
-  /* height:100px; */
   width: 40px;
-  /* max-width: ; */
 }
 
 .center {
@@ -40,7 +38,6 @@ body {
   flex-flow: wrap;
   justify-content: center;
   align-items: center;
-  /* break-after: always; */
 }
 
 .center h1 {
@@ -72,14 +69,16 @@ body {
   box-shadow: 0 9px #999;
   font-family: 'Silkscreen', cursive;
 }
-.creatorFooter{
+
+.creatorFooter {
   position: fixed;
-   left: 0;
-   bottom: 5%;
-   width: 100%;
-   color: white;
-   text-align: center;
+  left: 0;
+  bottom: 5%;
+  width: 100%;
+  color: white;
+  text-align: center;
 }
+
 #welcomeMessage {
   margin-top: 20px;
   color: white;
@@ -104,26 +103,17 @@ body {
   font-family: 'Silkscreen', cursive;
 }
 
-/* The modalStartCountdown (background) */
 #modalStartCountdown {
   display: none;
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
-  /* padding-top: 100px; */
-  /* Location of the box */
   left: 0;
   top: 15%;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
 }
 
-/* modalStartCountdown Content */
 .modalStartCountdown-content {
   margin: auto;
   padding: 20px;
@@ -131,7 +121,6 @@ body {
   text-align: center;
 }
 
-/* Add Animation */
 @-webkit-keyframes slideIn {
   from {
     bottom: -300px;
@@ -240,7 +229,6 @@ nav button i:hover {
   color: white;
 }
 
-/* Modal Content */
 .modalGameSettings-content,
 .modalGame-content {
   position: relative;
@@ -253,13 +241,8 @@ nav button i:hover {
   overflow: hidden;
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s */
 }
 
-/* Add Animation */
 @-webkit-keyframes animatetop {
   from {
     top: -300px;
@@ -284,7 +267,7 @@ nav button i:hover {
   }
 }
 
-/* The Close Button */
+/* The Close Buttons */
 .close_SettingsModal,
 .close_HowToModal,
 .close_AccessModal,
@@ -296,6 +279,7 @@ nav button i:hover {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+/* The Close Buttons when hover */
 .close_SettingsModal:hover,
 .close_SettingsModal:focus,
 .close_HowToModal:hover,
@@ -311,7 +295,6 @@ nav button i:hover {
 
 #modalGameSettings-customBtn {
   color: white;
-  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   background-color: #0091ff;
   background: linear-gradient(180deg, #0091ff, 50%, #00d4ff);
   background-size: 200% 200%;
@@ -320,16 +303,6 @@ nav button i:hover {
   -moz-animation: u-d_Animation 2s linear infinite alternate;
   animation: u-d_Animation 2s linear infinite alternate;
 }
-
-/* .modalGameSettings-customBtn-org{
-  background-color: #26A67D!important;
-  background: linear-gradient(180deg,#26A67D,50%,#37d2a1)!important;
-    background-size: 200% 200%;
-
-  -webkit-animation: u-d_Animation 2s linear infinite alternate;
-  -moz-animation: u-d_Animation 2s linear infinite alternate;
-  animation: u-d_Animation 2s linear infinite alternate;
-} */
 
 #modalGameSettings-customBtn:hover {
   color: #666;
@@ -357,7 +330,6 @@ nav button {
 nav i {
   font-size: 2em;
   color: whitesmoke;
-
 }
 
 .grid-container {
@@ -366,18 +338,14 @@ nav i {
   display: grid;
   gap: 5px;
   grid-template-columns: auto;
-  /* background-color: #2196F3; */
   padding: 10px;
 }
 
 .grid-item {
-  /* background-color: red; */
   position: relative;
   width: 100%;
   padding-top: 100%;
-  /* 1:1 Aspect Ratio */
   border-radius: 50%;
-  /* border: 5px solid black; */
 }
 
 .bomb_icon {
@@ -387,8 +355,6 @@ nav i {
   bottom: 0;
   right: 0;
   text-align: center;
-  /* font-size: 0.5em */
-  /* 1 pixel black shadow to left, top, right and bottom */
   text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
   color: black;
 }
@@ -419,27 +385,17 @@ nav i {
   align-items: center;
 }
 
-/* The Modal (background) */
 #modalGameOver {
   display: none;
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
-  /* padding-top: 100px; */
-  /* Location of the box */
   left: 0;
   top: 20%;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
 }
 
-
-/* Modal Content */
 .modalGameOver-content {
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -452,16 +408,6 @@ nav i {
   border-radius: 10px;
   border: 3px solid black;
 }
-
-/* #modalGameSettings-warning{
-  color: rgb(0, 0, 0);
-  text-decoration: underline;
-  font-style: italic;
-  background-color: rgba(255, 0, 0, 0.5);
-  border: 3px solid black;
-  padding: 3px;
-  margin: 0!important;
-} */
 
 #customGameSettings {
   display: none;
@@ -489,13 +435,11 @@ nav i {
 
 #endCurrentGameBtn {
   color: white;
-  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   display: none;
   border-color: black;
   background-color: red;
   background: linear-gradient(90deg, #FF7070, 70%, red);
   background-size: 200% 200%;
-
   -webkit-animation: l-r_redAnimation 2s linear infinite alternate;
   -moz-animation: l-r_redAnimation 2s linear infinite alternate;
   animation: l-r_redAnimation 2s linear infinite alternate;
@@ -508,7 +452,6 @@ nav i {
 
 .redModalBtn {
   color: white;
-  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   border-color: black;
   background-color: red;
   background: linear-gradient(90deg, #FF7070, 70%, red);
@@ -527,8 +470,6 @@ nav i {
   0% {
     background-position: 0% 0%
   }
-
-  /* 50%{background-position:100% 0%} */
   100% {
     background-position: 100% 0%
   }
@@ -538,8 +479,6 @@ nav i {
   0% {
     background-position: 0% 0%
   }
-
-  /* 50%{background-position:100% 0%} */
   100% {
     background-position: 100% 0%
   }
@@ -549,13 +488,10 @@ nav i {
   0% {
     background-position: 0% 0%
   }
-
-  /* 50%{background-position:100% 0%} */
   100% {
     background-position: 100% 0%
   }
 }
-
 
 @keyframes gameSettingsFrameAnimation {
   50% {
@@ -563,14 +499,11 @@ nav i {
   }
 }
 
-
 .startGameBtn {
   color: white;
-  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   background-color: #FF9900;
   background: linear-gradient(180deg, #FF9900, 50%, #FFC670);
   background-size: 200% 200%;
-
   -webkit-animation: u-d_Animation 2s linear infinite alternate;
   -moz-animation: u-d_Animation 2s linear infinite alternate;
   animation: u-d_Animation 2s linear infinite alternate;
@@ -583,15 +516,12 @@ nav i {
 
 .startGameBtn:hover {
   color: #666;
-  /* border-color: #666; */
 }
 
 @-webkit-keyframes u-d_Animation {
   0% {
     background-position: 0% 0%
   }
-
-  /* 50%{background-position:100% 0%} */
   100% {
     background-position: 0% 100%
   }
@@ -601,8 +531,6 @@ nav i {
   0% {
     background-position: 0% 0%
   }
-
-  /* 50%{background-position:100% 0%} */
   100% {
     background-position: 0% 100%
   }
@@ -612,28 +540,18 @@ nav i {
   0% {
     background-position: 0% 0%
   }
-
-  /* 50%{background-position:100% 0%} */
   100% {
     background-position: 0% 100%
   }
 }
 
-
-
-
-
 /* for tablet screen sizes and above */
 @media screen and (min-width: 768px) {
-
-
   .modalGameSettings-content,
   .modalGame-content {
     width: 60%;
     max-width: 700px;
   }
-
-
 }
 
 .combo {
@@ -686,37 +604,18 @@ nav i {
   font-size: 60px;
 }
 
-/* The Modal (background) */
-/* #modalGameHowTo {
-
-}
-
-
-#modalGameSettings {
-
-} */
-/* The Modal (background) */
 .modalBackground {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
   padding-top: 100px;
-  /* Location of the box */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: rgb(0, 0, 0);
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
 }
 
 .modalGameHowTo-color {
@@ -750,7 +649,6 @@ nav i {
   min-height: 42px;
 }
 
-/* Switch CSS code */
 .switch {
   position: relative;
   display: inline-block;
@@ -802,7 +700,6 @@ input:checked+.switch_Slider:before {
   transform: translateX(39px);
 }
 
-/* Rounded sliders */
 .switch_Slider.round {
   border-radius: 34px;
 }
@@ -810,8 +707,6 @@ input:checked+.switch_Slider:before {
 .switch_Slider.round:before {
   border-radius: 50%;
 }
-
-/* end of Switch CSS */
 
 .sound-icon {
   margin: 15px;
@@ -910,9 +805,6 @@ input:checked+.switch_Slider:before {
   color: red !important;
 }
 
-/* #newHSName:focus, #newHSName:focus + #newHSButton {
-  border: 3px solid #666;
-} */
 #newHSButton {
   float: left;
   width: 20%;

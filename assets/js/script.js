@@ -498,8 +498,8 @@ function gameStartCountdown(gameSettings) {
  * @param {HTMLElement} gameSettings 
  */
 function StartBombFuse(gameSettings) {
-  let numberOfBombs = gameSettings.x * gameSettings.y; // 4 * 4 = 16
-  let fuseLength = gameSettings.l * 10; // 30
+  let numberOfBombs = gameSettings.x * gameSettings.y; 
+  let fuseLength = gameSettings.l * 10;
   let fuseInMs = fuseLength * 100;
   let fuseInS = fuseLength / 10;
   let randomBombNumber;
@@ -520,7 +520,7 @@ function StartBombFuse(gameSettings) {
 function game(gameSettings) {
   startTime = new Date();
   score = 0;
-  let gameSpeed = gameSettings.speed * 100; //5
+  let gameSpeed = gameSettings.speed * 100;
   activeBombs = [];
   let gameOverFlag = false;
 

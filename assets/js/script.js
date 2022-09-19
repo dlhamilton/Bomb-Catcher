@@ -347,7 +347,7 @@ function getModalInformation(element) {
 }
 
 function convertGameSpeed(speed) {
-  let x =[10,9,8,7,6,5,4,3,2,1,0];
+  let x = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
   return x[speed];
 }
 /**
@@ -419,8 +419,10 @@ let score = 0;
 let isPaused = 3;
 let startTime = 0;
 let topScore = getTopScore();
+let gameTick;
+let activeBombs;
 
-function StartBombFuse(active,gameSettings){
+function StartBombFuse(gameSettings) {
   let numberOfBombs = gameSettings.x * gameSettings.y; // 4 * 4 = 16
   let fuseLength = gameSettings.l * 10; // 30
   let fuseInMs = fuseLength * 100;
@@ -428,8 +430,8 @@ function StartBombFuse(active,gameSettings){
   let randomBombNumber;
   do {
     randomBombNumber = Math.floor(Math.random() * numberOfBombs);
-  } while (active.indexOf(randomBombNumber) != -1);
-  active.push(randomBombNumber);
+  } while (activeBombs.indexOf(randomBombNumber) != -1);
+  activeBombs.push(randomBombNumber);
   bombs[randomBombNumber].addEventListener('click', defuseBombFuse);
   setBombFuse(bombs[randomBombNumber], fuseInS);
   bombs[randomBombNumber].bombTimer = setTimeout(bombExplode, fuseInMs, bombs[randomBombNumber]);
@@ -443,45 +445,48 @@ function StartBombFuse(active,gameSettings){
 function game(gameSettings) {
   startTime = new Date();
   score = 0;
-  let numberOfLiveBombs = gameSettings.noBombs; // 3
   let gameSpeed = gameSettings.speed * 100; //5
-  let active = [];
+  activeBombs = [];
   let gameOverFlag = false;
-  
+
   /**
    * The loop that manages the game, will continue to loop until the user has lost the game or stopped the game.
    */
-  let gameTick = setInterval(function () {
-    if (isPaused === 0) {
-      if (active.length < numberOfLiveBombs && gameOverFlag === false) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
-        StartBombFuse(active,gameSettings);
-      }
-      active = updateActiveBombs(active);
-      gameOverFlag = checkForExploded(active);
-      if (gameOverFlag) {
-        clearInterval(gameTick);
-        userEndGame(active);
-        return;
-      }
-      updateScore(score);
-    } else if (isPaused === 1) {
-      pauseTheGame();
-    } else {
-      clearInterval(gameTick);
-      userEndGame(active)
-      return;
-    }
+  gameTick = setInterval(function () {
+    gameOperation(gameOverFlag, gameSettings);
   }, gameSpeed);
 }
 
-function userEndGame(active){
+function gameOperation(gameOverFlag, gameSettings) {
+  let numberOfLiveBombs = gameSettings.noBombs; // 3
+  if (isPaused === 0) {
+    if (activeBombs.length < numberOfLiveBombs && gameOverFlag === false) { //if the number of bombs in the array is less than the bomb limit, start a new bomb
+      StartBombFuse(gameSettings);
+    }
+    activeBombs = updateActiveBombs();
+    gameOverFlag = checkForExploded();
+    if (gameOverFlag) {
+      userEndGame();
+      return;
+    }
+    updateScore(score);
+  } else if (isPaused === 1) {
+    pauseTheGame();
+  } else {
+    userEndGame();
+    return;
+  }
+}
+
+function userEndGame() {
+  clearInterval(gameTick);
   isPaused = 3;
-  gameOver(active);
-  active = [];
+  gameOver();
+  activeBombs = [];
   defusePerSecond();
 }
 
-function pauseTheGame(){
+function pauseTheGame() {
   for (let bomb of bombs) {
     if (bomb.blown === false) {
       bomb.removeEventListener('click', defuseBombFuse);
@@ -501,9 +506,9 @@ function defusePerSecond() {
  * @param {number array - which links to the index number of the bombs that are currently ignited} active 
  * @returns a new array with all the bombs that hve been defused removed
  */
-function updateActiveBombs(active) {
+function updateActiveBombs() {
   let newActive = [];
-  for (let x of active) {
+  for (let x of activeBombs) {
     if (bombs[x].desfuse === false) {
       newActive.push(x);
     }
@@ -511,8 +516,8 @@ function updateActiveBombs(active) {
   return newActive;
 }
 
-function checkForExploded(active) {
-  for (let x of active) {
+function checkForExploded() {
+  for (let x of activeBombs) {
     if (bombs[x].blown === true) {
       return true;
     }
@@ -576,8 +581,8 @@ function endGame() {
 /**
  * show the gameover screen to the user
  */
-function gameOver(active) {
-  for (let x of active) {
+function gameOver() {
+  for (let x of activeBombs) {
     bombs[x].removeEventListener('click', defuseBombFuse);
     bombs[x].style.animation = "";
     clearTimeout(bombs[x].bombTimer);
@@ -636,6 +641,26 @@ function sentanceCaseText(str) {
   return str;
 }
 
+function findHSindex(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (score > arr[i][1]) {
+      return i;
+    }
+  }
+}
+
+function moveHighScoreDown(arr, insertPos) {
+  let j = arr.length - 1;
+  if (j < 9) {
+    arr[j + 1] = arr[j];
+  }
+  do {
+    arr[j] = arr[j - 1];
+    j--;
+  } while (j > insertPos);
+  return arr;
+}
+
 function addNewHighScore() {
   let insertPos = null;
   let arr = JSON.parse(localStorage.getItem('hsArray'));
@@ -647,25 +672,11 @@ function addNewHighScore() {
     document.getElementById("newHSName").classList.remove("missingName");
     hSName = sentanceCaseText(hSName);
     if (arr != null) {
-      for (let i = 0; i < arr.length; i++) {
-        if (score > arr[i][1]) {
-          insertPos = i;
-          break;
-        }
-      }
+      insertPos = findHSindex(arr);
       if (insertPos === null) {
         insertPos = arr.length;
       } else {
-        let j = arr.length - 1;
-
-        if (j < 9) {
-          arr[j + 1] = arr[j];
-        }
-
-        do {
-          arr[j] = arr[j - 1];
-          j--;
-        } while (j > insertPos);
+      arr=  moveHighScoreDown(arr, insertPos);
       }
       arr[insertPos] = [hSName, hSScore, hSTime, todaysDate];
     } else {
@@ -674,15 +685,19 @@ function addNewHighScore() {
       ];
       arr[0] = [hSName, hSScore, hSTime, todaysDate];
     }
-    hideElement(document.getElementById("newHSInput"));
-    showElement(document.getElementById("hsAcceptMessage"));
-    localStorage.setItem('hsArray', JSON.stringify(arr));
-    loadHighScores();
-    showElement(document.getElementById("modalHighScores"));
-    document.getElementById("newHSName").value = "";
+    storeHighScore(arr);
   } else {
     document.getElementById("newHSName").classList.add("missingName");
   }
+}
+
+function storeHighScore(arr) {
+  hideElement(document.getElementById("newHSInput"));
+  showElement(document.getElementById("hsAcceptMessage"));
+  localStorage.setItem('hsArray', JSON.stringify(arr));
+  loadHighScores();
+  showElement(document.getElementById("modalHighScores"));
+  document.getElementById("newHSName").value = "";
 }
 
 function updateScore(score) {

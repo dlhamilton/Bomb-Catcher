@@ -15,24 +15,27 @@
 <body>
   <!-- Game Heading -->
   <header class="center">
-    <img id="game_logo" src="assets/images/bomb.png" alt="Bomb Catcher Logo">
+    <img id="game_logo" src="assets/images/bomb.webp" alt="Bomb Catcher Logo">
     <h1 id="game_title">Bomb Catcher</h1>
   </header>
   <!-- Navigation for game -->
   <nav class="center">
-    <button id="modalGameSettingsOpen"><i class="fa-solid fa-sliders"></i></button>
-    <button id="pauseGame"><i class="fa-solid fa-pause"></i></button>
-    <button id="endGame"><i class="fa-solid fa-stop"></i></button>
-    <button id="viewSettings"><i class="fa-sharp fa-solid fa-gear"></i></button>
-    <button id="informationBtn"><i class="fa-sharp fa-solid fa-circle-info"></i></button>
-    <button id="showhighScoreBtn"><i class="fa-solid fa-trophy"></i></button>
-    <button id="HomeBtn"><i class="fa-solid fa-right-from-bracket"></i></button>
+    <button id="modalGameSettingsOpen" aria-label="Show game settings"><i class="fa-solid fa-sliders"></i></button>
+    <button id="pauseGame" aria-label="Pause the game"><i class="fa-solid fa-pause"></i></button>
+    <button id="endGame" aria-label="End the game"><i class="fa-solid fa-stop"></i></button>
+    <button id="viewSettings" aria-label="Show Accessability settings"><i
+        class="fa-sharp fa-solid fa-gear"></i></button>
+    <button id="informationBtn" aria-label="Show game Instructions"><i
+        class="fa-sharp fa-solid fa-circle-info"></i></button>
+    <button id="showhighScoreBtn" aria-label="Show game high scores"><i class="fa-solid fa-trophy"></i></button>
+    <button id="HomeBtn" aria-label="Go Back to the home page"><i class="fa-solid fa-right-from-bracket"></i></button>
   </nav>
 
   <!-- Game area for bombs -->
   <div class="center">
     <div class="grid-container">
-      <button id="firstPlayButton" class="modalBtn startGameBtn">Click to start new game</button>
+      <button id="firstPlayButton" class="modalBtn startGameBtn" aria-label="Start a new game">Click to start new
+        game</button>
     </div>
   </div>
 
@@ -56,13 +59,14 @@
       <p><span id="thePlayerScore">0</span></p>
       <div id="newHSInput">
         <input type="text" id="newHSName" name="newHSName" placeholder="Enter name here..">
-        <button id="newHSButton"><i class="fa-solid fa-angle-right"></i></button>
+        <button id="newHSButton" aria-label="Submit new high score"><i class="fa-solid fa-angle-right"></i></button>
       </div>
       <div id="hsAcceptMessage">
         <h3>High Score Submitted</h3>
       </div>
-      <button id="resetGameOver" class="modalBtn startGameBtn">Go again</button>
-      <button id="viewHighScoresBtn" class="modalBtn startGameBtn highScoreBtn">View high scores</button>
+      <button id="resetGameOver" aria-label="Start a new game" class="modalBtn startGameBtn">Go again</button>
+      <button id="viewHighScoresBtn" aria-label="View the high scores" class="modalBtn startGameBtn highScoreBtn">View
+        high scores</button>
     </div>
   </div>
 
@@ -78,11 +82,14 @@
         <div id="highScoreArea" class="highScoreGrid gridhscontainer">
           No high scores set
         </div>
-        <button id="sortbyScore" class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i>
+        <button id="sortbyScore" aria-label="Sort scores by score" class="modalBtn startGameBtn modalPadding"><i
+            class="fa-solid fa-arrow-down-1-9"></i>
           Score</button>
-        <button id="sortbyBPS" class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i>
+        <button id="sortbyBPS" aria-label="Sort scores by bombs per second"
+          class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i>
           BPS</button>
-        <button id="sortbyDate" class="modalBtn startGameBtn modalPadding"><i class="fa-solid fa-arrow-down-1-9"></i>
+        <button id="sortbyDate" aria-label="Sort scores by date" class="modalBtn startGameBtn modalPadding"><i
+            class="fa-solid fa-arrow-down-1-9"></i>
           Date</button>
       </div>
       <div class="modalHighScores-color modalFooter">
@@ -124,7 +131,7 @@
           increase and decrease the grid size.</p>
       </div>
       <div class="modalGameHowTo-color modalFooter">
-        <button id="lets_Play_Btn" class="modalBtn startGameBtn">Lets Play</button>
+        <button id="lets_Play_Btn" aria-label="Play a new game" class="modalBtn startGameBtn">Lets Play</button>
       </div>
     </div>
   </div>
@@ -156,7 +163,8 @@
         </label>
         <h3>Reset High Scores:</h3>
         <p>click the button below to reset the high scores</p>
-        <button id="resetHSScores" class="modalBtn redModalBtn">Reset High Scores</button>
+        <button id="resetHSScores" aria-label="Reset the high scores" class="modalBtn redModalBtn">Reset High
+          Scores</button>
       </div>
       <div class="modalGameAccess-color modalFooter">
       </div>
@@ -223,13 +231,14 @@
             <input id="gameLevel" class="slider" data-type="gameLevel" type="range" min="0" max="10" value="5">
           </div>
         </form>
-        <button id="startGameBtn" class="modalBtn startGameBtn">Start Game</button>
-        <button id="endCurrentGameBtn" class="modalBtn">End Current Game</button>
+        <button id="startGameBtn" aria-label="Start Bomb Catcher game" class="modalBtn startGameBtn">Start Game</button>
+        <button id="endCurrentGameBtn" aria-label="End current game" class="modalBtn">End Current Game</button>
         <p id="modalGameSettings-instructions">For more fun, click the button below to change the orginal game and add
           your own custom settings</p>
       </div>
       <div class="modalGameSettings-color modalFooter">
-        <button id="modalGameSettings-customBtn" class="modalBtn">Custom Game</button>
+        <button id="modalGameSettings-customBtn" aria-label="Show custom game setting options" class="modalBtn">Custom
+          Game</button>
       </div>
 
     </div>

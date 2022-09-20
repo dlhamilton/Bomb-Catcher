@@ -14,7 +14,7 @@
 }
 
 body {
-  background-image: url("../images/metalBackground.png");
+  background-image: url("../images/metalBackground.webp");
   background-color: rgb(78, 78, 78);
   background-size: cover;
   height: 100vh;
@@ -25,7 +25,7 @@ body {
 }
 
 .body_light {
-  background-image: url("../images/metalBackground_light.png");
+  background-image: url("../images/metalBackground_light.webp");
   background-color: rgb(238, 238, 238);
 }
 

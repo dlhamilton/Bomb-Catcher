@@ -31,61 +31,61 @@ Image of screens
 
 ***
 
-## [Analyse and UX]
-### [Project Goals]
-### [User Stories]
+## Analyse and UX
+### Project Goals
+### User Stories
 
 ***
 
-## [Design]
-### [Wireframes]
-### [Colour Scheme]
-### [Fonts]
+## Design
+### Wireframes
+### Colour Scheme
+### Fonts
 
 ***
 
-## [Features and Implemenation]
-### [Features]
-### [Function List]
+## Features and Implemenation
+### Features
+### Function List
 
 ***
 
-## [Testing]
-### [Validator Testing]
-#### [HTML]
-#### [CSS]
-#### [JS]
-### [User Stories Testing]
-### [Accessibility Testing]
-### [Manual Testing]
-### [Fixed Bugs]
+## Testing
+### Validator Testing
+#### HTML
+#### CSS
+#### JS
+### User Stories Testing
+### Accessibility Testing
+### Manual Testing
+### Fixed Bugs
 
 ***
 
-## [Deployment]
+## Deployment
 
-### [Cloning & Forking]
-#### [Fork]
+### Cloning & Forking
+#### Fork
 1. On GitHub.com, navigate to the [dlhamilton/Bomb-Catcher](https://github.com/dlhamilton/Bomb-Catcher) repository.
 2. In the top-right corner of the page, click Fork.
 3. By default, forks are named the same as their parent repositories. You can change the name of the fork to distinguish it further.
 4. Add a description to your fork.
 5. Click Create fork.
 
-#### [Clone]
+#### Clone
 1. Above the list of files click the button that says 'Code'.
 2. Copy the URL for the repository.
 3. Open Terminal. Change the directory to the location where you want the cloned directory.
 4. Type git clone, and then paste the URL
 5. Press Enter.
 
-### [Local Deployment]
+### Local Deployment
 1. Sign up to [Gitpod](https://gitpod.io/)
 2. Download the Gitpod browser extension.
 3. On GitHub.com, navigate to the [dlhamilton/Bomb-Catcher](https://github.com/dlhamilton/Bomb-Catcher) repository.
 4. Above the list of files click the button that says 'Gitpod'.
 
-### [Remote Deployment]
+### Remote Deployment
  The site was deployed to Github pages. If you have forked/cloned the repository the steps to deploy are:
  1. On GitHub.com, navigate to your repository.
  2. Navigate to the settings tab.
@@ -97,21 +97,21 @@ Image of screens
 
 *** 
 
-## [Credits]
+## Credits
 
-### [Content]
+### Content
 - Processes from the CI Love Running project was used to help create this website - [CI Love Running](https://code-institute-org.github.io/love-running-2.0/index.html)
 
 - HTML, CSS and Javascript code help was taken from w3schools - [W3Schools](https://www.w3schools.com/)
 
-### [Media]
-#### [Images]
+### Media
+#### Images
 
-#### [Sounds]
+#### Sounds
 
-#### [Icons]
+#### Icons
 - All page Icons - [Font Awesome](https://fontawesome.com/)
 
 ***
 
-## [Useful Links]
+## Useful Links

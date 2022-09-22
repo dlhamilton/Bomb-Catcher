@@ -40,7 +40,7 @@ Bomb Catcher is an addictive game to test your reactions. The game is simple. De
 
 * It has been designed for people who want to keep coming back to improve their score and compete to get the highest score. 
 
-### User Stories - X
+### User Stories
 #### First Time User
 |Story No.|Story|
 | ------------- | ------------- |
@@ -63,7 +63,6 @@ Bomb Catcher is an addictive game to test your reactions. The game is simple. De
 |3|As a user , <br> I want to be able to know when I have set a new high score<br> so that I can know if I need to continue playing<br><br>I know I am done when a indicator shows the user they have set a high score |
 |4|As a user , <br> I want to be able to see what bombs need to be defused<br> so that I can play the game <br><br>I know I am done when the game has a clear indicator of when a bomb has started |
 |5|As a user , <br> I want to be able to defuse bombs<br> so that I can play the game <br><br>I know I am done when the bomb goes back to an idle state after being clicked/tapped |
-
 
 ***
 
@@ -132,8 +131,29 @@ Below are the designs that I can use to build the site. I have used the user sto
     * The most complex function has a cyclomatic complexity value of 20 while the median is 2.
 
 ### User Stories Testing - X
+
+#### First Time User
 |Story No.|Result|Story/ Evidence|
 | ------------- | ------------- | ------------- |
+|1| |As a first time user , <br> I want to be able to know how to start the game <br> so that I can enjoy the game  <br><br>I know I am done when their are clear instructions shown to the user |
+|2| |As a first time user, <br> I want to be able to add sound when playing the game <br> so that I can get more indicators that a bomb has been defused or exploded <br><br>I know I am done when sounds plays when the user defuses a bomb and a sound plays wen a bomb explodes |
+|3| |As a first time user, <br> I want to be able to change the colours <br> so that I can choose my lighting preference  <br><br>I know I am done when I can invert the game colours. |
+
+#### Returning Users
+|Story No.|Result|Story/ Evidence|
+| ------------- | ------------- | ------------- |
+|1| |As a returning user, <br> I want to be able to see high scores <br> so that I can see what scores I need to beat <br><br>I know I am done when the high scores are shown on the game |
+|2| |As a returning user , <br> I want to be able to set a high score<br> so that I can set a new challenge of other players<br><br>I know I am done when the user can enter their score to the high score list |
+|3| |As a returning user , <br> I want to be able to edit the orginal game<br> so that I can  add a new level of challenge and keep coming back to play<br><br>I know I am done when the game allows the speed and grid size to change |
+
+#### All Users
+|Story No.|Result|Story/ Evidence|
+| ------------- | ------------- | ------------- |
+|1| |As a user , <br> I want to be able to pause the game<br> so that I can come back and continue my game if I am enterupted <br><br>I know I am done when the user can stop and return to their game |
+|2| |As a user , <br> I want to be able to stop the game<br> so that I can end a game early if I need to stop <br><br>I know I am done when the game over message is shown |
+|3| |As a user , <br> I want to be able to know when I have set a new high score<br> so that I can know if I need to continue playing<br><br>I know I am done when a indicator shows the user they have set a high score |
+|4| |As a user , <br> I want to be able to see what bombs need to be defused<br> so that I can play the game <br><br>I know I am done when the game has a clear indicator of when a bomb has started |
+|5| |As a user , <br> I want to be able to defuse bombs<br> so that I can play the game <br><br>I know I am done when the bomb goes back to an idle state after being clicked/tapped |
 
 ### Accessibility Testing
 

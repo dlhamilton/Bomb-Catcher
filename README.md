@@ -18,6 +18,7 @@ Bomb Catcher is an addictive game to test your reactions. The game is simple. De
 * [Features and Implemenation](#Features-and-Implemenation)
     * [Features](#Features)
     * [Function List](#Function-List)
+    * [Future Features](#Future-Features)
 * [Testing](#Testing)
     * [Validator Testing](#Validator-Testing)
     * [User Stories Testing](#User-Stories-Testing)
@@ -34,38 +35,72 @@ Bomb Catcher is an addictive game to test your reactions. The game is simple. De
 ***
 
 ## Analyse and UX
-### Project Goals - X
-design for 
-### User Stories - X
-first time user
+### Project Goals
+* The Goal of the project is to make an addictive and fun game that will challenge the user.
 
-returning users
+* It has been designed for people who want to keep coming back to improve their score and compete to get the highest score. 
+
+### User Stories - X
+#### First Time User
+|Story No.|Story|
+| ------------- | ------------- |
+|1| As a , <br> I want to be able to <br> so that I can  <br><br>I know I am done when  |
+|2|As a , <br> I want to be able to <br> so that I can  <br><br>I know I am done when  |
+|3|As a , <br> I want to be able to <br> so that I can  <br><br>I know I am done when  |
+|4|As a , <br> I want to be able to <br> so that I can  <br><br>I know I am done when  |
+
+#### Returning Users
+|Story No.|Story|
+| ------------- | ------------- |
+|1| As a , <br> I want to be able to <br> so that I can  <br><br>I know I am done when  |
+|2|As a , <br> I want to be able to <br> so that I can  <br><br>I know I am done when  |
+|3|As a , <br> I want to be able to <br> so that I can  <br><br>I know I am done when  |
+|4|As a , <br> I want to be able to <br> so that I can  <br><br>I know I am done when  |
+
 
 ***
 
 ## Design
-### Wireframes - X
+### Wireframes
 Below are the designs that I can use to build the site. I have used the user story numbers to link where I can meet the goal in my design. This will help me to think about the users needs as I build the page.
 
 #### Index Page Design
 ![Index Page Design](assets/media/wireframe_index.png)
 #### Game Page Design
+ - The game page on mobile devices
 ![Game Page Design](assets/media/wireframe_game.png)
+
+ - The game layout modal screen on mobile devices
 ![Game Page Design Modal](assets/media/wireframe_game_modal.png)
+
+ - The game layout modal screen on landscape mobile devices
 ![Game Page Design Landscape](assets/media/wireframe_game_landscape.png)
+
+ - The game layout screen on desktop devices
 ![Game Page Design Desktop](assets/media/wireframe_game_landscape_desktop.png)
 
 ### Colour Scheme
+* Colour pallete was custom made on [Coolors](https://coolors.co/)
 ![Site Colours](assets/media/coolors_colours.png)
 ### Fonts
+* Google fonts were used to produce the site:
+ - Press Start P2
 ![Site Colours](assets/media/font_press_start_2p.png)
+ - Silkscreen
 ![Site Colours](assets/media/font_silkscreen.png)
+ - Lexend Deca
 ![Site Colours](assets/media/font_lexend_deca.png)
+
 ***
 
 ## Features and Implemenation - X
 ### Features
+
 ### Function List
+|Function Name|Input|Return|Purpose|
+| ------------- | ------------- | ------------- | ---------- |
+
+### Future Features
 
 ***
 
@@ -90,6 +125,8 @@ Below are the designs that I can use to build the site. I have used the user sto
     * The most complex function has a cyclomatic complexity value of 20 while the median is 2.
 
 ### User Stories Testing - X
+|Story No.|Result|Story/ Evidence|
+| ------------- | ------------- | ------------- |
 
 ### Accessibility Testing
 
@@ -112,6 +149,9 @@ To check the colors and fonts, I used Lighthouse in the Google devtools. The res
 - I have tested that the sorts for high scores work correctly.
 - I have tested that the user can add a high score to local storage.
 - I have tested sound plays at the correct time during the game
+- I have tested the bombs change colour when ignited
+- I have tested that the eplode image appears when a bomb explodes
+- I have tested that pressijg or tapping a bomb defuses it
 
 This is a sample of shots of what the site looks like on different devices. 
 
@@ -147,9 +187,18 @@ This is a sample of shots of what the site looks like on different devices.
 
 ### Fixed Bugs - X
 
-Sound
+#### Sound
 
-rotation
+#### Rotation 
+When on a mobile device the user has the ability to rotate the device. When this happened the bomb grid would appear ofF the screen and would not resize. I used the JQuery commmand to put the bombs into a new ratio aspect that allowed the grid to resize on the screen and use the 'vh' to workout the size of the grid. The function is called when the 'vw' is larger than the 'vh'.
+
+Below is an example of the fixed feature. 
+
+- Portrait game
+![Portrait](/.webp)
+
+- Landscape game
+![Landscape](assets)
 
 ***
 
@@ -188,21 +237,25 @@ rotation
 
 *** 
 
-## Credits - X
+## Credits
 
 ### Content
 - Processes from the CI Love Running project was used to help create this website - [CI Love Running](https://code-institute-org.github.io/love-running-2.0/index.html)
 
+- Processes from the Love Maths project was used to help create this website - [CI Love Maths](https://code-institute-org.github.io/love-maths/)
+
 - HTML, CSS and Javascript code help was taken from w3schools - [W3Schools](https://www.w3schools.com/)
+
+- Responsive web typography to help with bomb ratio - [FlowType.JS](https://simplefocus.com/flowtype/) by [Simple Focus](https://simplefocus.com/) , [Git](https://github.com/simplefocus/FlowType.JS#readme)
 
 ### Media
 #### Images
+- Bomb image from - [pixabay image](https://pixabay.com/vectors/bomb-explosive-detonation-fuze-154456/)
 
 #### Sounds
+- defuse sound and explode sound from - [pixabay sounds](https://pixabay.com/sound-effects/search/fuse/)
 
 #### Icons
 - All page Icons - [Font Awesome](https://fontawesome.com/)
 
 ***
-
-## Useful Links - X

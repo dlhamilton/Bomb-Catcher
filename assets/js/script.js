@@ -515,7 +515,8 @@ function StartBombFuse(gameSettings) {
 
 /**
  * the game function with all; the key information for the game to run
- * @param { settings array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,countdownStartNumber: how long the start countdown shoudl be } gameSettings
+ * @param {array} gameSettingS array contains the settings for the game - x: x_size,y: y_size,l: speed of bombs ,noBombs: number of bombs active at one go ,
+ * countdownStartNumber: how long the start countdown shoudl be 
  */
 function game(gameSettings) {
   startTime = new Date();

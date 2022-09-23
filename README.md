@@ -121,17 +121,17 @@ The game layout modal screen on landscape mobile devices
 ## Features and Implemenation
 
 ### Features
-#### Index Page
+#### Index Page
 **Welcome Button**<br>
-Button to enter game, click the button to go to the game page.
+Button to enter game, click the button to go to the game page.<br>
 ![index_button](assets/media/index_Desktop.webp)
 
 **Creator Link**<br>
-link to my Github so you can contact the developer.
+link to my Github so you can contact the developer.<br>
 ![index_creator](assets/media/index_Desktop_creator.webp)
 
 **Index Signpost**<br>
-Details about the game to give the user clear signposts.
+Details about the game to give the user clear signposts.<br>
 ![index_signpost](assets/media/index_Desktop_SignPost.webp)
 
 

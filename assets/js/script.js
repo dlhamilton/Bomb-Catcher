@@ -519,6 +519,7 @@ function StartBombFuse(gameSettings) {
  * countdownStartNumber: how long the start countdown shoudl be 
  */
 function game(gameSettings) {
+  topScore = getTopScore();
   startTime = new Date();
   score = 0;
   let gameSpeed = gameSettings.speed * 100;
@@ -768,6 +769,7 @@ function findHSindex(arr) {
       return i;
     }
   }
+  return null;
 }
 
 /**

@@ -141,41 +141,41 @@ Game Instruction modal will show when the user first visits the site. The modal 
 ![game_introduction_modal](assets/media/chrome_images/game_instructions_modal.webp)
 
 **Game Settings Modal**<br>
-Orginal Game - has the standard settings of a 4 x 4 grid with 3 active bombs at a time with a fuse length of 3 seconds. The countdown to start the game will be 3 seconds and game level will be 5.<br>
+**Orginal Game** - has the standard settings of a 4 x 4 grid with 3 active bombs at a time with a fuse length of 3 seconds. The countdown to start the game will be 3 seconds and game level will be 5.<br>
 ![game_settings_original_modal](assets/media/chrome_images/game_settings_modal.webp)
 
-Custom game - has a form where the user can set their own game settings. When the uses confirms the game is created with the chossen settings. <br>
+**Custom game** - has a form where the user can set their own game settings. When the uses confirms the game is created with the chossen settings. <br>
 ![game_settings_custom_modal](assets/media/chrome_images/game_Settings_modal_custom.webp)
 
 **Navigation and Controls**<br>
-* Stop game - Stop the game and brings up the game over modal.
-* Pause - Pauses the game and then allows the user to continue.
-* Game settings - Opens the game settings modal and also pauses the game if it is currently playing. 
-* Settings - Opens the modal which contians the volume, sound and ligh mode settings. You can also reset the high scores. 
-* Instructions - Shows the game instuctions modal.
-* High scores - Shows the high scores modal.
-* Home - returns the user back to the index page.<br>
+* **Stop game** - Stop the game and brings up the game over modal.
+* **Pause** - Pauses the game and then allows the user to continue.
+* **Game settings** - Opens the game settings modal and also pauses the game if it is currently playing. 
+* **Settings** - Opens the modal which contians the volume, sound and ligh mode settings. You can also reset the high scores. 
+* **Instructions** - Shows the game instuctions modal.
+* **High scores** - Shows the high scores modal.
+* **Home** - returns the user back to the index page.<br>
 ![nav_controls](assets/media/chrome_images/game_nav.png)
 
 **Game Elements**<br>
-* Game grid - The grid is made when the user starts a game. The scale of the bombs is dependent on how many bombs are in the grid. The max size of the grid is 500px
-* Bombs - Will change colour when they start to fuse. The colour scale is shown below. When a user taps or clicks the bombs it will defuse and go back to idle. 
-* Exploded bomb -  if the user misses a bomb then the icon will change to an explosion symbol. 
-* Score indicator - This shows the users score. The colour of the text will change to gold if the user gets a new high score. <br>
+* **Game grid** - The grid is made when the user starts a game. The scale of the bombs is dependent on how many bombs are in the grid. The max size of the grid is 500px
+* **Bombs** - Will change colour when they start to fuse. The colour scale is shown below. When a user taps or clicks the bombs it will defuse and go back to idle. 
+* **Exploded bomb** -  if the user misses a bomb then the icon will change to an explosion symbol. 
+* **Score indicator** - This shows the users score. The colour of the text will change to gold if the user gets a new high score. <br>
 ![game_play](assets/media/chrome_images/game_grid.webp)
 ![game_score](assets/media/chrome_images/game_score.png)
 
 **Settings Modal**<br>
-* Game sounds - The user has an option of turning on game sounds which will enable a pop sound when the user defuses a bomb and an explosion sound when a bomb explodes. The volume will be hidden until the user turns the sound switch on. 
-* Light mode - will change the background, icons and bomb colours to suit the users preference. 
-* Reset high score - This will reset the the local storage and remove the high score stored.<br>
+* **Game sounds** - The user has an option of turning on game sounds which will enable a pop sound when the user defuses a bomb and an explosion sound when a bomb explodes. The volume will be hidden until the user turns the sound switch on. 
+* **Light mode** - will change the background, icons and bomb colours to suit the users preference. 
+* **Reset high score** - This will reset the the local storage and remove the high score stored.<br>
 ![nav_controls](assets/media/chrome_images/game_settinga_modal_sound.webp)
 ![nav_controls_2](assets/media/chrome_images/game_settings_modal_volume.webp)
 
 **High Scores Modal**<br>
-* Enter New high score - Users can enter their name when they set a new high score and it will add it to lcoal storage, It will format the names with a captial letter for the first character.
-* High scores - shows the high scores that are stored in local storage. 
-* Sort high scores - This will sort the high scores in score order, bombs defused per second or the date usimng a bubble sort. 
+* **Enter New high score** - Users can enter their name when they set a new high score and it will add it to lcoal storage, It will format the names with a captial letter for the first character.
+* **High scores** - shows the high scores that are stored in local storage. 
+* **Sort high scores** - This will sort the high scores in score order, bombs defused per second or the date usimng a bubble sort. 
 ![highscore](assets/media/chrome_images/game_highscore.webp)
 ![game_over_modal](assets/media/chrome_images/game_over_modal.webp)
 
@@ -297,22 +297,22 @@ This is a sample of shots of what the site looks like on different devices.
 ![android high score modal](assets/media/android_images/and_highscore.webp)
 
 ### Fixed Bugs
-#### Sound
+#### Sound Bug
 In the game we have two game sounds. Defuse a bomb pop and explosion. Both sounds have a trigger for when they should play. The Bomb defuse pop should play when the user clicks/ taps the lit bomb and defuses it. The explosion sound should play when a user is unable to defuse a bomb in time and the game ends. The bug we had was during testing. The sound was not playing at the correct time when running on ios safari. Trying to play multiple sounds would mean that the sounds were getting added onto a queue and instead of playing at the right time it would play as soon as it was at the front of the queue. 
 
 There were 2 factors hat enabled the sound to work with ios. The first was the refactoring of the sound to create the audio element when the sound switch was set to true. This enablled the audio to play. This means that the audio element does not need a new trigger to play because the auido element already exists. I enabled the bomb pop to play at the correct time by controlling the src of the audio which made the sound play again from the beginning straight away. It also means the autoplay issue did not effect the bomb explode sound because it did not need to create a new audio element, just play the current one with a new src. 
 
 The other factor that allowed the ios safari audio to play was the new update to ios 16 which enablled sound to work like other browsers. This means that older models will not be able to have the sound working effectivy but newer/updated devices will work. 
 
-#### Rotation 
+#### Rotation Bug
 When on a mobile device the user has the ability to rotate the device. When this happened the bomb grid would appear ofF the screen and would not resize. I used the JQuery commmand to put the bombs into a new ratio aspect that allowed the grid to resize on the screen and use the 'vh' to workout the size of the grid. The function is called when the 'vw' is larger than the 'vh'.
 
 Below is an example of the fixed feature. 
 
-- Portrait game<br>
+- **Portrait game**<br>
 ![Portrait](assets/media/android_images/and_game_grid.webp)
 
-- Landscape game<br>
+- **Landscape game**<br>
 ![Landscape](assets/media/android_images/and_game_grid_land.webp)
 
 ***

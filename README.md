@@ -75,7 +75,7 @@ Below are the designs that I can use to build the site. I have used the user sto
 #### Index Page Design
 <details><summary>Click to see design</summary>
 
-![Index Page Design](assets/media/wireframe_index.png)
+![Index Page Design](assets/media//wireframe_imageswireframe_index.png)
 </details><br>
 
 #### Game Page Design
@@ -83,25 +83,25 @@ Below are the designs that I can use to build the site. I have used the user sto
 The game page on mobile devices
  <details><summary>Click to see design</summary>
 
-![Game Page Design](assets/media/wireframe_game.png)
+![Game Page Design](assets/media/wireframe_images/wireframe_game.png)
 </details><br>
 
  The game layout modal screen on mobile devices
  <details><summary>Click to see design</summary>
 
-![Game Page Design Modal](assets/media/wireframe_game_modal.png)
+![Game Page Design Modal](assets/media/wireframe_images/wireframe_game_modal.png)
 </details><br>
 
 The game layout modal screen on landscape mobile devices
  <details><summary>Click to see design</summary>
 
-![Game Page Design Landscape](assets/media/wireframe_game_landscape.png)
+![Game Page Design Landscape](assets/media/wireframe_images/wireframe_game_landscape.png)
 </details><br>
 
  The game layout screen on desktop devices
  <details><summary>Click to see design</summary>
 
-![Game Page Design Desktop](assets/media/wireframe_game_landscape_desktop.png)
+![Game Page Design Desktop](assets/media/wireframe_images/wireframe_game_landscape_desktop.png)
 </details><br>
 
 ### Colour Scheme
@@ -110,11 +110,11 @@ The game layout modal screen on landscape mobile devices
 ### Fonts
 * Google fonts were used to produce the site:
  - Press Start P2<br>
-![Site Colours](assets/media/font_press_start_2p.png)
+![Site Colours](assets/media/font_images/font_press_start_2p.png)
  - Silkscreen<br>
-![Site Colours](assets/media/font_silkscreen.png)
+![Site Colours](assets/media/font_images/font_silkscreen.png)
  - Lexend Deca<br>
-![Site Colours](assets/media/font_lexend_deca.png)
+![Site Colours](assets/media/font_images/font_lexend_deca.png)
 
 ***
 
@@ -225,25 +225,25 @@ The game screen changes colour to this in light mode.<br>
 #### First Time User
 |Story No.|Result|Story/ Evidence|
 | ------------- | ------------- | ------------- |
-|1|Test Pass|As a first time user , <br> I want to be able to know how to start the game <br> so that I can enjoy the game  <br><br>I know I am done when their are clear instructions shown to the user <br><br>Evidence:<br>The index page has clear signpost how to start the game and when a user first opens the game page the instruction modal appears telling the user how to play the game.<br> ![](assets/media/)|
-|2|Test Pass |As a first time user, <br> I want to be able to add sound when playing the game <br> so that I can get more indicators that a bomb has been defused or exploded <br><br>I know I am done when sounds plays when the user defuses a bomb and a sound plays wen a bomb explodes <br><br>Evidence:<br>In the settings modal, users are able to turn the sound on and control the volume level.<br> ![](assets/media/)|
-|3|Test Pass |As a first time user, <br> I want to be able to change the colours <br> so that I can choose my lighting preference  <br><br>I know I am done when I can invert the game colours. <br><br>Evidence:<br>In the settings modal, users are able to turn the light mode on and off.<br> ![](assets/media/)|
+|1|Test Pass|As a first time user , <br> I want to be able to know how to start the game <br> so that I can enjoy the game  <br><br>I know I am done when their are clear instructions shown to the user <br><br>Evidence:<br>The index page has clear signpost how to start the game and when a user first opens the game page the instruction modal appears telling the user how to play the game.<br> ![index_page](assets/media/index_Desktop.webp)|
+|2|Test Pass |As a first time user, <br> I want to be able to add sound when playing the game <br> so that I can get more indicators that a bomb has been defused or exploded <br><br>I know I am done when sounds plays when the user defuses a bomb and a sound plays wen a bomb explodes <br><br>Evidence:<br>In the settings modal, users are able to turn the sound on and control the volume level.<br> ![sound_modal](assets/media/chrome_images/game_settings_modal_volume.webp)|
+|3|Test Pass |As a first time user, <br> I want to be able to change the colours <br> so that I can choose my lighting preference  <br><br>I know I am done when I can invert the game colours. <br><br>Evidence:<br>In the settings modal, users are able to turn the light mode on and off.<br> ![light_mode](assets/media/chrome_images/game_settinga_modal_sound.webp)|
 
 #### Returning Users
 |Story No.|Result|Story/ Evidence|
 | ------------- | ------------- | ------------- |
-|1|Test Pass |As a returning user, <br> I want to be able to see high scores <br> so that I can see what scores I need to beat <br><br>I know I am done when the high scores are shown on the game <br><br>Evidence:<br>The user can open the high score modal and it loads the scores from local storage.<br> ![](assets/media/)|
-|2|Test Pass |As a returning user , <br> I want to be able to set a high score<br> so that I can set a new challenge of other players<br><br>I know I am done when the user can enter their score to the high score list <br><br>Evidence:<br>When a game is over it will check to see if the users score is in the top ten and give the user the ability to enter a name and add the score to local storage.<br> ![](assets/media/)|
-|3|Test Pass |As a returning user , <br> I want to be able to edit the orginal game<br> so that I can  add a new level of challenge and keep coming back to play<br><br>I know I am done when the game allows the speed and grid size to change <br><br>Evidence:<br>The game settings modal allows the user to change the basic game settings.<br> ![](assets/media/)|
+|1|Test Pass |As a returning user, <br> I want to be able to see high scores <br> so that I can see what scores I need to beat <br><br>I know I am done when the high scores are shown on the game <br><br>Evidence:<br>The user can open the high score modal and it loads the scores from local storage.<br> ![high_score](assets/media/chrome_images/game_highscore.webp)|
+|2|Test Pass |As a returning user , <br> I want to be able to set a high score<br> so that I can set a new challenge of other players<br><br>I know I am done when the user can enter their score to the high score list <br><br>Evidence:<br>When a game is over it will check to see if the users score is in the top ten and give the user the ability to enter a name and add the score to local storage.<br> ![enter_high_score](assets/media/chrome_images/game_over_modal.webp)|
+|3|Test Pass |As a returning user , <br> I want to be able to edit the orginal game<br> so that I can  add a new level of challenge and keep coming back to play<br><br>I know I am done when the game allows the speed and grid size to change <br><br>Evidence:<br>The game settings modal allows the user to change the basic game settings.<br> ![custom_settings](assets/media/chrome_images/game_Settings_modal_custom.webp)|
 
 #### All Users
 |Story No.|Result|Story/ Evidence|
 | ------------- | ------------- | ------------- |
-|1|Test Pass |As a user , <br> I want to be able to pause the game<br> so that I can come back and continue my game if I am enterupted <br><br>I know I am done when the user can stop and return to their game <br><br>Evidence:<br>The pause icon will pause the game state, pressing pause again will continue the game.<br> ![](assets/media/)|
-|2|Test Pass |As a user , <br> I want to be able to stop the game<br> so that I can end a game early if I need to stop <br><br>I know I am done when the game over message is shown <br><br>Evidence:<br>The stop button will end the current game and show the score.<br> ![](assets/media/)|
-|3| Test Pass|As a user , <br> I want to be able to know when I have set a new high score<br> so that I can know if I need to continue playing<br><br>I know I am done when a indicator shows the user they have set a high score <br><br>Evidence:<br>The score area will turn gold when the user has a new top score.<br> ![](assets/media/)|
-|4|Test Pass |As a user , <br> I want to be able to see what bombs need to be defused<br> so that I can play the game <br><br>I know I am done when the game has a clear indicator of when a bomb has started <br><br>Evidence:<br>A bomb will start to change colour when it has been lit.<br> ![](assets/media/)|
-|5|Test Pass |As a user , <br> I want to be able to defuse bombs<br> so that I can play the game <br><br>I know I am done when the bomb goes back to an idle state after being clicked/tapped <br><br>Evidence:<br>A bomb will stop exploding and go back to being idle when clicked/tapped.<br> ![](assets/media/)|
+|1|Test Pass |As a user , <br> I want to be able to pause the game<br> so that I can come back and continue my game if I am enterupted <br><br>I know I am done when the user can stop and return to their game <br><br>Evidence:<br>The pause icon will pause the game state, pressing pause again will continue the game.<br> ![pause_button](assets/media/chrome_images/game_nav.png)|
+|2|Test Pass |As a user , <br> I want to be able to stop the game<br> so that I can end a game early if I need to stop <br><br>I know I am done when the game over message is shown <br><br>Evidence:<br>The stop button will end the current game and show the score.<br> ![stop_button](assets/media/chrome_images/game_nav.png)|
+|3| Test Pass|As a user , <br> I want to be able to know when I have set a new high score<br> so that I can know if I need to continue playing<br><br>I know I am done when a indicator shows the user they have set a high score <br><br>Evidence:<br>The score area will turn gold when the user has a new top score.<br> ![game_score](assets/media/chrome_images/game_score.png)|
+|4|Test Pass |As a user , <br> I want to be able to see what bombs need to be defused<br> so that I can play the game <br><br>I know I am done when the game has a clear indicator of when a bomb has started <br><br>Evidence:<br>A bomb will start to change colour when it has been lit.<br> ![bomb_colour](assets/media/chrome_images/bomb_colours.png)|
+|5|Test Pass |As a user , <br> I want to be able to defuse bombs<br> so that I can play the game <br><br>I know I am done when the bomb goes back to an idle state after being clicked/tapped <br><br>Evidence:<br>A bomb will stop exploding and go back to being idle when clicked/tapped.<br> ![gameplay](assets/media/android_images/and_game_grid.webp)|
 
 ### Accessibility Testing
 
@@ -263,44 +263,38 @@ To check the colors and fonts, I used Lighthouse in the Google devtools. The res
 - I have tested all links, internal and external. They go to the correct destination and open in the correct way. 
 - I have tested that all text and fonts are readable and easy to understand.
 - I have tested that the correct data is passed when the forms are submitted. 
-- I have tested that the sorts for high scores work correctly.
+- I have tested that the sorts for high scores work correctly, using a bubble sort.
 - I have tested that the user can add a high score to local storage.
-- I have tested sound plays at the correct time during the game
+- I have tested that sound plays at the correct time during the game. When defused and exploded.
 - I have tested the bombs change colour when ignited
 - I have tested that the explode image appears when a bomb explodes
 - I have tested that pressing or tapping a bomb defuses it
+- I have tested that the user can change the game colours to light mode.
 
 This is a sample of shots of what the site looks like on different devices. 
 
 #### Desktop
-|Safari 13.1.1|Firefox 103.0.2|Chrome 104.0.5112.79|
+|Safari 15.6|Firefox 103.0.2|Chrome 106.0.5249.61|
 | ----------- | ------------- | ------------------ |
-|![safari index page](assets/media/safari_index.webp)|![firefox index page](assets/media/firefox_index.webp)|![chrome index page](assets/media/chrome_index.webp)|
-|![safari game modal page](assets/media/safari_lessons.webp)|![firefox game modal page](assets/media/firefox_lessons.webp)|![chrome game modal page](assets/media/chrome_lessons.webp)|
-|![safari play game](assets/media/safari_lesson_content.webp)|![firefox play gamepage](assets/media/firefox_lesson_content.webp)|![chrome play game page](assets/media/chrome_lesson_content.webp)|
-|![safari high score modal](assets/media/safari_dropin.webp)|![firefox high score modal](assets/media/firefox_dropin.webp)|![chrome high score modal](assets/media/chrome_dropin.webp)|
+|![safari index page](assets/media/safari_images/saf_index.webp)|![firefox index page](assets/media/firefox_images/fire_index.webp)|![chrome index page](assets/media/chrome_images/chrome_index.webp)|
+|![safari game modal page](assets/media/safari_images/saf_custom_game.webp)|![firefox game modal page](assets/media/firefox_images/fire_instruction.webp)|![chrome game modal page](assets/media/chrome_images/chrome_custom.webp)|
+|![safari play game](assets/media/safari_images/saf_game_play.webp)|![firefox play gamepage](assets/media/firefox_images/fire_game_play.webp)|![chrome play game page](assets/media/chrome_images/chrome_gameplay.webp)|
+|![safari high score modal](assets/media/safari_images/saf_highscore.webp)|![firefox high score modal](assets/media/firefox_images/fire_highscore.webp)|![chrome high score modal](assets/media/chrome_images/chrome_highscore.webp)|
 
 #### Mobile and Tablet
-##### Safari iOS 15.5
+##### Safari iOS 16.0
 
-![safari ios index page](assets/media/ios_index.webp) ![safari ios index page](assets/media/ios_index2.webp)
-![safari ios game modal page](assets/media/ios_lessons.webp) ![safari ios game modal page](assets/media/ios_lessons2.webp)
-![safari ios play game](assets/media/ios_lesson_content.webp) ![safari ios lesson play game](assets/media/ios_lesson_content2.webp)
-![safari ios high score modal](assets/media/ios_dropin.webp) ![safari ios high score modal](assets/media/ios_dropin2.webp)
+![safari ios index page](assets/media/ios_images/ios_index.webp)
+![safari ios game modal page](assets/media/ios_images/ios_game_settings_custom.webp)
+![safari ios play game](assets/media/ios_images/ios_game_grid.webp)
+![safari ios high score modal](assets/media/ios_images/ios_high_score_empty.webp)
 
-##### Chrome 104 for Android
+##### Chrome 105 for Android
 
-![android index page](assets/media/android_index.webp)
-![android game modal page](assets/media/android_lessons.webp) ![android game modal page](assets/media/android_lessons2.webp)
-![android play game](assets/media/android_lesson_content.webp) ![android play game](assets/media/android_lesson_content2.webp)
-![android high score modal](assets/media/android_dropin.webp)
-
-##### Safari iOS tablet 12.5.5
-
-![android index page](assets/media/tablet_index.webp)
-![android game modal page](assets/media/tablet_lessons.webp)
-![android play game](assets/media/tablet_lesson_content.webp)
-![android high score modal](assets/media/tablet_dropin.webp)
+![android index page](assets/media/android_images/and_index.webp)
+![android game modal page](assets/media/android_images/and_game_instructions.webp)
+![android play game](assets/media/android_images/and_game_grid.webp)
+![android high score modal](assets/media/android_images/and_highscore.webp)
 
 ### Fixed Bugs
 #### Sound
@@ -315,11 +309,11 @@ When on a mobile device the user has the ability to rotate the device. When this
 
 Below is an example of the fixed feature. 
 
-- Portrait game
-![Portrait](/.webp)
+- Portrait game<br>
+![Portrait](assets/media/android_images/and_game_grid.webp)
 
-- Landscape game
-![Landscape](assets)
+- Landscape game<br>
+![Landscape](assets/media/android_images/and_game_grid_land.webp)
 
 ***
 

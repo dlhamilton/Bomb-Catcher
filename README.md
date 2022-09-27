@@ -315,6 +315,14 @@ Below is an example of the fixed feature.
 - **Landscape game**<br>
 ![Landscape](assets/media/android_images/and_game_grid_land.webp)
 
+#### Footer Bug
+When the screen was landscape for mobile devices the footer would overlap the score text when playing the game. This was fixed by moving the footer to align right and move down when the screen height was less than 650px. The before and after images are shown below:
+ - **Before**<br>
+![Landscape](assets/media/android_images/and_game_grid_land.webp)
+
+ - **After**<br>
+![Landscape](assets/media/android_images/and_game_grid_land_fix.webp)
+
 ***
 
 ## Deployment

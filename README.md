@@ -127,7 +127,7 @@ Button to enter game, click the button to go to the game page.<br>
 ![index_button](assets/media/index_Desktop.webp)
 
 **Creator Link**<br>
-link to my Github so you can contact the developer.<br>
+Link to my Github so you can contact the developer.<br>
 ![index_creator](assets/media/index_Desktop_creator.webp)
 
 **Index Signpost**<br>
@@ -175,7 +175,7 @@ Game Instruction modal will show when the user first visits the site. The modal 
 **High Scores Modal**<br>
 * **Enter New high score** - Users can enter their name when they set a new high score and it will add it to lcoal storage, It will format the names with a captial letter for the first character.
 * **High scores** - shows the high scores that are stored in local storage. 
-* **Sort high scores** - This will sort the high scores in score order, bombs defused per second or the date usimng a bubble sort. 
+* **Sort high scores** - This will sort the high scores in score order, bombs defused per second or the date using a bubble sort. 
 ![highscore](assets/media/chrome_images/game_highscore.webp)
 ![game_over_modal](assets/media/chrome_images/game_over_modal.webp)
 

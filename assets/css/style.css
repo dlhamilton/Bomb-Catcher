@@ -796,6 +796,17 @@ Score Items
 
   /* page footer */
   .creatorFooter {
+    bottom: 1%;
+    text-align: right;
+  }
+}
+
+/* for large mobile screen sizes when landscape */
+@media screen and (max-height: 650px) {
+
+  /* page footer */
+  .creatorFooter {
+    bottom: 1%;
     text-align: right;
   }
 }

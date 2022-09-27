@@ -75,7 +75,7 @@ Below are the designs that I can use to build the site. I have used the user sto
 #### Index Page Design
 <details><summary>Click to see design</summary>
 
-![Index Page Design](assets/media//wireframe_imageswireframe_index.png)
+![Index Page Design](assets/media/wireframe_images/wireframe_index.png)
 </details><br>
 
 #### Game Page Design
@@ -175,7 +175,7 @@ Game Instruction modal will show when the user first visits the site. The modal 
 **High Scores Modal**<br>
 * **Enter New high score** - Users can enter their name when they set a new high score and it will add it to lcoal storage, It will format the names with a captial letter for the first character.
 * **High scores** - shows the high scores that are stored in local storage. 
-* **Sort high scores** - This will sort the high scores in score order, bombs defused per second or the date using a bubble sort. 
+* **Sort high scores** - This will sort the high scores in score order, bombs defused per second or the date using a bubble sort. <br>
 ![highscore](assets/media/chrome_images/game_highscore.webp)
 ![game_over_modal](assets/media/chrome_images/game_over_modal.webp)
 

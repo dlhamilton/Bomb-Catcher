@@ -1,5 +1,5 @@
 # Bomb Catcher
-Bomb Catcher is an addictive game to test your reactions. The game is simple. Defuse the bombs before the explode. When the game starts use your fingers to tap or click  the lit bombs. How many bombs will you be able to defuse, will you set the new high score. For a challenge increase the game difficulty and create your own custom session by changing the grid size, increasing the number of bombs or shorten the fuse time.  
+Bomb Catcher is an addictive game to test your reactions. The game is simple. Defuse the bombs before they explode. When the game starts use your fingers to tap or click  the lit bombs. How many bombs will you be able to defuse? will you set the new high score? For a challenge increase the game difficulty and create your own custom session by changing the grid size, increasing the number of bombs or shorten the fuse time.  
 
  The live link can be found here - [Bomb Catcher](https://dlhamilton.github.io/Bomb-Catcher/)
 
@@ -45,25 +45,25 @@ Bomb Catcher is an addictive game to test your reactions. The game is simple. De
 #### First Time User
 |Story No.|Story|
 | ------------- | ------------- |
-|1|As a first time user , <br> I want to be able to know how to start the game <br> so that I can enjoy the game  <br><br>I know I am done when their are clear instructions shown to the user |
-|2|As a first time user, <br> I want to be able to add sound when playing the game <br> so that I can get more indicators that a bomb has been defused or exploded <br><br>I know I am done when sounds plays when the user defuses a bomb and a sound plays wen a bomb explodes |
-|3|As a first time user, <br> I want to be able to change the colours <br> so that I can choose my lighting preference  <br><br>I know I am done when I can invert the game colours. |
+|1|As a first time user , <br> I want to be able to know how to start the game <br> so that I can enjoy the game.  <br><br>I know I am done when there are clear instructions shown to the user. |
+|2|As a first time user, <br> I want to be able to add sound when playing the game <br> so that I can get more indicators that a bomb has been defused or exploded. <br><br>I know I am done when sounds plays when the user defuses a bomb and a sound plays when a bomb explodes. |
+|3|As a first time user, <br> I want to be able to change the colours <br> so that I can choose my lighting preference.  <br><br>I know I am done when I can change the game colours. |
 
 #### Returning Users
 |Story No.|Story|
 | ------------- | ------------- |
-|1|As a returning user, <br> I want to be able to see high scores <br> so that I can see what scores I need to beat <br><br>I know I am done when the high scores are shown on the game |
-|2|As a returning user , <br> I want to be able to set a high score<br> so that I can set a new challenge of other players<br><br>I know I am done when the user can enter their score to the high score list |
-|3|As a returning user , <br> I want to be able to edit the orginal game<br> so that I can  add a new level of challenge and keep coming back to play<br><br>I know I am done when the game allows the speed and grid size to change |
+|1|As a returning user, <br> I want to be able to see high scores <br> so that I can see what scores I need to beat. <br><br>I know I am done when the high scores are shown on the game. |
+|2|As a returning user , <br> I want to be able to set a high score<br> so that I can set a new challenge of other players.<br><br>I know I am done when the user can enter their score to the high score list. |
+|3|As a returning user , <br> I want to be able to edit the orginal game<br> so that I can  add a new level of challenge and keep coming back to play.<br><br>I know I am done when the game allows the speed and grid size to change. |
 
 #### All Users
 |Story No.|Story|
 | ------------- | ------------- |
-|1|As a user , <br> I want to be able to pause the game<br> so that I can come back and continue my game if I am enterupted <br><br>I know I am done when the user can stop and return to their game |
-|2|As a user , <br> I want to be able to stop the game<br> so that I can end a game early if I need to stop <br><br>I know I am done when the game over message is shown |
-|3|As a user , <br> I want to be able to know when I have set a new high score<br> so that I can know if I need to continue playing<br><br>I know I am done when a indicator shows the user they have set a high score |
-|4|As a user , <br> I want to be able to see what bombs need to be defused<br> so that I can play the game <br><br>I know I am done when the game has a clear indicator of when a bomb has started |
-|5|As a user , <br> I want to be able to defuse bombs<br> so that I can play the game <br><br>I know I am done when the bomb goes back to an idle state after being clicked/tapped |
+|1|As a user , <br> I want to be able to pause the game<br> so that I can come back and continue my game if I am interrupted. <br><br>I know I am done when the user can stop and return to their game. |
+|2|As a user , <br> I want to be able to stop the game<br> so that I can end a game early if I need to stop. <br><br>I know I am done when the game over message is shown. |
+|3|As a user , <br> I want to be able to know when I have set a new high score<br> so that I can know if I need to continue playing.<br><br>I know I am done when a indicator shows the user they have set a high score. |
+|4|As a user , <br> I want to be able to see what bombs need to be defused<br> so that I can play the game. <br><br>I know I am done when the game has a clear indicator of when a bomb has started. |
+|5|As a user , <br> I want to be able to defuse bombs<br> so that I can play the game.<br><br>I know I am done when the bomb goes back to an idle state after being clicked/tapped. |
 
 ***
 
@@ -144,7 +144,7 @@ Game Instruction modal will show when the user first visits the site. The modal 
 **Orginal Game** - has the standard settings of a 4 x 4 grid with 3 active bombs at a time with a fuse length of 3 seconds. The countdown to start the game will be 3 seconds and game level will be 5.<br>
 ![game_settings_original_modal](assets/media/chrome_images/game_settings_modal.webp)
 
-**Custom game** - has a form where the user can set their own game settings. When the uses confirms the game is created with the chossen settings. <br>
+**Custom game** - has a form where the user can set their own game settings. When the user confirms, the game is created with the chosen settings. <br>
 ![game_settings_custom_modal](assets/media/chrome_images/game_Settings_modal_custom.webp)
 
 **Navigation and Controls**<br>
@@ -193,7 +193,7 @@ The game screen changes colour to this in light mode.<br>
 
 ### Future Features<br>
 
-* A future feature is to add a game mode where the game speed will increase, bomb fuse will decrease and number of active bombs will increase as the user progresses in the game. Thus will increse the challenge and hopfully get users to keep playing.
+* A future feature is to add a game mode where the game speed will increase, bomb fuse will decrease and number of active bombs will increase as the user progresses in the game. This will increase the challenge and hopefully get users to keep playing.
 
 * A future feature is to add a timed game where users will need to defuse as many bombs as possible in a given time frame. This will make the game more competitive as players can challenge each other to see who has the faster hand speed. 
 
@@ -225,25 +225,25 @@ The game screen changes colour to this in light mode.<br>
 #### First Time User
 |Story No.|Result|Story/ Evidence|
 | ------------- | ------------- | ------------- |
-|1|Test Pass|As a first time user , <br> I want to be able to know how to start the game <br> so that I can enjoy the game  <br><br>I know I am done when their are clear instructions shown to the user <br><br>Evidence:<br>The index page has clear signpost how to start the game and when a user first opens the game page the instruction modal appears telling the user how to play the game.<br> ![index_page](assets/media/index_Desktop.webp)|
-|2|Test Pass |As a first time user, <br> I want to be able to add sound when playing the game <br> so that I can get more indicators that a bomb has been defused or exploded <br><br>I know I am done when sounds plays when the user defuses a bomb and a sound plays wen a bomb explodes <br><br>Evidence:<br>In the settings modal, users are able to turn the sound on and control the volume level.<br> ![sound_modal](assets/media/chrome_images/game_settings_modal_volume.webp)|
-|3|Test Pass |As a first time user, <br> I want to be able to change the colours <br> so that I can choose my lighting preference  <br><br>I know I am done when I can invert the game colours. <br><br>Evidence:<br>In the settings modal, users are able to turn the light mode on and off.<br> ![light_mode](assets/media/chrome_images/game_settinga_modal_sound.webp)|
+|1|Test Pass|As a first time user , <br> I want to be able to know how to start the game. <br> so that I can enjoy the game  <br><br>I know I am done when their are clear instructions shown to the user. <br><br>Evidence:<br>The index page has clear signpost how to start the game and when a user first opens the game page the instruction modal appears telling the user how to play the game.<br> ![index_page](assets/media/index_Desktop.webp)|
+|2|Test Pass |As a first time user, <br> I want to be able to add sound when playing the game <br> so that I can get more indicators that a bomb has been defused or exploded. <br><br>I know I am done when sounds plays when the user defuses a bomb and a sound plays wen a bomb explodes. <br><br>Evidence:<br>In the settings modal, users are able to turn the sound on and control the volume level.<br> ![sound_modal](assets/media/chrome_images/game_settings_modal_volume.webp)|
+|3|Test Pass |As a first time user, <br> I want to be able to change the colours <br> so that I can choose my lighting preference.  <br><br>I know I am done when I can change the game colours. <br><br>Evidence:<br>In the settings modal, users are able to turn the light mode on and off.<br> ![light_mode](assets/media/chrome_images/game_settinga_modal_sound.webp)|
 
 #### Returning Users
 |Story No.|Result|Story/ Evidence|
 | ------------- | ------------- | ------------- |
-|1|Test Pass |As a returning user, <br> I want to be able to see high scores <br> so that I can see what scores I need to beat <br><br>I know I am done when the high scores are shown on the game <br><br>Evidence:<br>The user can open the high score modal and it loads the scores from local storage.<br> ![high_score](assets/media/chrome_images/game_highscore.webp)|
-|2|Test Pass |As a returning user , <br> I want to be able to set a high score<br> so that I can set a new challenge of other players<br><br>I know I am done when the user can enter their score to the high score list <br><br>Evidence:<br>When a game is over it will check to see if the users score is in the top ten and give the user the ability to enter a name and add the score to local storage.<br> ![enter_high_score](assets/media/chrome_images/game_over_modal.webp)|
+|1|Test Pass |As a returning user, <br> I want to be able to see high scores <br> so that I can see what scores I need to beat. <br><br>I know I am done when the high scores are shown on the game. <br><br>Evidence:<br>The user can open the high score modal and it loads the scores from local storage.<br> ![high_score](assets/media/chrome_images/game_highscore.webp)|
+|2|Test Pass |As a returning user , <br> I want to be able to set a high score<br> so that I can set a new challenge of other players.<br><br>I know I am done when the user can enter their score to the high score list. <br><br>Evidence:<br>When a game is over it will check to see if the users score is in the top ten and give the user the ability to enter a name and add the score to local storage.<br> ![enter_high_score](assets/media/chrome_images/game_over_modal.webp)|
 |3|Test Pass |As a returning user , <br> I want to be able to edit the orginal game<br> so that I can  add a new level of challenge and keep coming back to play<br><br>I know I am done when the game allows the speed and grid size to change <br><br>Evidence:<br>The game settings modal allows the user to change the basic game settings.<br> ![custom_settings](assets/media/chrome_images/game_Settings_modal_custom.webp)|
 
 #### All Users
 |Story No.|Result|Story/ Evidence|
 | ------------- | ------------- | ------------- |
-|1|Test Pass |As a user , <br> I want to be able to pause the game<br> so that I can come back and continue my game if I am enterupted <br><br>I know I am done when the user can stop and return to their game <br><br>Evidence:<br>The pause icon will pause the game state, pressing pause again will continue the game.<br> ![pause_button](assets/media/chrome_images/game_nav.png)|
-|2|Test Pass |As a user , <br> I want to be able to stop the game<br> so that I can end a game early if I need to stop <br><br>I know I am done when the game over message is shown <br><br>Evidence:<br>The stop button will end the current game and show the score.<br> ![stop_button](assets/media/chrome_images/game_nav.png)|
-|3| Test Pass|As a user , <br> I want to be able to know when I have set a new high score<br> so that I can know if I need to continue playing<br><br>I know I am done when a indicator shows the user they have set a high score <br><br>Evidence:<br>The score area will turn gold when the user has a new top score.<br> ![game_score](assets/media/chrome_images/game_score.png)|
-|4|Test Pass |As a user , <br> I want to be able to see what bombs need to be defused<br> so that I can play the game <br><br>I know I am done when the game has a clear indicator of when a bomb has started <br><br>Evidence:<br>A bomb will start to change colour when it has been lit.<br> ![bomb_colour](assets/media/chrome_images/bomb_colours.png)|
-|5|Test Pass |As a user , <br> I want to be able to defuse bombs<br> so that I can play the game <br><br>I know I am done when the bomb goes back to an idle state after being clicked/tapped <br><br>Evidence:<br>A bomb will stop exploding and go back to being idle when clicked/tapped.<br> ![gameplay](assets/media/android_images/and_game_grid.webp)|
+|1|Test Pass |As a user , <br> I want to be able to pause the game<br> so that I can come back and continue my game if I am interrupted. <br><br>I know I am done when the user can stop and return to their game. <br><br>Evidence:<br>The pause icon will pause the game state, pressing pause again will continue the game.<br> ![pause_button](assets/media/chrome_images/game_nav.png)|
+|2|Test Pass |As a user , <br> I want to be able to stop the game<br> so that I can end a game early if I need to stop. <br><br>I know I am done when the game over message is shown. <br><br>Evidence:<br>The stop button will end the current game and show the score.<br> ![stop_button](assets/media/chrome_images/game_nav.png)|
+|3| Test Pass|As a user , <br> I want to be able to know when I have set a new high score<br> so that I can know if I need to continue playing.<br><br>I know I am done when a indicator shows the user they have set a high score. <br><br>Evidence:<br>The score area will turn gold when the user has a new top score.<br> ![game_score](assets/media/chrome_images/game_score.png)|
+|4|Test Pass |As a user , <br> I want to be able to see what bombs need to be defused<br> so that I can play the game. <br><br>I know I am done when the game has a clear indicator of when a bomb has started. <br><br>Evidence:<br>A bomb will start to change colour when it has been lit.<br> ![bomb_colour](assets/media/chrome_images/bomb_colours.png)|
+|5|Test Pass |As a user , <br> I want to be able to defuse bombs<br> so that I can play the game. <br><br>I know I am done when the bomb goes back to an idle state after being clicked/tapped. <br><br>Evidence:<br>A bomb will stop exploding and go back to being idle when clicked/tapped.<br> ![gameplay](assets/media/android_images/and_game_grid.webp)|
 
 ### Accessibility Testing
 
@@ -300,12 +300,12 @@ This is a sample of shots of what the site looks like on different devices.
 #### Sound Bug
 In the game we have two game sounds. Defuse a bomb pop and explosion. Both sounds have a trigger for when they should play. The Bomb defuse pop should play when the user clicks/ taps the lit bomb and defuses it. The explosion sound should play when a user is unable to defuse a bomb in time and the game ends. The bug we had was during testing. The sound was not playing at the correct time when running on ios safari. Trying to play multiple sounds would mean that the sounds were getting added onto a queue and instead of playing at the right time it would play as soon as it was at the front of the queue. 
 
-There were 2 factors hat enabled the sound to work with ios. The first was the refactoring of the sound to create the audio element when the sound switch was set to true. This enablled the audio to play. This means that the audio element does not need a new trigger to play because the auido element already exists. I enabled the bomb pop to play at the correct time by controlling the src of the audio which made the sound play again from the beginning straight away. It also means the autoplay issue did not effect the bomb explode sound because it did not need to create a new audio element, just play the current one with a new src. 
+There were two factors that enabled the sound to work with ios. The first was the refactoring of the sound to create the audio element when the sound switch was set to true. This enablled the audio to play. This means that the audio element does not need a new trigger to play because the auido element already exists. I enabled the bomb pop to play at the correct time by controlling the src of the audio which made the sound play again from the beginning straight away. It also means the autoplay issue did not effect the bomb explode sound because it did not need to create a new audio element, just plays the current one with a new src. 
 
 The other factor that allowed the ios safari audio to play was the new update to ios 16 which enablled sound to work like other browsers. This means that older models will not be able to have the sound working effectivy but newer/updated devices will work. 
 
 #### Rotation Bug
-When on a mobile device the user has the ability to rotate the device. When this happened the bomb grid would appear ofF the screen and would not resize. I used the JQuery commmand to put the bombs into a new ratio aspect that allowed the grid to resize on the screen and use the 'vh' to workout the size of the grid. The function is called when the 'vw' is larger than the 'vh'.
+When on a mobile device the user has the ability to rotate the device. When this happened the bomb grid would appear off the screen and would not resize. I used the JQuery commmand to put the bombs into a new ratio aspect that allowed the grid to resize on the screen and use the 'vh' to workout the size of the grid. The function is called when the 'vw' is larger than the 'vh'.
 
 Below is an example of the fixed feature. 
 
